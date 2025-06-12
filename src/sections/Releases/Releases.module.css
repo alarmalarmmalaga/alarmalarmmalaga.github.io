@@ -1,57 +1,180 @@
 /* src/sections/Releases/Releases.module.css */
+
+/* Using Inter and Rubik Glitch as primary fonts for this section */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Rubik+Glitch&display=swap');
+
 .releasesSection {
   padding: 2rem;
-  text-align: center;
-  background-color: #f0f0f0; /* Placeholder, adjust for theme */
+  /* text-align: center; */ /* Centering might fight the asymmetrical layout */
+  background-color: #f0f0f0; /* Keeping placeholder, can be changed globally */
+  overflow-x: hidden; /* Prevent horizontal scroll from rotations/bleeds */
 }
 
 .sectionTitle {
-  font-family: 'Courier New', Courier, monospace; /* Fanzine-like font */
-  font-size: 2.5rem;
+  font-family: 'Rubik Glitch', sans-serif; /* Changed font */
+  font-size: 3rem; /* Slightly larger */
   text-transform: uppercase;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem; /* More space */
   color: #333;
   writing-mode: horizontal-tb;
-  transform: rotate(-2deg); /* Slight rotation for chaos */
-  display: inline-block; /* So transform applies correctly */
+  transform: rotate(-2.5deg); /* Enhanced rotation */
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 3px solid #000;
+  background-color: #FFFF00; /* Safety yellow for emphasis */
+  box-shadow: 5px 5px 0px #000000;
 }
 
+/* 2. Layout */
 .releasesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem; /* Increased gap for more separation */
   margin-top: 1rem;
 }
 
-.releaseItem {
-  background-color: #fff;
-  border: 2px dashed #555; /* Dashed border for DIY feel */
+.releaseItemContainer {
+  display: flex;
+  align-items: flex-start; /* Align items to the start of the cross axis */
+  gap: 1rem; /* Gap between art and info */
+  transform: rotate(-1deg); /* Default slight rotation */
+  /* For varied rotation, JS would be better, or :nth-child rules */
+  /* Example for variation:
+  &:nth-child(2n) {
+    transform: rotate(0.5deg);
+  }
+  */
+  margin-bottom: 2rem; /* Space below each item */
   padding: 1rem;
-  transform: rotate(1deg); /* Slight rotation */
-  transition: transform 0.2s ease-in-out;
+  border: 1px solid #ccc; /* Optional: for visualizing container boundaries */
+  background-color: #fff; /* Give items a background */
 }
 
-.releaseItem:hover {
-    transform: rotate(-1deg) scale(1.05); /* Shift on hover */
+.releaseItemContainer:nth-child(2n) {
+    transform: rotate(0.8deg); /* Vary rotation for fanzine feel */
+    flex-direction: row-reverse; /* Alternate layout */
 }
 
+.albumArtContainer {
+  flex-basis: 45%; /* Slightly less than 50% to encourage overlap/bleed */
+  /* Or fixed: width: 350px; max-width: 40%; */
+  margin-top: -2rem;
+  margin-left: -1.5rem;
+  z-index: 1; /* Ensure art can sit above info if needed */
+}
+
+.releaseItemContainer:nth-child(2n) .albumArtContainer {
+    margin-left: 0;
+    margin-right: -1.5rem;
+}
+
+
+.releaseInfoContainer {
+  flex-basis: 55%;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem; /* Slight push from art */
+  position: relative; /* For z-index stacking if needed, or absolute positioning of children */
+  z-index: 0;
+}
+
+.releaseItemContainer:nth-child(2n) .releaseInfoContainer {
+    padding-left: 0;
+    padding-right: 0.5rem;
+}
+
+/* 3. Album Art Styling */
 .albumArt {
   width: 100%;
-  max-width: 180px;
   height: auto;
-  border: 1px solid #000;
-  margin-bottom: 0.5rem;
-  box-shadow: 3px 3px 0px rgba(0,0,0,0.2); /* Simple shadow */
+  filter: grayscale(80%) contrast(150%) sepia(20%);
+  border: 3px solid #000000; /* Thicker border */
+  display: block; /* Remove extra space below img */
+  box-shadow: 5px 5px 0px rgba(0,0,0,0.3); /* More pronounced shadow */
 }
 
-.releaseName {
-  font-family: 'Times New Roman', Times, serif; /* Contrasting font */
-  font-size: 1.2rem;
-  color: #222;
-  margin-top: 0.5rem;
+/* 4. Typography */
+.releaseTitle {
+  font-family: 'Rubik Glitch', sans-serif;
+  font-size: 2.2rem; /* Adjusted for balance */
+  text-transform: uppercase;
+  transform: rotate(-3deg);
+  display: inline-block;
+  margin-bottom: 1.5rem; /* More space */
+  color: #111;
+  background-color: rgba(255,255,0,0.7); /* Semi-transparent yellow highlight */
+  padding: 0.25rem 0.5rem;
 }
 
-.releaseLink {
-  text-decoration: none;
-  color: inherit;
+.tracklist {
+  font-family: 'Inter', sans-serif;
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 1.5rem; /* More space */
+  color: #333;
+}
+
+.tracklistItem {
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  padding-left: 15px; /* Indent for "typed" look */
+  text-indent: -10px; /* Creates a hanging effect for a pseudo-bullet */
+  line-height: 1.4;
+}
+
+.tracklistItem::before {
+  content: ">>"; /* Fanzine-style bullet */
+  margin-right: 5px;
+  font-weight: bold;
+  color: #000;
+}
+
+
+/* 5. Links Styling */
+.releaseLinks {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  gap: 1rem;
+  margin-top: 1.5rem; /* More space */
+}
+
+.spotifyLink,
+.bandcampLink {
+  display: inline-block;
+  padding: 0.6rem 1.2rem; /* Slightly larger padding */
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none; /* Remove underline from links */
+  background-color: #FFFF00; /* Safety yellow */
+  color: #000000;
+  border: 2.5px solid #000000; /* Slightly thicker border */
+  box-shadow: 4px 4px 0px #000000; /* More pronounced shadow */
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.spotifyLink:hover,
+.bandcampLink:hover,
+.spotifyLink:focus, /* Added focus for accessibility */
+.bandcampLink:focus {
+  transform: translate(2px, 2px) skewX(-5deg);
+  box-shadow: 1.5px 1.5px 0px #000000; /* Reduced shadow on press */
+  outline: none; /* Remove default focus outline if custom style is clear enough */
+}
+
+.spotifyLink:active,
+.bandcampLink:active {
+  transform: translate(3px, 3px) skewX(-3deg); /* Deeper press effect */
+  box-shadow: 0.5px 0.5px 0px #000000;
+}
+
+/* Remove or comment out old styles that are no longer needed or conflict */
+/*
+.releaseItem { ... }
+.releaseName { ... }
+.releaseLink { ... }
+*/
+
+/* Ensure album art isn't overly constrained by global image settings if any */
+img.albumArt {
+    max-width: none; /* Override potential global max-width for images if needed */
 }
