@@ -33,6 +33,10 @@ const Tour = () => {
     <section className={styles.tourSection}>
       <h2 className={styles.sectionTitle}>Upcoming Shows</h2>
       <div className={styles.widgetContainer}>
+        <script
+          charset="utf-8"
+          src="https://widgetv3.bandsintown.com/main.min.js"
+        ></script>
         <a
           class="bit-widget-initializer"
           data-artist-name="id_15537054"

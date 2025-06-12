@@ -9,7 +9,7 @@ const SocialFeed = () => {
         {/* Conceptual placeholder for an Instagram feed embed */}
         {/* In a real scenario, this would be the actual embed code from Lightwidget/Elfsight */}
         <div className={styles.instagramEmbedPlaceholder}>
-            <p className={styles.placeholderInfoText}>Imagine a cool, messy Instagram feed here!</p>
+            <p className={styles.placeholderInfoText}></p>
             {/* Example of how items might be structured if we built it manually, for styling concept */}
             <div className={`${styles.instaItem} ${styles.instaItem1}`}>Item 1</div>
             <div className={`${styles.instaItem} ${styles.instaItem2}`}>Item 2</div>

@@ -19,13 +19,13 @@ const Music = () => {
       </div>
 
       <div className={styles.otherPlatforms}>
-        <a href="#" target="_blank" rel="noopener noreferrer">
+        <a href="https://music.apple.com/us/artist/alarm-alarm/1494187277" target="_blank" rel="noopener noreferrer">
           Apple Music
         </a>
-        <a href="#" target="_blank" rel="noopener noreferrer">
+        <a href="https://alarmalarm.bandcamp.com/" target="_blank" rel="noopener noreferrer">
           Bandcamp
         </a>
-        <a href="#" target="_blank" rel="noopener noreferrer">
+        <a href="https://music.youtube.com/channel/UCmn_2X05dsJOHFXRM7fERsQ" target="_blank" rel="noopener noreferrer">
           YouTube Music
         </a>
       </div>

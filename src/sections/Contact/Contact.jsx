@@ -9,7 +9,7 @@ const Contact = () => {
       <h2 className={styles.sectionTitle}>Get In Touch / Press</h2>
       <div className={styles.contactInfo}>
         <p className={styles.emailLinkWrapper}>
-          BOOKING/PRESS: <a href="mailto:contact@alarmalarm.band" className={styles.emailLink}>contact@alarmalarm.band</a>
+          BOOKING/PRESS: <a href="mailto:alarmalarmmalaga@gmail.com" className={styles.emailLink}>alarmalarmmalaga@gmail.com</a>
         </p>
       </div>
       <div className={styles.pressKit}>

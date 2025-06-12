@@ -2,9 +2,8 @@
 import styles from './Video.module.css';
 
 const Video = () => {
-  // Placeholder YouTube video IDs
-  const videoId1 = 'dQw4w9WgXcQ'; // Placeholder: Rick Astley (Official Music Video)
-  const videoId2 = 'rokGy0huYEA'; // Placeholder: Live concert footage (e.g., a different artist)
+  const videoId1 = 'sNInMwOkwdw'; 
+  const videoId2 = 'HSVprxESFAs';
 
   return (
     <section className={styles.videoSection}>
