@@ -1,5 +1,5 @@
 // src/sections/Music/Music.jsx
-import styles from './Music.module.css';
+import styles from "./Music.module.css";
 
 const Music = () => {
   return (
@@ -8,22 +8,26 @@ const Music = () => {
 
       <div className={styles.spotifyEmbed}>
         <iframe
-          title="Spotify Embed"
-          style={{ borderRadius: "12px" }}
-          src="https://open.spotify.com/embed/track/0U0ldCRmgCqhVvD6S8sW4k?utm_source=generator"
+          src="https://open.spotify.com/embed/album/2bFikvFpFiMqFP8CmU2ttM?utm_source=generator&theme=0"
           width="100%"
           height="352"
           frameBorder="0"
-          allowFullScreen=""
+          allowfullscreen=""
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
         ></iframe>
       </div>
 
       <div className={styles.otherPlatforms}>
-        <a href="#" target="_blank" rel="noopener noreferrer">Apple Music</a>
-        <a href="#" target="_blank" rel="noopener noreferrer">Bandcamp</a>
-        <a href="#" target="_blank" rel="noopener noreferrer">YouTube Music</a>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          Apple Music
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          Bandcamp
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          YouTube Music
+        </a>
       </div>
     </section>
   );
