@@ -15,6 +15,7 @@
 .widgetContainer {
   margin: 0 auto;
   max-width: 800px; /* Or whatever width is desired */
+  min-height: 100px; /* Added min-height */
   /* The Bandsintown widget might inject an iframe or other elements.
      We'll need to inspect the live widget to add more specific styling
      for its internal elements if data-attributes aren't enough. */

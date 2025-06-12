@@ -1,0 +1,83 @@
+/* src/sections/PressKit/PressKit.module.css */
+.pressKitSection {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #1c1c1c; /* Slightly different background */
+  color: #F5F5F5;
+}
+
+.sectionTitle {
+  font-family: 'Rubik Glitch', cursive;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  color: #F5F5F5;
+}
+
+.bioContainer {
+  margin-bottom: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.bioContainer h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.8rem;
+  color: #FFFF00; /* Accent color */
+  margin-bottom: 15px;
+}
+
+.bioContainer p {
+  font-family: 'Inter', sans-serif;
+  white-space: pre-line; /* Respect newlines in the bio.txt */
+}
+
+.downloadsContainer {
+  margin-bottom: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.downloadsContainer h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.8rem;
+  color: #FFFF00; /* Accent color */
+  margin-bottom: 15px;
+}
+
+.downloadsContainer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.downloadsContainer li a {
+  display: inline-block;
+  margin: 5px 0;
+  color: #F5F5F5;
+  text-decoration: underline;
+  font-family: 'Inter', sans-serif;
+}
+
+.downloadsContainer li a:hover {
+  color: #FFFF00;
+}
+
+.keywords {
+  margin-top: 20px;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+  .bioContainer h3, .downloadsContainer h3 {
+    font-size: 1.5rem;
+  }
+}

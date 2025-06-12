@@ -4,17 +4,29 @@ import styles from "./Tour.module.css";
 
 const Tour = () => {
   useEffect(() => {
-    // It's possible the Bandsintown script re-initializes or needs a nudge
-    // if loaded dynamically or if the component re-renders.
-    // For now, we assume the script in index.html handles initialization.
-    // If issues arise, we might need to trigger its functions here.
-    if (
-      window.bandsintown &&
-      window.bandsintown.widgets &&
-      typeof window.bandsintown.widgets.load === "function"
-    ) {
-      window.bandsintown.widgets.load();
-    }
+    const loadBandsintownWidget = () => {
+      if (
+        window.bandsintown &&
+        window.bandsintown.widgets &&
+        typeof window.bandsintown.widgets.load === "function"
+      ) {
+        console.log("Attempting to load Bandsintown widget...");
+        window.bandsintown.widgets.load();
+      } else {
+        console.error("Bandsintown widget script not found or not ready.");
+      }
+    };
+
+    // Try loading immediately
+    loadBandsintownWidget();
+
+    // And try again after a short delay in case of race conditions
+    const timer = setTimeout(() => {
+      console.log("Attempting to load Bandsintown widget (delayed)...");
+      loadBandsintownWidget();
+    }, 500); // 500ms delay
+
+    return () => clearTimeout(timer); // Cleanup timer on component unmount
   }, []);
 
   return (

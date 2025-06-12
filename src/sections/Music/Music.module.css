@@ -13,14 +13,16 @@
 }
 
 .spotifyEmbed {
-  /* container for the iframe if needed for sizing */
-  max-width: 500px; /* Example, adjust as needed */
-  margin: 0 auto 30px auto;
+  display: inline-block; /* This will make the div wrap its content */
+  border: 2px solid #F5F5F5; /* Border moved here */
+  margin-bottom: 30px; /* Keep bottom margin, auto horizontal margin removed as text-align:center on parent handles centering for inline-block */
+  /* The parent .musicSection already has text-align: center which will center this inline-block div */
 }
 
 .spotifyEmbed iframe {
-  border-radius: 0px !important; /* Override Spotify's default if possible, for raw look */
-  border: 2px solid #F5F5F5; /* Example border */
+  border-radius: 0px !important;
+  border: none; /* Border removed from iframe */
+  display: block; /* To prevent any extra space below the iframe inside the container */
 }
 
 .otherPlatforms a {

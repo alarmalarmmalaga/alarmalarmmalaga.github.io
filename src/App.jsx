@@ -5,6 +5,7 @@ import Music from './sections/Music/Music';
 import Tour from './sections/Tour/Tour';
 import SocialFeed from './sections/SocialFeed/SocialFeed';
 import Video from './sections/Video/Video';
+import PressKit from './sections/PressKit/PressKit';
 import Contact from './sections/Contact/Contact'; // Import Contact
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Tour />
       <SocialFeed />
       <Video />
+      <PressKit /> {/* Add PressKit section here */}
       <Contact /> {/* Add Contact component */}
     </div>
   );
