@@ -4,39 +4,41 @@ import styles from "./Tour.module.css";
 
 const Tour = () => {
   useEffect(() => {
-    const loadBandsintownWidget = () => {
-      if (
-        window.bandsintown &&
-        window.bandsintown.widgets &&
-        typeof window.bandsintown.widgets.load === "function"
-      ) {
-        console.log("Attempting to load Bandsintown widget...");
-        window.bandsintown.widgets.load();
+  const checkBandsintown = () => {
+    if (window.bandsintown) {
+      console.log("Bandsintown global object found:", window.bandsintown);
+      if (window.bandsintown.widgets && typeof window.bandsintown.widgets.load === 'function') {
+        console.log("Attempting to call Bandsintown widgets.load()...");
+        try {
+          window.bandsintown.widgets.load();
+          console.log("Bandsintown widgets.load() called.");
+        } catch (e) {
+          console.error("Error calling Bandsintown widgets.load():", e);
+        }
       } else {
-        console.error("Bandsintown widget script not found or not ready.");
+        console.log("Bandsintown widgets.load() function not found. The widget might load automatically via the <a> tag.");
       }
-    };
+    } else {
+      console.error("Bandsintown global object not found. Widget script from index.html might not have loaded or initialized correctly.");
+    }
+  };
 
-    // Try loading immediately
-    loadBandsintownWidget();
+  // Check immediately
+  checkBandsintown();
 
-    // And try again after a short delay in case of race conditions
-    const timer = setTimeout(() => {
-      console.log("Attempting to load Bandsintown widget (delayed)...");
-      loadBandsintownWidget();
-    }, 500); // 500ms delay
+  // And check again after a short delay
+  const timer = setTimeout(() => {
+    console.log("Checking for Bandsintown (delayed)...");
+    checkBandsintown();
+  }, 1000); // 1s delay, increased from 500ms
 
-    return () => clearTimeout(timer); // Cleanup timer on component unmount
-  }, []);
+  return () => clearTimeout(timer);
+}, []);
 
   return (
     <section className={styles.tourSection}>
       <h2 className={styles.sectionTitle}>Upcoming Shows</h2>
       <div className={styles.widgetContainer}>
-        <script
-          charset="utf-8"
-          src="https://widgetv3.bandsintown.com/main.min.js"
-        ></script>
         <a
           class="bit-widget-initializer"
           data-artist-name="id_15537054"

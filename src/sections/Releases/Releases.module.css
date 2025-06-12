@@ -1,0 +1,57 @@
+/* src/sections/Releases/Releases.module.css */
+.releasesSection {
+  padding: 2rem;
+  text-align: center;
+  background-color: #f0f0f0; /* Placeholder, adjust for theme */
+}
+
+.sectionTitle {
+  font-family: 'Courier New', Courier, monospace; /* Fanzine-like font */
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  color: #333;
+  writing-mode: horizontal-tb;
+  transform: rotate(-2deg); /* Slight rotation for chaos */
+  display: inline-block; /* So transform applies correctly */
+}
+
+.releasesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.releaseItem {
+  background-color: #fff;
+  border: 2px dashed #555; /* Dashed border for DIY feel */
+  padding: 1rem;
+  transform: rotate(1deg); /* Slight rotation */
+  transition: transform 0.2s ease-in-out;
+}
+
+.releaseItem:hover {
+    transform: rotate(-1deg) scale(1.05); /* Shift on hover */
+}
+
+.albumArt {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border: 1px solid #000;
+  margin-bottom: 0.5rem;
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.2); /* Simple shadow */
+}
+
+.releaseName {
+  font-family: 'Times New Roman', Times, serif; /* Contrasting font */
+  font-size: 1.2rem;
+  color: #222;
+  margin-top: 0.5rem;
+}
+
+.releaseLink {
+  text-decoration: none;
+  color: inherit;
+}
