@@ -6,7 +6,7 @@
 .releasesSection {
   padding: 2rem;
   /* text-align: center; */ /* Centering might fight the asymmetrical layout */
-  background-color: #f0f0f0; /* Keeping placeholder, can be changed globally */
+  background-color: #000000; /* Keeping placeholder, can be changed globally */
   overflow-x: hidden; /* Prevent horizontal scroll from rotations/bleeds */
 }
 
