@@ -34,6 +34,16 @@
   text-decoration: underline; /* Basic hover for now */
 }
 
+/* Container for all press kit download buttons */
+.pressKit {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  justify-content: center; /* Center buttons */
+  align-items: center;
+  gap: 1rem; /* Spacing between buttons */
+}
+
 .pressKitButton {
   display: inline-block;
   padding: 15px 30px;
@@ -44,7 +54,7 @@
   text-decoration: none;
   border: 2px solid #FFFF00; /* Accent color border */
   transition: background-color 0.2s ease, color 0.2s ease;
-  margin-top: 20px; /* Added some margin for spacing */
+  /* margin-top: 20px; /* Removed, as parent .pressKit now uses gap for spacing */
 }
 
 .pressKitButton:hover {
