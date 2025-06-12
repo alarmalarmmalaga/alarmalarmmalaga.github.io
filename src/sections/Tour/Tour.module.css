@@ -1,0 +1,63 @@
+/* src/sections/Tour/Tour.module.css */
+.tourSection {
+  padding: 40px 20px;
+  /* background-color: #111; */ /* Example background, will inherit from app body or .container for now */
+  text-align: center;
+}
+
+.sectionTitle {
+  font-family: 'Rubik Glitch', cursive;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  color: #F5F5F5;
+}
+
+.widgetContainer {
+  margin: 0 auto;
+  max-width: 800px; /* Or whatever width is desired */
+  /* The Bandsintown widget might inject an iframe or other elements.
+     We'll need to inspect the live widget to add more specific styling
+     for its internal elements if data-attributes aren't enough. */
+}
+
+/* Example of how we might target Bandsintown elements if necessary,
+   These are placeholders and might need to be in global.css if not scoped by module
+   or if the widget injects elements outside this component's direct children. */
+/*
+:global(.bit-widget-header) {
+  background-color: #000 !important;
+}
+
+:global(.bit-event-row) {
+  background-color: #0A0A0A !important;
+  border-bottom: 1px solid #333 !important;
+}
+
+:global(.bit-event-row a) {
+  color: #FFFF00 !important;
+}
+
+:global(.bit-event-row .bit-button) {
+  background-color: #FFFF00 !important;
+  color: #000000 !important;
+  border-radius: 0 !important;
+}
+*/
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+  .widgetContainer {
+     max-width: 95%; /* Ensure it's not edge-to-edge if that looks bad */
+     margin: 0 auto; /* Keep it centered */
+  }
+}
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  .widgetContainer {
+    max-width: 100%; /* Allow full width if needed, Bandsintown widget should handle its internal width */
+  }
+}

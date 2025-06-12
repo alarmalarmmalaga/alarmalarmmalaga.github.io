@@ -1,0 +1,80 @@
+/* src/sections/Contact/Contact.module.css */
+.contactSection {
+  padding: 60px 20px; /* More padding for emphasis as it's the last section */
+  /* background-color: #0A0A0A; */ /* Inherit global */
+  text-align: center;
+  border-top: 2px solid #F5F5F5; /* Separator for the final section */
+}
+
+.sectionTitle {
+  font-family: 'Rubik Glitch', cursive;
+  font-size: 2.5rem; /* Default size */
+  margin-bottom: 30px;
+  color: #F5F5F5;
+}
+
+.contactInfo {
+  margin-bottom: 40px;
+}
+
+.emailLinkWrapper {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem; /* Large font for email */
+  color: #F5F5F5;
+  word-wrap: break-word; /* Ensure email doesn't break layout */
+  line-height: 1.6;
+}
+
+.emailLink {
+  color: #FFFF00; /* Accent color (Safety Yellow placeholder) */
+  text-decoration: none;
+  font-weight: bold;
+}
+.emailLink:hover {
+  text-decoration: underline; /* Basic hover for now */
+}
+
+.pressKitButton {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: #FFFF00; /* Accent color */
+  color: #000000; /* Black text on accent button */
+  font-family: 'Rubik Glitch', cursive; /* Or a bold 'Inter' */
+  font-size: 1.5rem;
+  text-decoration: none;
+  border: 2px solid #FFFF00; /* Accent color border */
+  transition: background-color 0.2s ease, color 0.2s ease;
+  margin-top: 20px; /* Added some margin for spacing */
+}
+
+.pressKitButton:hover {
+  background-color: #000000;
+  color: #FFFF00; /* Invert colors on hover */
+  border-color: #FFFF00; /* Keep border consistent on hover */
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2rem; /* Adjusted */
+  }
+  .emailLinkWrapper {
+    font-size: 1.2rem; /* Adjusted */
+  }
+  .pressKitButton {
+    font-size: 1.2rem; /* Adjusted */
+    padding: 12px 25px; /* Keep padding */
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 1.8rem; /* Adjusted */
+  }
+  .emailLinkWrapper {
+    font-size: 1rem; /* Adjusted */
+  }
+  .pressKitButton {
+    font-size: 1rem; /* Adjusted */
+    padding: 10px 20px; /* Keep padding */
+  }
+}
