@@ -1,7 +1,6 @@
 /* src/sections/Music/Music.module.css */
 .musicSection {
   padding: 40px 5vw; /* Updated padding */
-  text-align: left; /* Changed for asymmetry */
   /* background-color: #0A0A0A; /* Slightly different from pure black */
 }
 

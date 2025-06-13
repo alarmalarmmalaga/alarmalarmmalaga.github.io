@@ -2,7 +2,6 @@
 .videoSection {
   padding: 40px 5vw; /* Updated padding */
   /* background-color: #111; */ /* Inherit global background */
-  text-align: left; /* Changed for asymmetry */
   overflow: hidden; /* To contain any aggressive transforms if added */
 }
 

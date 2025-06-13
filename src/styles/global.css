@@ -40,7 +40,7 @@ html, body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-headline);
   color: var(--color-off-white);
-  text-align: left;
+  text-align: center;
   margin-top: 1.5em; /* Default margin */
   margin-bottom: 0.75em; /* Default margin */
   text-shadow: none; /* Remove default browser text shadows */
