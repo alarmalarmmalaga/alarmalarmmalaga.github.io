@@ -1,51 +1,53 @@
 /* src/sections/PressKit/PressKit.module.css */
 .pressKitSection {
-  padding: 40px 20px;
-  text-align: center;
-  background-color: #1c1c1c; /* Slightly different background */
-  color: #F5F5F5;
+  padding: 40px 5vw; /* Updated padding */
+  text-align: left; /* Changed for asymmetry */
+  /* background-color: #1c1c1c; -- Removed, will inherit global */
+  /* color: #F5F5F5; -- Removed, will inherit global */
 }
 
 .sectionTitle {
-  font-family: 'Rubik Glitch', cursive;
+  /* font-family and color inherited from global H2 styles */
   font-size: 3rem;
   margin-bottom: 30px;
-  color: #F5F5F5;
+  display: inline-block; /* For transform */
+  transform: translateX(-1%) rotate(-0.5deg); /* Asymmetric transform */
 }
 
 .bioContainer {
   margin-bottom: 30px;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 5%; /* Asymmetric margin */
+  margin-right: auto; /* Allow it to not take full width if max-width is hit */
   text-align: left;
   line-height: 1.6;
 }
 
 .bioContainer h3 {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-headline); /* Updated variable */
   font-size: 1.8rem;
-  color: #FFFF00; /* Accent color */
+  color: var(--color-accent); /* Updated variable */
   margin-bottom: 15px;
 }
 
 .bioContainer p {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-primary); /* Updated variable */
   white-space: pre-line; /* Respect newlines in the bio.txt */
+  /* color will be inherited (var(--color-off-white)) */
 }
 
 .downloadsContainer {
   margin-bottom: 30px;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 5%; /* Asymmetric margin */
+  margin-right: auto; /* Allow it to not take full width if max-width is hit */
   text-align: left;
 }
 
 .downloadsContainer h3 {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-headline); /* Updated variable */
   font-size: 1.8rem;
-  color: #FFFF00; /* Accent color */
+  color: var(--color-accent); /* Updated variable */
   margin-bottom: 15px;
 }
 
@@ -55,29 +57,38 @@
 }
 
 .downloadsContainer li a {
-  display: inline-block;
+  /* Fully inherits from global 'a' styles */
+  display: inline-block; /* Keep for margin purposes */
   margin: 5px 0;
-  color: #F5F5F5;
-  text-decoration: underline;
-  font-family: 'Inter', sans-serif;
+  /* color: var(--color-accent); - Inherited */
+  /* text-decoration: none; - Inherited (global.css has 'none', this had 'underline') */
+  /* font-family: var(--font-primary); - Inherited */
 }
 
 .downloadsContainer li a:hover {
-  color: #FFFF00;
+  /* Fully inherits from global 'a:hover' styles */
+  /* color: var(--color-accent-hover); - Inherited */
 }
 
 .keywords {
   margin-top: 20px;
   font-style: italic;
   font-size: 0.9rem;
-  color: #aaa;
+  color: var(--color-off-white); /* Updated variable */
+  opacity: 0.6; /* Added opacity */
+  font-family: var(--font-primary); /* Added font family */
 }
 
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 2.5rem;
+    transform: translateX(0) rotate(0deg); /* Reset transform */
   }
   .bioContainer h3, .downloadsContainer h3 {
     font-size: 1.5rem;
+  }
+  .bioContainer, .downloadsContainer {
+    margin-left: auto; /* Center on smaller screens */
+    margin-right: auto;
   }
 }

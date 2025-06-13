@@ -1,28 +1,27 @@
 /* src/sections/Releases/Releases.module.css */
 
-/* Using Inter and Rubik Glitch as primary fonts for this section */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Rubik+Glitch&display=swap');
+/* Font import removed, assuming global import in global.css */
 
 .releasesSection {
   padding: 2rem;
   /* text-align: center; */ /* Centering might fight the asymmetrical layout */
-  background-color: #000000; /* Keeping placeholder, can be changed globally */
+  /* background-color removed, will inherit from body */
   overflow-x: hidden; /* Prevent horizontal scroll from rotations/bleeds */
 }
 
 .sectionTitle {
-  font-family: 'Rubik Glitch', sans-serif; /* Changed font */
+  font-family: var(--font-headline); /* Changed font */
   font-size: 3rem; /* Slightly larger */
   text-transform: uppercase;
   margin-bottom: 3rem; /* More space */
-  color: #333;
+  color: var(--color-black); /* Updated variable */
   writing-mode: horizontal-tb;
   transform: rotate(-2.5deg); /* Enhanced rotation */
   display: inline-block;
   padding: 0.5rem 1rem;
-  border: 3px solid #000;
-  background-color: #FFFF00; /* Safety yellow for emphasis */
-  box-shadow: 5px 5px 0px #000000;
+  border: 3px solid var(--color-black); /* Updated variable */
+  background-color: var(--color-accent); /* Updated variable */
+  box-shadow: 5px 5px 0px var(--color-black); /* Updated variable */
 }
 
 /* 2. Layout */
@@ -46,8 +45,8 @@
   */
   margin-bottom: 2rem; /* Space below each item */
   padding: 1rem;
-  border: 1px solid #ccc; /* Optional: for visualizing container boundaries */
-  background-color: #fff; /* Give items a background */
+  border: 2px solid var(--color-black); /* Updated variable for "cut-out" feel */
+  background-color: var(--color-off-white); /* Updated variable - "paper" background */
 }
 
 .releaseItemContainer:nth-child(2n) {
@@ -87,30 +86,30 @@
   width: 100%;
   height: auto;
   filter: grayscale(80%) contrast(150%) sepia(20%);
-  border: 3px solid #000000; /* Thicker border */
+  border: 3px solid var(--color-black); /* Updated variable */
   display: block; /* Remove extra space below img */
-  box-shadow: 5px 5px 0px rgba(0,0,0,0.3); /* More pronounced shadow */
+  box-shadow: 5px 5px 0px var(--color-black); /* Updated variable - solid shadow */
 }
 
 /* 4. Typography */
 .releaseTitle {
-  font-family: 'Rubik Glitch', sans-serif;
+  font-family: var(--font-headline); /* Updated variable */
   font-size: 2.2rem; /* Adjusted for balance */
   text-transform: uppercase;
   transform: rotate(-3deg);
   display: inline-block;
   margin-bottom: 1.5rem; /* More space */
-  color: #111;
-  background-color: rgba(255,255,0,0.7); /* Semi-transparent yellow highlight */
-  padding: 0.25rem 0.5rem;
+  color: var(--color-black); /* Updated variable */
+  background-color: var(--color-accent); /* Updated variable - solid highlight */
+  padding: 0.2em 0.4em; /* Adjusted padding */
 }
 
 .tracklist {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-primary); /* Updated variable */
   list-style-type: none;
   padding-left: 0;
   margin-bottom: 1.5rem; /* More space */
-  color: #333;
+  color: var(--color-black); /* Updated variable - text on off-white paper */
 }
 
 .tracklistItem {
@@ -125,7 +124,7 @@
   content: ">>"; /* Fanzine-style bullet */
   margin-right: 5px;
   font-weight: bold;
-  color: #000;
+  color: var(--color-black); /* Updated variable */
 }
 
 
@@ -141,14 +140,14 @@
 .bandcampLink {
   display: inline-block;
   padding: 0.6rem 1.2rem; /* Slightly larger padding */
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-primary); /* Updated variable */
   font-weight: bold;
   text-transform: uppercase;
   text-decoration: none; /* Remove underline from links */
-  background-color: #FFFF00; /* Safety yellow */
-  color: #000000;
-  border: 2.5px solid #000000; /* Slightly thicker border */
-  box-shadow: 4px 4px 0px #000000; /* More pronounced shadow */
+  background-color: var(--color-accent); /* Updated variable */
+  color: var(--color-black); /* Updated variable (was already black) */
+  border: 2px solid var(--color-black); /* Updated variable - adjusted border */
+  box-shadow: 3px 3px 0px var(--color-black); /* Updated variable - adjusted shadow */
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 

@@ -1,22 +1,25 @@
 /* src/sections/Music/Music.module.css */
 .musicSection {
-  padding: 40px 20px;
-  text-align: center;
+  padding: 40px 5vw; /* Updated padding */
+  text-align: left; /* Changed for asymmetry */
   /* background-color: #0A0A0A; /* Slightly different from pure black */
 }
 
 .sectionTitle {
-  font-family: 'Rubik Glitch', cursive;
+  /* font-family and color inherited from global H2 styles */
   font-size: 3rem; /* Adjust as needed */
   margin-bottom: 30px;
-  color: #F5F5F5;
+  display: inline-block; /* For transform to work as expected */
+  transform: translateX(-2%) rotate(-1deg); /* Slight asymmetry */
 }
 
 .spotifyEmbed {
-  display: inline-block; /* This will make the div wrap its content */
-  border: 2px solid #F5F5F5; /* Border moved here */
-  margin-bottom: 30px; /* Keep bottom margin, auto horizontal margin removed as text-align:center on parent handles centering for inline-block */
-  /* The parent .musicSection already has text-align: center which will center this inline-block div */
+  display: block; /* Changed for asymmetric layout */
+  border: 2px solid var(--color-off-white); /* Use CSS variable */
+  margin: 2rem 0 2rem 5%; /* Asymmetric margin */
+  max-width: 700px; /* Control max width */
+  transform: rotate(0.5deg); /* Slight asymmetry */
+  /* The parent .musicSection text-align: left will handle block alignment */
 }
 
 .spotifyEmbed iframe {
@@ -25,12 +28,17 @@
   display: block; /* To prevent any extra space below the iframe inside the container */
 }
 
+.otherPlatforms { /* Added rule for parent container */
+  margin-left: 5%; /* Align with spotifyEmbed */
+  /* Consider text-align: left if individual links need specific alignment within this block */
+}
+
 .otherPlatforms a {
   display: inline-block;
-  margin: 0 15px;
-  color: #FFFF00; /* Example accent color - placeholder */
+  margin: 0 15px 0 0; /* Adjusted margin, no left margin if parent handles alignment */
+  /* color will be inherited from global 'a' styles (var(--color-accent)) */
   text-decoration: none;
-  font-family: 'Inter', sans-serif;
+  /* font-family will be inherited from body or global 'a' styles */
   /* Add more punk styling later */
 }
 
@@ -39,19 +47,35 @@
     font-size: 2.5rem;
   }
   .spotifyEmbed {
-    max-width: 95%; /* Allow it to use more width */
+    max-width: 90%; /* Allow it to use more width, adjusted from 95% due to new margin */
+    margin-left: auto; /* Center on smaller screens if desired, or keep 5% */
+    margin-right: auto;
+    transform: rotate(0deg); /* Optional: remove rotation on smaller screens for readability */
+  }
+  .otherPlatforms {
+    margin-left: 0; /* Reset margin for smaller screens if centering */
+    text-align: center; /* Center links on smaller screens */
+  }
+  .otherPlatforms a {
+    margin: 0 8px; /* Restore some horizontal margin for centered links */
   }
 }
 @media (max-width: 480px) {
   .sectionTitle {
     font-size: 2rem;
+    transform: translateX(0) rotate(0deg); /* Reset transform for very small screens */
   }
   .otherPlatforms a {
     font-size: 0.85rem; /* Slightly smaller */
-    margin: 0 8px;
     padding: 5px 0; /* Add some vertical padding for easier tapping */
   }
   .spotifyEmbed iframe {
     height: 300px; /* Reduce height of Spotify embed on small screens */
+  }
+  .spotifyEmbed {
+    /* Explicitly set max-width if not already 100% or similar by parent */
+    max-width: calc(100% - 20px); /* Example: ensure padding is respected */
+    margin-left: auto;
+    margin-right: auto;
   }
 }

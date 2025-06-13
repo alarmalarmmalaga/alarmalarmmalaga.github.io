@@ -1,16 +1,17 @@
 /* src/sections/Video/Video.module.css */
 .videoSection {
-  padding: 40px 20px;
+  padding: 40px 5vw; /* Updated padding */
   /* background-color: #111; */ /* Inherit global background */
-  text-align: center;
+  text-align: left; /* Changed for asymmetry */
   overflow: hidden; /* To contain any aggressive transforms if added */
 }
 
 .sectionTitle {
-  font-family: 'Rubik Glitch', cursive;
+  /* font-family and color inherited from global H2 styles */
   font-size: 3rem;
   margin-bottom: 40px;
-  color: #F5F5F5;
+  display: inline-block; /* For transform */
+  transform: translateX(-1%) rotate(-0.5deg); /* Asymmetric transform */
 }
 
 .videoGrid {
@@ -28,8 +29,8 @@
   padding-bottom: 56.25%; /* 16:9 aspect ratio */
   height: 0;
   overflow: hidden;
-  border: 3px solid #F5F5F5; /* Punk border */
-  background-color: #000; /* Fallback if iframe is slow to load */
+  border: 3px solid var(--color-off-white); /* Updated variable */
+  background-color: var(--color-black); /* Updated variable */
 }
 
 .videoWrapper iframe {
@@ -88,6 +89,7 @@
   }
   .sectionTitle { /* Added here for 768px */
     font-size: 2.5rem;
+    transform: translateX(0) rotate(0deg); /* Reset transform */
   }
 }
 

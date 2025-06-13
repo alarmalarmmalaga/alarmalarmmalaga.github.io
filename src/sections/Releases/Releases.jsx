@@ -2,12 +2,19 @@
 import React from 'react';
 import styles from './Releases.module.css';
 
+// Import local images
+import albumCoverLp1 from '../../assets/images/album-cover-lp1.jpg';
+import albumCoverLp2 from '../../assets/images/album-cover-lp2.jpg';
+import albumCoverEp from '../../assets/images/album-cover-ep.jpg';
+import albumCoverLive from '../../assets/images/album-cover-live.jpg';
+import albumCoverCompilation from '../../assets/images/album-cover-compilation.jpg';
+
 // Placeholder data - replace with actual data and image paths
 const releasesData = [
   {
     id: 1,
     title: 'Studio Album LP 1',
-    imageUrl: 'https://via.placeholder.com/180', // Using placeholder URL
+    imageUrl: albumCoverLp1, // Changed from placeholder
     spotifyUrl: 'https://open.spotify.com/album/placeholder1',
     tracklist: ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6", "Track 7", "Track 8", "Track 9", "Track 10"],
     bandcampUrl: 'https://bandcamp.com/album/placeholder1',
@@ -15,7 +22,7 @@ const releasesData = [
   {
     id: 2,
     title: 'Studio Album LP 2',
-    imageUrl: 'https://via.placeholder.com/180', // Using placeholder URL
+    imageUrl: albumCoverLp2, // Changed from placeholder
     spotifyUrl: 'https://open.spotify.com/album/placeholder2',
     tracklist: ["Intro", "Song Two", "Another One", "Interlude", "The Big Hit", "Song Six", "Seven's Secret", "Outro"],
     bandcampUrl: 'https://bandcamp.com/album/placeholder2',
@@ -23,7 +30,7 @@ const releasesData = [
   {
     id: 3,
     title: 'Our Cool EP',
-    imageUrl: 'https://via.placeholder.com/180', // Using placeholder URL
+    imageUrl: albumCoverEp, // Changed from placeholder
     spotifyUrl: 'https://open.spotify.com/album/placeholder3',
     tracklist: ["EP Track A", "EP Track B", "EP Track C (Extended Mix)"],
     bandcampUrl: 'https://bandcamp.com/album/placeholder3',
@@ -31,7 +38,7 @@ const releasesData = [
   {
     id: 4,
     title: 'Live Insanity',
-    imageUrl: 'https://via.placeholder.com/180', // Using placeholder URL
+    imageUrl: albumCoverLive, // Changed from placeholder
     spotifyUrl: 'https://open.spotify.com/album/placeholder4',
     tracklist: ["Live Intro", "Hit Song (Live)", "Crowd Favorite (Live)", "Encore (Live)"],
     bandcampUrl: 'https://bandcamp.com/album/placeholder4',
@@ -39,7 +46,7 @@ const releasesData = [
   {
     id: 5,
     title: 'Compilation Chaos',
-    imageUrl: 'https://via.placeholder.com/180', // Using placeholder URL
+    imageUrl: albumCoverCompilation, // Changed from placeholder
     spotifyUrl: 'https://open.spotify.com/album/placeholder5',
     tracklist: ["Greatest Hit v1", "Remix of a Song", "Previously Unreleased", "Acoustic Jam"],
     bandcampUrl: 'https://bandcamp.com/album/placeholder5',
