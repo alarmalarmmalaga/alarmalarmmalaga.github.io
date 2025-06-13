@@ -2,7 +2,6 @@
 .contactSection {
   padding: 60px 5vw 40px 5vw; /* Adjusted padding */
   /* background-color: #0A0A0A; */ /* Inherit global */
-  text-align: left; /* Changed for asymmetry */
   border-top: 2px solid var(--color-off-white); /* Updated variable */
 }
 

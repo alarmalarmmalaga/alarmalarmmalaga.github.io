@@ -5,7 +5,7 @@
 .releasesSection {
   padding: 2rem;
   /* text-align: center; */ /* Centering might fight the asymmetrical layout */
-  background-color: var(--color-off-white); /* Set background to off-white */
+  background-color: var(--color-black); /* Set background to off-white */
   overflow-x: hidden; /* Prevent horizontal scroll from rotations/bleeds */
 }
 
