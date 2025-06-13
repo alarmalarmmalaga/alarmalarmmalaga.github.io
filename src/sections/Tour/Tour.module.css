@@ -9,8 +9,14 @@
   /* font-family and color inherited from global H2 styles */
   font-size: 3rem;
   margin-bottom: 30px;
-  display: inline-block; /* For transform */
-  transform: translateX(1%) rotate(0.5deg); /* Slight asymmetry */
+  text-align: center;
+  background-color: var(--color-accent);
+  color: var(--color-black);
+  padding: 0.5em 1em;
+  display: inline-block;
+  border: 2px solid var(--color-black);
+  box-shadow: 3px 3px 0px var(--color-black);
+  /* transform: translateX(1%) rotate(0.5deg); */ /* Removed transform */
 }
 
 .widgetContainer {
@@ -64,7 +70,7 @@
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 2.5rem;
-    transform: translateX(0) rotate(0deg); /* Reset transform on smaller screens */
+    /* transform: translateX(0) rotate(0deg); */ /* Reset transform on smaller screens */
   }
   .widgetContainer {
      max-width: 95%; /* Ensure it's not edge-to-edge if that looks bad */

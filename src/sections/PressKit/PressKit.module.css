@@ -10,8 +10,14 @@
   /* font-family and color inherited from global H2 styles */
   font-size: 3rem;
   margin-bottom: 30px;
-  display: inline-block; /* For transform */
-  transform: translateX(-1%) rotate(-0.5deg); /* Asymmetric transform */
+  text-align: center;
+  background-color: var(--color-accent);
+  color: var(--color-black);
+  padding: 0.5em 1em;
+  display: inline-block;
+  border: 2px solid var(--color-black);
+  box-shadow: 3px 3px 0px var(--color-black);
+  /* transform: translateX(-1%) rotate(-0.5deg); */ /* Asymmetric transform */
 }
 
 .bioContainer {
@@ -70,6 +76,28 @@
   /* color: var(--color-accent-hover); - Inherited */
 }
 
+/* Specific style for the download link, complementing button-style-link */
+.downloadLink {
+  display: inline-block; /* Already in .downloadsContainer li a, but good for specificity */
+  padding: 0.8em 1.5em; /* Adjust padding as needed */
+  background-color: var(--color-accent);
+  color: var(--color-black);
+  border: 2px solid var(--color-black);
+  box-shadow: 3px 3px 0px var(--color-black);
+  text-decoration: none; /* Ensure no underline */
+  text-align: center;
+  margin-top: 0.5em; /* Add some margin if needed */
+  /* font-family is handled by button-style-link */
+}
+
+.downloadLink:hover {
+  background-color: var(--color-accent-hover);
+  color: var(--color-black); /* Keep text color or adjust as needed */
+  /* transform and box-shadow can be inherited from global .button-style-link if defined there, or specific here */
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--color-black);
+}
+
 .keywords {
   margin-top: 20px;
   font-style: italic;
@@ -82,7 +110,7 @@
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 2.5rem;
-    transform: translateX(0) rotate(0deg); /* Reset transform */
+    /* transform: translateX(0) rotate(0deg); */ /* Reset transform */
   }
   .bioContainer h3, .downloadsContainer h3 {
     font-size: 1.5rem;

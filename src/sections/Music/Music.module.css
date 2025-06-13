@@ -9,8 +9,14 @@
   /* font-family and color inherited from global H2 styles */
   font-size: 3rem; /* Adjust as needed */
   margin-bottom: 30px;
-  display: inline-block; /* For transform to work as expected */
-  transform: translateX(-2%) rotate(-1deg); /* Slight asymmetry */
+  text-align: center;
+  background-color: var(--color-accent);
+  color: var(--color-black);
+  padding: 0.5em 1em;
+  display: inline-block;
+  border: 2px solid var(--color-black);
+  box-shadow: 3px 3px 0px var(--color-black);
+  /* transform: translateX(-2%) rotate(-1deg); */ /* Removed transform */
 }
 
 .spotifyEmbed {
@@ -45,6 +51,7 @@
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 2.5rem;
+    /* Ensure centered styles are maintained or adjusted for mobile if necessary */
   }
   .spotifyEmbed {
     max-width: 90%; /* Allow it to use more width, adjusted from 95% due to new margin */
@@ -63,7 +70,7 @@
 @media (max-width: 480px) {
   .sectionTitle {
     font-size: 2rem;
-    transform: translateX(0) rotate(0deg); /* Reset transform for very small screens */
+    /* transform: translateX(0) rotate(0deg); */ /* Reset transform for very small screens */
   }
   .otherPlatforms a {
     font-size: 0.85rem; /* Slightly smaller */
