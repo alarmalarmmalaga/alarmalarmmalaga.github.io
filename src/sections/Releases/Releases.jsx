@@ -5,7 +5,7 @@ import styles from './Releases.module.css';
 // Import local images
 import albumCoverLp1 from '../../assets/images/album-cover-lp1.jpg';
 import albumCoverLp2 from '../../assets/images/album-cover-lp2.jpg';
-import albumCoverEp from '../../assets/images/album-cover-ep.jpg';
+import albumCoverEp1 from '../../assets/images/album-cover-ep1.jpg';
 import albumCoverLive from '../../assets/images/album-cover-live.jpg';
 import albumCoverCompilation from '../../assets/images/album-cover-compilation.jpg';
 
@@ -13,43 +13,43 @@ import albumCoverCompilation from '../../assets/images/album-cover-compilation.j
 const releasesData = [
   {
     id: 1,
-    title: 'Studio Album LP 1',
-    imageUrl: albumCoverLp1, // Changed from placeholder
-    spotifyUrl: 'https://open.spotify.com/album/placeholder1',
-    tracklist: ["Track 1", "Track 2", "Track 3", "Track 4", "Track 5", "Track 6", "Track 7", "Track 8", "Track 9", "Track 10"],
-    bandcampUrl: 'https://bandcamp.com/album/placeholder1',
+    title: 'Bloody Hell! (2020)',
+    imageUrl: albumCoverLp1,
+    spotifyUrl: 'https://open.spotify.com/album/4SIJzb8ZWfxtvz6kjQlJe0',
+    tracklist: ["Hello World", "Office Hours", "Radio", "Saturday Night", "Midlife Crisis", "All You Can Eat", "Hass", "Summer Love", "Give Up", "No"],
+    bandcampUrl: 'https://alarmalarm.bandcamp.com/album/bloody-hell',
   },
   {
     id: 2,
-    title: 'Studio Album LP 2',
-    imageUrl: albumCoverLp2, // Changed from placeholder
-    spotifyUrl: 'https://open.spotify.com/album/placeholder2',
-    tracklist: ["Intro", "Song Two", "Another One", "Interlude", "The Big Hit", "Song Six", "Seven's Secret", "Outro"],
-    bandcampUrl: 'https://bandcamp.com/album/placeholder2',
+    title: 'Whatever... (2022)',
+    imageUrl: albumCoverLp2,
+    spotifyUrl: 'https://open.spotify.com/album/1cb5wJKrETBtXU5iauhmj2',
+    tracklist: ["Git Init", "With Or Without You", "Punk Rock Scene", "I'm Not Alright'", "Pull Request", "Déjame En Paz", "Scheissegal", "I'm Not Worried Enough", "I'm Only Happy When I'm Angry", "Friday Night", "A Song To Leah"],
+    bandcampUrl: 'https://alarmalarm.bandcamp.com/album/whatever',
   },
   {
     id: 3,
-    title: 'Our Cool EP',
-    imageUrl: albumCoverEp, // Changed from placeholder
-    spotifyUrl: 'https://open.spotify.com/album/placeholder3',
-    tracklist: ["EP Track A", "EP Track B", "EP Track C (Extended Mix)"],
-    bandcampUrl: 'https://bandcamp.com/album/placeholder3',
+    title: "'98-'99 (2025)",
+    imageUrl: albumCoverEp1,
+    spotifyUrl: 'https://open.spotify.com/album/2bFikvFpFiMqFP8CmU2ttM',
+    tracklist: ["Todo Sin Terminar", "Sprint Retrospective", "Banda Tributo", "Déjame En Paz (Live)"],
+    bandcampUrl: 'https://alarmalarm.bandcamp.com/music',
   },
   {
     id: 4,
-    title: 'Live Insanity',
+    title: 'Ay Carumba! (2024)',
     imageUrl: albumCoverLive, // Changed from placeholder
-    spotifyUrl: 'https://open.spotify.com/album/placeholder4',
-    tracklist: ["Live Intro", "Hit Song (Live)", "Crowd Favorite (Live)", "Encore (Live)"],
-    bandcampUrl: 'https://bandcamp.com/album/placeholder4',
+    spotifyUrl: 'https://open.spotify.com/album/79mcSlj7Rt4DEdnplBKIGc',
+    tracklist: ["All You Can Eat (Live)", "No (Live)", "Friday Night (Live)", "Scheissegal (Live)"],
+    bandcampUrl: 'https://alarmalarm.bandcamp.com/music',
   },
   {
     id: 5,
-    title: 'Compilation Chaos',
-    imageUrl: albumCoverCompilation, // Changed from placeholder
-    spotifyUrl: 'https://open.spotify.com/album/placeholder5',
-    tracklist: ["Greatest Hit v1", "Remix of a Song", "Previously Unreleased", "Acoustic Jam"],
-    bandcampUrl: 'https://bandcamp.com/album/placeholder5',
+    title: 'No Limits Vol. 1 (2020)',
+    imageUrl: albumCoverCompilation,
+    spotifyUrl: 'https://open.spotify.com/album/1bHqGxo8OuwepTItAFML3w',
+    tracklist: ["Hass"],
+    bandcampUrl: 'https://thomasimposter.bandcamp.com/album/no-limits-vol-1',
   },
 ];
 
