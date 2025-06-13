@@ -4,44 +4,34 @@ import styles from "./Tour.module.css";
 
 const Tour = () => {
   useEffect(() => {
-  const checkBandsintown = () => {
-    if (window.bandsintown) {
-      console.log("Bandsintown global object found:", window.bandsintown);
-      if (window.bandsintown.widgets && typeof window.bandsintown.widgets.load === 'function') {
-        console.log("Attempting to call Bandsintown widgets.load()...");
-        try {
-          window.bandsintown.widgets.load();
-          console.log("Bandsintown widgets.load() called.");
-        } catch (e) {
-          console.error("Error calling Bandsintown widgets.load():", e);
-        }
-      } else {
-        console.log("Bandsintown widgets.load() function not found. The widget might load automatically via the <a> tag.");
-      }
-    } else {
-      console.error("Bandsintown global object not found. Widget script from index.html might not have loaded or initialized correctly.");
+    const scriptId = 'bandsintown-widget-script';
+    if (document.getElementById(scriptId)) {
+      // If script already exists, assume it's loaded and will handle the widget.
+      // Optionally, if Bandsintown API provides a way to re-scan/re-init widgets, call it here.
+      // For now, we return, preventing duplicate script injection.
+      return;
     }
-  };
 
-  // Check immediately
-  checkBandsintown();
+    const script = document.createElement('script');
+    script.id = scriptId;
+    script.src = 'https://widget.bandsintown.com/main.min.js';
+    script.async = true;
+    script.charset = 'utf-8';
 
-  // And check again after a short delay
-  const timer = setTimeout(() => {
-    console.log("Checking for Bandsintown (delayed)...");
-    checkBandsintown();
-  }, 1000); // 1s delay, increased from 500ms
+    // The <a> tag should be in the DOM when this script executes.
+    // useEffect runs after the render that includes the <a> tag.
+    document.body.appendChild(script);
 
-  return () => clearTimeout(timer);
-}, []);
+    // No cleanup function for removing main.min.js, as it's likely intended to be global once loaded.
+  }, []); // Empty dependency array ensures this runs once on mount
 
   return (
     <section className={styles.tourSection}>
       <h2 className={styles.sectionTitle}>Upcoming Shows</h2>
       <div className={styles.widgetContainer}>
         <a
-          class="bit-widget-initializer"
-          data-artist-name="id_15537054"
+          className="bit-widget-initializer" // Changed class to className
+          data-artist-name="Alarm! Alarm!" // Updated artist name
           data-events-to-display=""
           data-background-color="rgba(0,0,0,1)"
           data-separator-color="rgba(221,221,221,1)"

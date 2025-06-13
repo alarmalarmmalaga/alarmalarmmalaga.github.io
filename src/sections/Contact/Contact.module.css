@@ -1,16 +1,17 @@
 /* src/sections/Contact/Contact.module.css */
 .contactSection {
-  padding: 60px 20px; /* More padding for emphasis as it's the last section */
+  padding: 60px 5vw 40px 5vw; /* Adjusted padding */
   /* background-color: #0A0A0A; */ /* Inherit global */
-  text-align: center;
-  border-top: 2px solid #F5F5F5; /* Separator for the final section */
+  text-align: left; /* Changed for asymmetry */
+  border-top: 2px solid var(--color-off-white); /* Updated variable */
 }
 
 .sectionTitle {
-  font-family: 'Rubik Glitch', cursive;
+  /* font-family and color inherited from global H2 styles */
   font-size: 2.5rem; /* Default size */
   margin-bottom: 30px;
-  color: #F5F5F5;
+  display: inline-block; /* For transform */
+  transform: translateX(-1%) rotate(-0.5deg); /* Asymmetric transform */
 }
 
 .contactInfo {
@@ -18,20 +19,23 @@
 }
 
 .emailLinkWrapper {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-primary); /* Updated variable */
   font-size: 1.5rem; /* Large font for email */
-  color: #F5F5F5;
+  color: var(--color-off-white); /* Updated variable */
   word-wrap: break-word; /* Ensure email doesn't break layout */
   line-height: 1.6;
 }
 
 .emailLink {
-  color: #FFFF00; /* Accent color (Safety Yellow placeholder) */
-  text-decoration: none;
-  font-weight: bold;
+  /* Fully inherits from global 'a' styles */
+  /* color: var(--color-accent); - Inherited */
+  /* text-decoration: none; - Inherited */
+  /* font-weight: bold; - Inherited */
 }
 .emailLink:hover {
-  text-decoration: underline; /* Basic hover for now */
+  /* Fully inherits from global 'a:hover' styles */
+  /* color: var(--color-accent-hover); - Inherited */
+  /* transform: ... - Inherited */
 }
 
 /* Container for all press kit download buttons */
@@ -39,7 +43,7 @@
   margin-top: 1.5rem;
   display: flex;
   flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
-  justify-content: center; /* Center buttons */
+  justify-content: flex-start; /* Changed for asymmetry */
   align-items: center;
   gap: 1rem; /* Spacing between buttons */
 }
@@ -47,25 +51,27 @@
 .pressKitButton {
   display: inline-block;
   padding: 15px 30px;
-  background-color: #FFFF00; /* Accent color */
-  color: #000000; /* Black text on accent button */
-  font-family: 'Rubik Glitch', cursive; /* Or a bold 'Inter' */
+  background-color: var(--color-accent); /* Updated variable */
+  color: var(--color-black); /* Updated variable */
+  font-family: var(--font-primary); /* Updated variable */
+  font-weight: bold; /* Added font-weight */
   font-size: 1.5rem;
   text-decoration: none;
-  border: 2px solid #FFFF00; /* Accent color border */
-  transition: background-color 0.2s ease, color 0.2s ease;
+  border: 2px solid var(--color-accent); /* Updated variable */
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   /* margin-top: 20px; /* Removed, as parent .pressKit now uses gap for spacing */
 }
 
 .pressKitButton:hover {
-  background-color: #000000;
-  color: #FFFF00; /* Invert colors on hover */
-  border-color: #FFFF00; /* Keep border consistent on hover */
+  background-color: var(--color-black); /* Updated variable */
+  color: var(--color-accent); /* Updated variable */
+  border-color: var(--color-accent); /* Updated variable */
 }
 
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 2rem; /* Adjusted */
+    transform: translateX(0) rotate(0deg); /* Reset transform */
   }
   .emailLinkWrapper {
     font-size: 1.2rem; /* Adjusted */
@@ -73,6 +79,9 @@
   .pressKitButton {
     font-size: 1.2rem; /* Adjusted */
     padding: 12px 25px; /* Keep padding */
+  }
+  .pressKit {
+    justify-content: center; /* Center buttons on smaller screens */
   }
 }
 
@@ -86,5 +95,7 @@
   .pressKitButton {
     font-size: 1rem; /* Adjusted */
     padding: 10px 20px; /* Keep padding */
+    width: 100%; /* Make buttons full width for easier tapping */
+    text-align: center;
   }
 }

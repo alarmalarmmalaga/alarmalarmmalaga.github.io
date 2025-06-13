@@ -1,22 +1,24 @@
 /* src/sections/SocialFeed/SocialFeed.module.css */
 .socialFeedSection {
-  padding: 40px 20px;
+  padding: 40px 5vw; /* Updated padding */
   /* background-color: #0A0A0A; */ /* Will inherit for now */
-  text-align: center;
+  text-align: left; /* Changed for asymmetry */
   overflow: hidden; /* Important if children are absolutely positioned and might overflow */
 }
 
 .sectionTitle {
-  font-family: 'Rubik Glitch', cursive;
+  /* font-family and color inherited from global H2 styles */
   font-size: 3rem;
   margin-bottom: 40px; /* More space for the messy grid */
-  color: #F5F5F5;
+  display: inline-block; /* For transform */
+  transform: translateX(-1%) rotate(-0.5deg); /* Asymmetric transform */
 }
 
 .feedContainer {
   position: relative; /* For absolute positioning of children if needed for more complex messiness */
   max-width: 600px; /* Adjust as needed */
-  margin: 0 auto;
+  margin-left: 5%; /* Asymmetric margin */
+  margin-right: auto;
   min-height: 400px; /* Placeholder height */
 }
 
@@ -29,20 +31,21 @@
 
 .placeholderInfoText {
   grid-column: 1 / -1; /* Span full width */
-  color: #777;
+  color: var(--color-off-white); /* Updated variable */
+  opacity: 0.7; /* Added opacity */
   font-size: 1.2rem;
   margin-bottom: 20px;
 }
 
 .instaItem { /* Common style for all items */
-  background-color: #333; /* Placeholder for image */
-  border: 2px solid #F5F5F5;
+  background-color: var(--color-off-white); /* Updated variable */
+  border: 2px solid var(--color-black); /* Updated variable */
   min-height: 180px; /* Increased min-height */
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #888;
-  font-family: 'Inter', sans-serif; /* Using body font for item text */
+  color: var(--color-black); /* Updated variable */
+  font-family: var(--font-primary); /* Updated variable */
   padding: 10px;
   box-sizing: border-box;
 }
@@ -91,6 +94,11 @@
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 2.5rem;
+    transform: translateX(0) rotate(0deg); /* Reset transform */
+  }
+  .feedContainer { /* Center feed container on tablet */
+    margin-left: auto;
+    margin-right: auto;
   }
   .instagramEmbedPlaceholder {
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Slightly smaller items */

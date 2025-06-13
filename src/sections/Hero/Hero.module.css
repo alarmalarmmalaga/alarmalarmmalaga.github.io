@@ -2,10 +2,9 @@
 .heroSection {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: #000000; /* Base black */
+  align-items: flex-start; /* Changed for asymmetry */
+  justify-content: flex-start; /* Changed for asymmetry */
+  padding: 5vh 5vw; /* Added for spacing */
   position: relative; /* For pseudo-element */
   overflow: hidden; /* Keep noise contained */
   /* Using a simpler gradient for noise for now */
@@ -34,13 +33,17 @@
 */
 
 .bandName {
-  font-family: 'Rubik Glitch', cursive;
+  /* font-family is inherited from global h1 */
   font-size: 6rem; /* Adjust as needed */
-  color: #F5F5F5; /* Off-white */
-  text-shadow: 0 0 5px rgba(245,245,245,0.3), 0 0 10px rgba(245,245,245,0.2), 0 0 15px rgba(245,245,245,0.1);
+  /* color is set for the "tape" effect */
+  /* text-shadow removed for "tape" effect */
   transform: rotate(-1.5deg) translateX(-5%); /* Slight de-center */
   position: relative; /* Ensure it's above the pseudo-element if that was used */
   z-index: 1;
+  background-color: var(--color-accent); /* "Tape" background */
+  color: var(--color-black); /* Text color on tape */
+  padding: 0.2em 0.4em; /* Padding for tape */
+  display: inline-block; /* To make background wrap text */
 }
 
 @media (max-width: 768px) {
