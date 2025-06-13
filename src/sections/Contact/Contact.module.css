@@ -16,7 +16,7 @@
   display: inline-block;
   border: 2px solid var(--color-black);
   box-shadow: 3px 3px 0px var(--color-black);
-  /* transform: translateX(-1%) rotate(-0.5deg); */ /* Asymmetric transform */
+  transform: rotate(0.7deg) translateX(-4%);
 }
 
 .contactInfo {
