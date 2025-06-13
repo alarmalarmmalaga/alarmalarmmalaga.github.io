@@ -20,16 +20,6 @@ const PressKit = () => {
         {/* <h3>Our Story</h3> This sub-heading might be redundant if the main title is "Our Story" */}
         <p>{bio || 'Loading bio...'}</p>
       </div>
-      <div className={styles.downloadsContainer}>
-        <h3>Downloads</h3>
-        <ul>
-          <li>
-            <a href="/press-kit.zip" download className={`button-style-link ${styles.downloadLink}`}>
-              Download Press Kit
-            </a>
-          </li>
-        </ul>
-      </div>
     </section>
   );
 };

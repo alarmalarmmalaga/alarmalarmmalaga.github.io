@@ -1,7 +1,6 @@
 /* src/sections/PressKit/PressKit.module.css */
 .pressKitSection {
   padding: 40px 5vw; /* Updated padding */
-  text-align: left; /* Changed for asymmetry */
   /* background-color: #1c1c1c; -- Removed, will inherit global */
   /* color: #F5F5F5; -- Removed, will inherit global */
 }

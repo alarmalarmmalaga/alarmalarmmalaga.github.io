@@ -2,7 +2,6 @@
 .socialFeedSection {
   padding: 40px 5vw; /* Updated padding */
   /* background-color: #0A0A0A; */ /* Will inherit for now */
-  text-align: left; /* Changed for asymmetry */
   overflow: hidden; /* Important if children are absolutely positioned and might overflow */
 }
 

@@ -1,8 +1,11 @@
 // src/sections/Contact/Contact.jsx
 import styles from './Contact.module.css';
+import pressKitZip from '../../assets/press-kit.zip';
+import photo1 from '../../assets/images/photo1.jpg';
+import bandLogo from '../../assets/images/band_logo.png';
 
 const Contact = () => {
-  const pressKitUrl = '/press-kit.zip'; // Path to the zip file in the public folder
+  const pressKitUrl = pressKitZip; // Path to the zip file in the public folder
 
   return (
     <section className={styles.contactSection}>
@@ -17,10 +20,10 @@ const Contact = () => {
           DOWNLOAD FULL PRESS KIT
         </a>
         {/* New buttons added below */}
-        <a href="/press-kit/photo1.jpg" download="AlarmAlarm_Photo1.jpg" className={styles.pressKitButton}>
+        <a href={photo1} download="AlarmAlarm_Photo1.jpg" className={styles.pressKitButton}>
           Photo (High Res)
         </a>
-        <a href="/public/press-kit/band_logo.png" download="AlarmAlarm_Logo.png" className={styles.pressKitButton}>
+        <a href={bandLogo} download="AlarmAlarm_Logo.png" className={styles.pressKitButton}>
           Band Logo (High Res)
         </a>
       </div>

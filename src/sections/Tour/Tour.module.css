@@ -2,7 +2,6 @@
 .tourSection {
   padding: 40px 5vw; /* Updated padding */
   /* background-color: #111; */ /* Example background, will inherit from app body or .container for now */
-  text-align: left; /* Changed for asymmetry */
 }
 
 .sectionTitle {
@@ -64,6 +63,11 @@
 :global(.bit-button:hover) { /* Hover state for buttons */
   background-color: var(--color-accent-hover) !important;
   color: var(--color-black) !important; /* Keep text color black or change if needed */
+}
+
+/* Ensure "Request a Show" button text is black */
+:global(.bit-play-my-city-button) {
+  color: var(--color-black) !important;
 }
 
 

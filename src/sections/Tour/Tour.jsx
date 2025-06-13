@@ -36,7 +36,6 @@ const Tour = () => {
           data-background-color="rgba(0,0,0,1)"
           data-separator-color="rgba(221,221,221,1)"
           data-text-color="rgba(255,255,255,1)"
-          data-font="Rubik Glitch"
           data-auto-style="true"
           data-button-label-capitalization="uppercase"
           data-header-capitalization="uppercase"
