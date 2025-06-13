@@ -1,6 +1,7 @@
 // src/sections/PressKit/PressKit.jsx
 import React, { useEffect, useState } from 'react';
 import styles from './PressKit.module.css';
+import pressKitZip from '../../assets/press-kit.zip';
 
 const PressKit = () => {
   const [bio, setBio] = useState('');

@@ -15,7 +15,7 @@
   display: inline-block;
   border: 2px solid var(--color-black);
   box-shadow: 3px 3px 0px var(--color-black);
-  /* transform: translateX(-2%) rotate(-1deg); */ /* Removed transform */
+  transform: rotate(1deg) translateX(4%);
 }
 
 .spotifyEmbed {

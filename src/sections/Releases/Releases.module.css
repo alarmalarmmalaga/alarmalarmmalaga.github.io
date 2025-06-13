@@ -23,6 +23,7 @@
   border: 2px solid var(--color-black); /* Consistent border */
   background-color: var(--color-accent); /* Updated variable */
   box-shadow: 3px 3px 0px var(--color-black); /* Consistent shadow */
+  transform: rotate(1.2deg) translateX(-3%);
 }
 
 /* 2. Layout */
@@ -56,7 +57,7 @@
 }
 
 .albumArtContainer {
-  flex-basis: 45%; /* Slightly less than 50% to encourage overlap/bleed */
+  flex-basis: 35%; /* Slightly less than 50% to encourage overlap/bleed */
   /* Or fixed: width: 350px; max-width: 40%; */
   margin-top: -2rem;
   margin-left: -1.5rem;
@@ -70,7 +71,7 @@
 
 
 .releaseInfoContainer {
-  flex-basis: 55%;
+  flex-basis: 65%;
   padding-left: 0.5rem;
   padding-top: 0.5rem; /* Slight push from art */
   position: relative; /* For z-index stacking if needed, or absolute positioning of children */
@@ -85,7 +86,7 @@
 /* 3. Album Art Styling */
 .albumArt {
   width: 100%;
-  max-width: 300px; /* Added max-width for album art */
+  max-width: 240px; /* Added max-width for album art */
   height: auto;
   filter: grayscale(80%) contrast(150%) sepia(20%);
   border: 3px solid var(--color-black); /* Updated variable */
