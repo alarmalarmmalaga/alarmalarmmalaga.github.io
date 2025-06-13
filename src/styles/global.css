@@ -99,3 +99,11 @@ a:hover::after {
   100% { color: #FFFF00; }
 }
 */
+
+/* Global Button Styling */
+button,
+.button-style-link { /* Common class for <a> tags styled as buttons */
+  font-family: var(--font-headline);
+  /* Add other global button styles if needed, e.g., cursor, default padding */
+  cursor: pointer;
+}

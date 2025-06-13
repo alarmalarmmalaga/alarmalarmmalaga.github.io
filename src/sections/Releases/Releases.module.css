@@ -5,7 +5,7 @@
 .releasesSection {
   padding: 2rem;
   /* text-align: center; */ /* Centering might fight the asymmetrical layout */
-  /* background-color removed, will inherit from body */
+  background-color: var(--color-off-white); /* Set background to off-white */
   overflow-x: hidden; /* Prevent horizontal scroll from rotations/bleeds */
 }
 
@@ -15,13 +15,14 @@
   text-transform: uppercase;
   margin-bottom: 3rem; /* More space */
   color: var(--color-black); /* Updated variable */
-  writing-mode: horizontal-tb;
-  transform: rotate(-2.5deg); /* Enhanced rotation */
+  /* writing-mode: horizontal-tb; */ /* Removed */
+  /* transform: rotate(-2.5deg); */ /* Enhanced rotation - Removed */
+  text-align: center; /* Added */
   display: inline-block;
-  padding: 0.5rem 1rem;
-  border: 3px solid var(--color-black); /* Updated variable */
+  padding: 0.5em 1em; /* Consistent padding */
+  border: 2px solid var(--color-black); /* Consistent border */
   background-color: var(--color-accent); /* Updated variable */
-  box-shadow: 5px 5px 0px var(--color-black); /* Updated variable */
+  box-shadow: 3px 3px 0px var(--color-black); /* Consistent shadow */
 }
 
 /* 2. Layout */
@@ -84,12 +85,31 @@
 /* 3. Album Art Styling */
 .albumArt {
   width: 100%;
+  max-width: 300px; /* Added max-width for album art */
   height: auto;
   filter: grayscale(80%) contrast(150%) sepia(20%);
   border: 3px solid var(--color-black); /* Updated variable */
   display: block; /* Remove extra space below img */
   box-shadow: 5px 5px 0px var(--color-black); /* Updated variable - solid shadow */
 }
+
+/* Individual rotations for album art */
+.releaseItemContainer:nth-child(1) .albumArt {
+  transform: rotate(-3deg);
+}
+.releaseItemContainer:nth-child(2) .albumArt {
+  transform: rotate(4deg);
+}
+.releaseItemContainer:nth-child(3) .albumArt {
+  transform: rotate(-2.5deg);
+}
+.releaseItemContainer:nth-child(4) .albumArt {
+  transform: rotate(3.5deg);
+}
+.releaseItemContainer:nth-child(5) .albumArt {
+  transform: rotate(-1.5deg);
+}
+/* Add more if needed */
 
 /* 4. Typography */
 .releaseTitle {
@@ -140,7 +160,7 @@
 .bandcampLink {
   display: inline-block;
   padding: 0.6rem 1.2rem; /* Slightly larger padding */
-  font-family: var(--font-primary); /* Updated variable */
+  font-family: var(--font-headline); /* Updated variable */
   font-weight: bold;
   text-transform: uppercase;
   text-decoration: none; /* Remove underline from links */
@@ -175,5 +195,5 @@
 
 /* Ensure album art isn't overly constrained by global image settings if any */
 img.albumArt {
-    max-width: none; /* Override potential global max-width for images if needed */
+    /* max-width: none; */ /* Override potential global max-width for images if needed - This is now handled by max-width: 300px directly on .albumArt */
 }

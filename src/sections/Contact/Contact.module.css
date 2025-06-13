@@ -10,8 +10,14 @@
   /* font-family and color inherited from global H2 styles */
   font-size: 2.5rem; /* Default size */
   margin-bottom: 30px;
-  display: inline-block; /* For transform */
-  transform: translateX(-1%) rotate(-0.5deg); /* Asymmetric transform */
+  text-align: center;
+  background-color: var(--color-accent);
+  color: var(--color-black);
+  padding: 0.5em 1em;
+  display: inline-block;
+  border: 2px solid var(--color-black);
+  box-shadow: 3px 3px 0px var(--color-black);
+  /* transform: translateX(-1%) rotate(-0.5deg); */ /* Asymmetric transform */
 }
 
 .contactInfo {
@@ -53,7 +59,7 @@
   padding: 15px 30px;
   background-color: var(--color-accent); /* Updated variable */
   color: var(--color-black); /* Updated variable */
-  font-family: var(--font-primary); /* Updated variable */
+  font-family: var(--font-headline); /* Updated variable */
   font-weight: bold; /* Added font-weight */
   font-size: 1.5rem;
   text-decoration: none;
@@ -71,7 +77,7 @@
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 2rem; /* Adjusted */
-    transform: translateX(0) rotate(0deg); /* Reset transform */
+    /* transform: translateX(0) rotate(0deg); */ /* Reset transform */
   }
   .emailLinkWrapper {
     font-size: 1.2rem; /* Adjusted */

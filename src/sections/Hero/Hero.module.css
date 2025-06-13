@@ -2,60 +2,75 @@
 .heroSection {
   min-height: 100vh;
   display: flex;
-  align-items: flex-start; /* Changed for asymmetry */
-  justify-content: flex-start; /* Changed for asymmetry */
-  padding: 5vh 5vw; /* Added for spacing */
-  position: relative; /* For pseudo-element */
-  overflow: hidden; /* Keep noise contained */
-  /* Using a simpler gradient for noise for now */
-  background-image: linear-gradient(rgba(255,255,255,0.02) 2px, transparent 2px),
-                    linear-gradient(90deg, rgba(255,255,255,0.02) 2px, transparent 2px),
-                    linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
-  background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
-  background-position: 0 0, 0 0, 25px 25px, 25px 25px;
+  align-items: center; /* Centering content */
+  justify-content: center; /* Centering content */
+  padding: 5vh 5vw;
+  position: relative;
+  overflow: hidden;
+  background-color: #000; /* Base black background */
+  /* Subtle scanlines */
+  background-image: repeating-linear-gradient(transparent, transparent 1px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 3px);
+  background-size: 100% 3px; /* Scanline thickness/spacing */
+  /* Vignette */
+  box-shadow: inset 0 0 8vw 4vw rgba(0,0,0,0.8);
 }
 
-/*
-.heroSection::before {
+.heroSection::after { /* For static/noise */
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(rgba(0,0,0,0.03), rgba(0,0,0,0.03)), linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));
-  background-size: 2px 1px, 1px 2px;
-  opacity: 1; // Opacity is baked into gradient alpha
+  /* Example noise using repeating radial gradient */
+  background-image: repeating-radial-gradient(circle at center, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 100%);
+  background-size: 5px 5px; /* Adjust noise grain */
+  opacity: 0.3; /* Base opacity for noise */
+  animation: staticNoise 0.15s infinite steps(1,start);
   pointer-events: none;
-  z-index: 0;
 }
-*/
+
+@keyframes staticNoise {
+  0% { opacity: 0.1; background-position: 0 0; }
+  25% { opacity: 0.15; background-position: 2px 2px; }
+  50% { opacity: 0.08; background-position: -2px -2px; }
+  75% { opacity: 0.12; background-position: -1px 1px; }
+  100% { opacity: 0.1; background-position: 1px -1px; }
+}
 
 .bandName {
-  /* font-family is inherited from global h1 */
+  font-family: var(--font-headline); /* Rubik Glitch */
   font-size: 6rem; /* Adjust as needed */
-  /* color is set for the "tape" effect */
-  /* text-shadow removed for "tape" effect */
-  transform: rotate(-1.5deg) translateX(-5%); /* Slight de-center */
-  position: relative; /* Ensure it's above the pseudo-element if that was used */
+  color: var(--color-accent); /* Yellow text */
+  background-color: transparent; /* Remove tape background */
+  padding: 0; /* Remove tape padding */
+  text-shadow: 0 0 5px var(--color-accent), 0 0 10px var(--color-accent), 0 0 15px rgba(255,255,0,0.5); /* Glow effect */
+  position: relative;
   z-index: 1;
-  background-color: var(--color-accent); /* "Tape" background */
-  color: var(--color-black); /* Text color on tape */
-  padding: 0.2em 0.4em; /* Padding for tape */
-  display: inline-block; /* To make background wrap text */
+  text-align: center;
+  /* transform: none; */ /* Remove old transform, flicker animation will handle it */
+  animation: logoFlicker 0.2s infinite alternate; /* Flicker animation */
+}
+
+@keyframes logoFlicker {
+  0% { opacity: 0.7; transform: translate(1px, 1px) skewX(-2deg); text-shadow: 0 0 3px var(--color-accent), 0 0 8px var(--color-accent); }
+  25% { opacity: 0.9; transform: translate(-1px, 0px) skewX(0deg); }
+  50% { opacity: 0.6; transform: translate(0px, -1px) skewX(2deg); text-shadow: 0 0 5px var(--color-accent), 0 0 10px var(--color-accent), 0 0 20px rgba(255,255,0,0.7); }
+  75% { opacity: 0.95; transform: translate(1px, 1px) skewX(0deg); }
+  100% { opacity: 0.75; transform: translate(-1px, -1px) skewX(-2deg); text-shadow: 0 0 4px var(--color-accent), 0 0 9px var(--color-accent); }
 }
 
 @media (max-width: 768px) {
   .bandName {
     font-size: 4rem;
-    transform: rotate(-1.5deg) translateX(0); /* Reset horizontal shift */
-    margin: 0 10px; /* Prevent touching edges */
+    /* transform: rotate(-1.5deg) translateX(0); */ /* Old transform removed */
+    /* margin: 0 10px; */ /* Not needed if centered */
   }
 }
+
 @media (max-width: 480px) {
   .bandName {
-    font-size: 2.8rem; /* Further reduction for very small screens */
-    line-height: 1.2; /* Ensure good line height if text wraps */
+    font-size: 2.8rem;
+    line-height: 1.2;
   }
 }
