@@ -1,9 +1,8 @@
-// src/sections/PressKit/PressKit.jsx
+// src/sections/Bio/Bio.jsx
 import React, { useEffect, useState } from 'react';
-import styles from './PressKit.module.css';
-import pressKitZip from '../../assets/press-kit.zip';
+import styles from './Bio.module.css';
 
-const PressKit = () => {
+const Bio = () => {
   const [bio, setBio] = useState('');
 
   useEffect(() => {
@@ -14,7 +13,7 @@ const PressKit = () => {
   }, []);
 
   return (
-    <section className={styles.pressKitSection}>
+    <section className={styles.bioSection}>
       <h2 className={styles.sectionTitle}>Our Story</h2> {/* Changed title */}
 
       <div className={styles.bioContainer}>
@@ -25,4 +24,4 @@ const PressKit = () => {
   );
 };
 
-export default PressKit;
+export default Bio;
