@@ -6,7 +6,7 @@ import bandLogo from '../../assets/images/band_logo.png';
 const Contact = () => {
 
   return (
-    <section className={styles.contactSection}>
+    <section id="contact" className={styles.contactSection}>
       <h2 className={styles.sectionTitle}>Contact & Downloads</h2>
       <div className={styles.contactInfo}>
         <p className={styles.emailLinkWrapper}>

@@ -64,7 +64,7 @@ const releasesData = [
 
 const Releases = () => {
   return (
-    <section className={styles.releasesSection}>
+    <section id="releases" className={styles.releasesSection}>
       <h2 className={styles.sectionTitle}>Releases</h2>
       <div className={styles.releasesGrid}>
         {releasesData.map((release) => (

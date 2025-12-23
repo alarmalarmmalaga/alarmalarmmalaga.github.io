@@ -26,8 +26,13 @@ const Tour = () => {
   }, []); // Empty dependency array ensures this runs once on mount
 
   return (
-    <section className={styles.tourSection}>
-      <h2 className={styles.sectionTitle}>Upcoming Shows</h2>
+    <section id="tour" className={styles.tourSection}>
+      <title>Tour Dates - Alarm! Alarm! | Live in Málaga & More</title>
+      <meta name="description" content="Find upcoming tour dates for Alarm! Alarm!. See the punk rock band live in Málaga and other cities. Get tickets and RSVP." />
+      <h2 className={styles.sectionTitle}>See Alarm! Alarm! Live in Málaga and Beyond</h2>
+      <p className={styles.tourIntro}>
+        We're hitting the road. Check out our upcoming dates below, powered by Bandsintown. Never miss a show.
+      </p>
       <div className={styles.widgetContainer}>
         <a
           className="bit-widget-initializer" // Changed class to className

@@ -6,7 +6,7 @@ const Video = () => {
   const videoId2 = 'HSVprxESFAs';
 
   return (
-    <section className={styles.videoSection}>
+    <section id="video" className={styles.videoSection}>
       <h2 className={styles.sectionTitle}>Watch Us</h2>
       <div className={styles.videoGrid}>
         <div className={`${styles.videoWrapper} ${styles.videoWrapperLarge}`}>

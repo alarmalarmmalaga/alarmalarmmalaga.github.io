@@ -13,7 +13,7 @@ const Bio = () => {
   }, []);
 
   return (
-    <section className={styles.bioSection}>
+    <section id="bio" className={styles.bioSection}>
       <h2 className={styles.sectionTitle}>Our Story</h2> {/* Changed title */}
 
       <div className={styles.bioContainer}>

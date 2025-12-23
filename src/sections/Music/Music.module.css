@@ -85,3 +85,20 @@
     margin-right: auto;
   }
 }
+
+.spotifyFallback {
+  border: 2px dashed var(--color-accent);
+  padding: 20px;
+  text-align: center;
+  margin: 2rem 5%;
+}
+
+.fallbackLink {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: var(--color-accent);
+  color: var(--color-black);
+  text-decoration: none;
+  font-weight: bold;
+}
