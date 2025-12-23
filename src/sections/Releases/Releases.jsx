@@ -7,7 +7,6 @@ import albumCoverLp1 from '../../assets/images/album-cover-lp1.jpg';
 import albumCoverLp2 from '../../assets/images/album-cover-lp2.jpg';
 import albumCoverEp1 from '../../assets/images/album-cover-ep1.jpg';
 import albumCoverLive from '../../assets/images/album-cover-live.jpg';
-import albumCoverCompilation from '../../assets/images/album-cover-compilation.jpg';
 
 // Placeholder data - replace with actual data and image paths
 const releasesData = [
@@ -46,7 +45,7 @@ const releasesData = [
   {
     id: 5,
     title: 'No Limits Vol. 1 (2020)',
-    imageUrl: albumCoverCompilation,
+    imageUrl: '/images/album-cover-compilation.jpg',
     spotifyUrl: 'https://open.spotify.com/album/1bHqGxo8OuwepTItAFML3w',
     tracklist: ["Hass"],
     bandcampUrl: 'https://thomasimposter.bandcamp.com/album/no-limits-vol-1',
