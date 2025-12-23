@@ -59,7 +59,7 @@ const Releases = () => {
       <h2 className={styles.sectionTitle}>Releases</h2>
       <div className={styles.releasesGrid}>
         {releasesData.map((release) => (
-          <div key={release.id} className={styles.releaseItemContainer}>
+          <article key={release.id} className={styles.releaseItemContainer}>
             <div className={styles.albumArtContainer}>
               <img
                 src={release.imageUrl}
@@ -87,7 +87,7 @@ const Releases = () => {
                 )}
               </div>
             </div>
-          </div>
+          </article>
         ))}
       </div>
     </section>

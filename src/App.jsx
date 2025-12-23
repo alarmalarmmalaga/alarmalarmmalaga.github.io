@@ -1,4 +1,5 @@
 // src/App.jsx
+import { Helmet } from 'react-helmet-async';
 import styles from './App.module.css';
 import Hero from './sections/Hero/Hero';
 import Music from './sections/Music/Music';
@@ -12,6 +13,12 @@ import Contact from './sections/Contact/Contact'; // Import Contact
 function App() {
   return (
     <div className={styles.container}>
+      <Helmet>
+        <title>Alarm! Alarm! - Official Website</title>
+        <meta name="description" content="Official website for Alarm! Alarm!, a punk rock band from Malaga. Listen to music, find tour dates, and more." />
+        <meta name="keywords" content="Alarm! Alarm!, punk, punk rock, Malaga, music, band, Spanish punk band, live music, rock en español" />
+        <link rel="canonical" href="https://alarmalarmmalaga.github.io/" />
+      </Helmet>
       <Hero />
       <Music />
       <Tour />
