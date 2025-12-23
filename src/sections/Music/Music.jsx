@@ -7,7 +7,7 @@ const SpotifyFallback = (
   <div className={styles.spotifyFallback}>
     <p>The Spotify player is currently unavailable.</p>
     <a
-      href="https://open.spotify.com/album/2bFikvFpFiMqFP8CmU2ttM"
+      href="https://open.spotify.com/album/38AXd6UNJ3EDpUUZGx0ubE"
       target="_blank"
       rel="noopener noreferrer"
       className={styles.fallbackLink}
@@ -29,7 +29,7 @@ const Music = () => {
       <ErrorBoundary fallback={SpotifyFallback}>
         <div className={styles.spotifyEmbed}>
           <iframe
-            src="https://open.spotify.com/embed/album/2bFikvFpFiMqFP8CmU2ttM?utm_source=generator"
+            src="https://open.spotify.com/embed/album/38AXd6UNJ3EDpUUZGx0ubE?utm_source=generator"
             width="100%"
             height="352"
             frameBorder="0"
