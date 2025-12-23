@@ -6,9 +6,9 @@
 If you're looking for melodic riffs, raw honesty, and the sound of a mid-life crisis set to a fast tempo, you're in the right place.
 
 ### The Lineup
-* **Pablo Rodríguez:** Vocals & Guitar
-* **Alejandro Villegas:** Drums & Backing Vocals
-* **Mike Thrippleton:** Bass & Backing Vocals
+* **[Pablo Rodríguez](https://www.instagram.com/spongepablo/):** Vocals & Guitar
+* **[Alejandro Villegas](https://www.instagram.com/alejandro.villegas.fdez/):** Drums & Backing Vocals
+* **[Mike Thrippleton](https://www.instagram.com/baron.von.birra/):** Bass & Backing Vocals
 * *Legacy Members:* Emilio Villegas (Bass & Selective Silence), José Arjona (Guitar).
 
 ---
@@ -36,7 +36,7 @@ This is our "direct-to-fan" hub. In an era of algorithms, we keep it simple:
 This site is a lightweight, high-performance hub designed for fans and crawlers alike.
 * **Built with:** [React](https://react.dev/) + [Vite](https://vitejs.dev/)
 * **Optimized for:** Fast loading and easy indexing for punk rock enthusiasts.
-* **Find us on:** [Spotify](https://open.spotify.com/artist/6Q3jUbGq2b2MeN2lMBYDxz?si=L6JEXw_cTYqU9iSuWpOOOw), [Instagram]([https://instagram.com](https://www.instagram.com/alarmalarmmalaga), and [YouTube](https://www.youtube.com/@alarmalarm8757).
+* **Find us on:** [Spotify](https://open.spotify.com/artist/6Q3jUbGq2b2MeN2lMBYDxz?si=L6JEXw_cTYqU9iSuWpOOOw), [Instagram](https://www.instagram.com/alarmalarmmalaga), and [YouTube](https://www.youtube.com/@alarmalarm8757).
 
 ---
 
