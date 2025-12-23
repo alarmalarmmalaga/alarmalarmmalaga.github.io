@@ -17,8 +17,8 @@ function App() {
       <meta name="keywords" content="Alarm! Alarm!, punk, punk rock, Malaga, music, band, Spanish punk band, live music, rock en español, Amateur Skater, new EP, punk pop" />
       <link rel="canonical" href="https://alarmalarmmalaga.github.io/" />
       <Hero />
-      {/* <Music /> */}
-      {/* <Tour /> */}
+      <Music />
+      <Tour />
       <SocialFeed />
       <Video />
       <Releases /> {/* Add Releases component */}

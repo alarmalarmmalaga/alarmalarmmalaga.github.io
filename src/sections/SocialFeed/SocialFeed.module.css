@@ -1,147 +1,98 @@
 /* src/sections/SocialFeed/SocialFeed.module.css */
 .socialFeedSection {
-  padding: 40px 5vw; /* Updated padding */
-  /* background-color: #0A0A0A; */ /* Will inherit for now */
-  overflow: hidden; /* Important if children are absolutely positioned and might overflow */
+  padding: 60px 5vw;
+  text-align: center;
 }
 
 .sectionTitle {
-  /* font-family and color inherited from global H2 styles */
   font-size: 3rem;
-  margin-bottom: 40px; /* More space for the messy grid */
+  margin-bottom: 50px;
   text-align: center;
   background-color: var(--color-accent);
   color: var(--color-black);
   padding: 0.5em 1em;
   display: inline-block;
-  border: 2px solid var(--color-black);
-  box-shadow: 3px 3px 0px var(--color-black);
-  transform: rotate(0.5deg) translateX(-2%);
+  border: 3px solid var(--color-black);
+  box-shadow: 5px 5px 0px var(--color-black);
+  text-transform: uppercase;
+  transform: rotate(-1deg);
 }
 
 .feedContainer {
-  position: relative; /* For absolute positioning of children if needed for more complex messiness */
-  max-width: 600px; /* Adjust as needed */
-  margin-left: 5%; /* Asymmetric margin */
-  margin-right: auto;
-  min-height: 400px; /* Placeholder height */
-}
-
-.instagramEmbedPlaceholder {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Simplified to 2 columns for initial layout */
-  gap: 5px; /* Reduced gap for more potential overlap with transforms */
-  padding: 10px; /* Padding around the grid */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.placeholderInfoText {
-  grid-column: 1 / -1; /* Span full width */
-  color: var(--color-off-white); /* Updated variable */
-  opacity: 0.7; /* Added opacity */
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-}
-
-.instaItem { /* Common style for all items */
-  background-color: var(--color-off-white); /* Updated variable */
-  border: 2px solid var(--color-black); /* Updated variable */
-  min-height: 180px; /* Increased min-height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-black); /* Updated variable */
-  font-family: var(--font-primary); /* Updated variable */
+.gridItem {
+  margin: 0;
+  border: 2px solid var(--color-black);
+  background-color: var(--color-off-white);
   padding: 10px;
-  box-sizing: border-box;
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease-out, filter 0.2s ease-out;
 }
 
-/* Messy styling examples using transform and z-index for overlap control */
-.instaItem1 {
-  transform: rotate(-8deg) translate(15px, 10px) scale(1.05);
-  z-index: 3;
-  grid-column: span 1;
-  grid-row: span 1;
-  margin-right: -10px; /* Push into next column area */
+.gridItem img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: grayscale(1) contrast(1.2);
+  transition: filter 0.2s ease-out;
 }
 
-.instaItem2 {
-  transform: rotate(5deg) translate(-5px, 5px) scale(0.95);
-  z-index: 2;
-  margin-top: -40px;
-  margin-left: -25px;
-  grid-column: span 1;
-  grid-row: span 1;
+.gridItem:hover {
+  transform: rotate(0deg) scale(1.05) !important; /* Override inline style */
+  z-index: 10;
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.7);
 }
 
-.instaItem3 {
-  transform: rotate(10deg) translate(20px, 15px) scale(1.1);
-  z-index: 4; /* Most prominent */
-  margin-top: -35px;
-  margin-left: 10px;
-  grid-column: span 1;
-  grid-row: span 1;
-  margin-right: -20px;
+.gridItem:hover img {
+  filter: grayscale(0) contrast(1);
 }
 
-.instaItem4 {
-  transform: rotate(-5deg) translate(-10px, -5px);
-  z-index: 1; /* Least prominent */
-  margin-top: -30px;
-  margin-left: 5px;
-  grid-column: span 1;
-  grid-row: span 1;
+.caption {
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  padding: 10px 5px;
+  text-align: left;
+  color: var(--color-black);
+  /* The caption is visually present but can be styled to be more subtle if needed */
 }
-
-/* If using an actual third-party widget, we'd target its classes: */
-/* e.g., :global(.lightwidget-widget iframe) { ... } */
-/* :global(.elfsight-app-xxxx) { ... } */
 
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 2.5rem;
-    /* transform: translateX(0) rotate(0deg); */ /* Reset transform */
-  }
-  .feedContainer { /* Center feed container on tablet */
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .instagramEmbedPlaceholder {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Slightly smaller items */
-    gap: 8px;
-  }
-  .instaItem {
-    min-height: 130px; /* Adjust item height */
-  }
-  /* Tone down transforms for tablet */
-  .instaItem1 { transform: rotate(-3deg) translate(5px, 5px) scale(1); margin-right: 0; }
-  .instaItem2 { transform: rotate(2deg) translate(-3px, 3px) scale(1); margin-top: -15px; margin-left: -10px; }
-  .instaItem3 { transform: rotate(4deg) translate(8px, 5px) scale(1); margin-top: -10px; margin-left: 5px; margin-right: 0;}
-  .instaItem4 { transform: rotate(-2deg) translate(-5px, -3px) scale(1); margin-top: -15px; margin-left: 0; }
-}
-
-@media (max-width: 480px) {
-  .sectionTitle {
-    font-size: 2rem;
   }
   .feedContainer {
-     min-height: 280px; /* Reduce height as items are smaller */
-     max-width: 95%; /* Allow a bit more width for the 2 columns */
-     margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
-  .instagramEmbedPlaceholder {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5px; /* Tighter gap */
-  }
-  .instaItem, .instaItem1, .instaItem2, .instaItem3, .instaItem4 {
-    min-height: 110px; /* Smaller items */
-    font-size: 0.8rem; /* Smaller text inside items */
-    /* Remove rotation, keep minimal translation for overlap, reset complex margins */
-    transform: translate(0,0);
-    margin: 2px; /* Minimal margin for grid structure */
-  }
-  /* Re-apply minimal overlap for the 2-column layout */
-  .instaItem1 { z-index: 1;}
-  .instaItem2 { margin-top: -15px; margin-left: 5px; z-index: 2;}
-  .instaItem3 { margin-top: -10px; margin-left: -10px; z-index: 1;}
-  .instaItem4 { margin-top: -20px; margin-left: 10px; z-index: 2;}
+}
+
+.socialFooter {
+  margin-top: 60px;
+  padding: 20px;
+  background-color: var(--color-black);
+  border-top: 2px solid var(--color-off-white);
+  border-bottom: 2px solid var(--color-off-white);
+  transform: rotate(1deg);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.footerLink {
+  display: block;
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.footerLink:hover {
+  color: var(--color-off-white);
+  transform: scale(1.02);
 }
