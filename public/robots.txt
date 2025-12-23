@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alarmalarmmalaga.github.io/sitemap.xml
