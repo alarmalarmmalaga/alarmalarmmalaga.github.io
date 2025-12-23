@@ -6,7 +6,9 @@ import styles from './Releases.module.css';
 import albumCoverLp1 from '../../assets/images/album-cover-lp1.jpg';
 import albumCoverLp2 from '../../assets/images/album-cover-lp2.jpg';
 import albumCoverEp1 from '../../assets/images/album-cover-ep1.jpg';
+import albumCoverEp2 from '../../assets/images/album-cover-ep2.jpg';
 import albumCoverLive from '../../assets/images/album-cover-live.jpg';
+import albumCoverCompilation from '../../assets/images/album-cover-compilation.jpg';
 
 // Placeholder data - replace with actual data and image paths
 const releasesData = [
@@ -36,6 +38,14 @@ const releasesData = [
   },
   {
     id: 4,
+    title: 'Amateur Skater (2025)',
+    imageUrl: albumCoverEp2,
+    spotifyUrl: 'https://open.spotify.com/album/38AXd6UNJ3EDpUUZGx0ubE?si=UuNqiABQTTOiw2Z27HCh9g',
+    tracklist: ["All By My Best Friend Bob, Again", "Esto Termina Aqui", "NOFX", "I'm not worried enough (Live)"],
+    bandcampUrl: 'https://alarmalarm.bandcamp.com/music',
+  },
+  {
+    id: 5,
     title: 'Ay Carumba! (2024)',
     imageUrl: albumCoverLive, // Changed from placeholder
     spotifyUrl: 'https://open.spotify.com/album/79mcSlj7Rt4DEdnplBKIGc',
@@ -43,9 +53,9 @@ const releasesData = [
     bandcampUrl: 'https://alarmalarm.bandcamp.com/music',
   },
   {
-    id: 5,
+    id: 6,
     title: 'No Limits Vol. 1 (2020)',
-    imageUrl: '/images/album-cover-compilation.jpg',
+    imageUrl: albumCoverCompilation,
     spotifyUrl: 'https://open.spotify.com/album/1bHqGxo8OuwepTItAFML3w',
     tracklist: ["Hass"],
     bandcampUrl: 'https://thomasimposter.bandcamp.com/album/no-limits-vol-1',
