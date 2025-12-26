@@ -20,7 +20,6 @@ const SpotifyFallback = (
 const Music = () => {
   return (
     <section id="music" className={styles.musicSection}>
-      <title>Music - Alarm! Alarm! | Listen to "Amateur Skater" and "'98-'99"</title>
       <meta name="description" content="Stream the latest EPs from Alarm! Alarm!, the punk rock band from Málaga. Listen to 'Amateur Skater' and the classic '98-'99 EP." />
       <h2 className={styles.sectionTitle}>Our Latest Noise: "Amateur Skater"</h2>
       <p className={styles.musicIntro}>
