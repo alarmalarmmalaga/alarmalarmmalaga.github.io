@@ -53,9 +53,8 @@
     /* Ensure centered styles are maintained or adjusted for mobile if necessary */
   }
   .spotifyEmbed {
-    max-width: 90%; /* Allow it to use more width, adjusted from 95% due to new margin */
-    margin-left: auto; /* Center on smaller screens if desired, or keep 5% */
-    margin-right: auto;
+    max-width: 100%;
+    margin: 2rem 0;
     transform: rotate(0deg); /* Optional: remove rotation on smaller screens for readability */
   }
   .otherPlatforms {

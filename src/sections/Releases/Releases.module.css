@@ -51,6 +51,11 @@
   background-color: var(--color-off-white); /* Updated variable - "paper" background */
 }
 
+.releaseItemContainer:not(:nth-child(2n)) {
+  /* Push odd-numbered items from the left to give them a less-aligned feel */
+  margin-left: 2rem;
+}
+
 .releaseItemContainer:nth-child(2n) {
     transform: rotate(0.8deg); /* Vary rotation for fanzine feel */
     flex-direction: row-reverse; /* Alternate layout */
@@ -197,4 +202,33 @@
 /* Ensure album art isn't overly constrained by global image settings if any */
 img.albumArt {
     /* max-width: none; */ /* Override potential global max-width for images if needed - This is now handled by max-width: 300px directly on .albumArt */
+}
+
+@media (max-width: 768px) {
+  .releaseItemContainer {
+    flex-direction: column;
+    align-items: center; /* Center items for a consistent look */
+    transform: rotate(0deg); /* Reset rotation */
+  }
+
+  .releaseItemContainer:not(:nth-child(2n)) {
+    margin-left: 0; /* Reset alternating margin */
+  }
+
+  .releaseItemContainer:nth-child(2n) {
+    margin-left: 0; /* Reset alternating margin */
+    transform: rotate(0deg); /* Reset rotation */
+  }
+
+  .albumArtContainer {
+    flex-basis: auto; /* Let it size naturally */
+    width: 80%; /* Ensure it's large enough to be seen */
+    margin: 0 0 1.5rem 0; /* Adjust margin for vertical layout */
+  }
+
+  .releaseInfoContainer {
+    flex-basis: auto; /* Let it size naturally */
+    width: 100%;
+    padding: 0;
+  }
 }
