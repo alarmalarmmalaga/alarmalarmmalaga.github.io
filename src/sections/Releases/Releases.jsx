@@ -85,12 +85,12 @@ const Releases = () => {
               </ul>
               <div className={styles.releaseLinks}>
                 {release.spotifyUrl && (
-                  <a href={release.spotifyUrl} target="_blank" rel="noopener noreferrer" className={styles.spotifyLink}>
+                  <a href={release.spotifyUrl} target="_blank" rel="noopener noreferrer" className={styles.spotifyLink} aria-label={`Listen to ${release.title} on Spotify (opens in a new tab)`}>
                     Spotify
                   </a>
                 )}
                 {release.bandcampUrl && (
-                  <a href={release.bandcampUrl} target="_blank" rel="noopener noreferrer" className={styles.bandcampLink}>
+                  <a href={release.bandcampUrl} target="_blank" rel="noopener noreferrer" className={styles.bandcampLink} aria-label={`Listen to and buy ${release.title} on Bandcamp (opens in a new tab)`}>
                     Bandcamp
                   </a>
                 )}

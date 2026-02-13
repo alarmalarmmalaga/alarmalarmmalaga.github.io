@@ -27,7 +27,6 @@ const Tour = () => {
 
   return (
     <section id="tour" className={styles.tourSection}>
-      <meta name="description" content="Find upcoming tour dates for Alarm! Alarm!. See the punk rock band live in Málaga and other cities. Get tickets and RSVP." />
       <h2 className={styles.sectionTitle}>See Alarm! Alarm! Live in Málaga and Beyond</h2>
       <p className={styles.tourIntro}>
         We're hitting the road. Check out our upcoming dates below, powered by Bandsintown. Never miss a show.

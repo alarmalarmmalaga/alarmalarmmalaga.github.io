@@ -90,6 +90,7 @@ const SocialFeed = () => {
           target="_blank"
           rel="noopener noreferrer"
           className={styles.footerLink}
+          aria-label="Follow Alarm! Alarm! on Instagram (opens in a new tab)"
         >
           WE LIVE ON INSTAGRAM. FOLLOW THE CHAOS @ALARMALARMMALAGA →
         </a>

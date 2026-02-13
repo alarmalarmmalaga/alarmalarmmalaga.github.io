@@ -20,7 +20,6 @@ const SpotifyFallback = (
 const Music = () => {
   return (
     <section id="music" className={styles.musicSection}>
-      <meta name="description" content="Stream the latest EPs from Alarm! Alarm!, the punk rock band from Málaga. Listen to 'Amateur Skater' and the classic '98-'99 EP." />
       <h2 className={styles.sectionTitle}>Our Latest Noise: "Amateur Skater"</h2>
       <p className={styles.musicIntro}>
         Stream our new EP, "Amateur Skater," right here via Spotify. For the best experience, use headphones and turn it up loud. Also available on all major streaming platforms.
@@ -40,13 +39,13 @@ const Music = () => {
         </div>
       </ErrorBoundary>
       <div className={styles.otherPlatforms}>
-        <a href="https://music.apple.com/us/artist/alarm-alarm/1494187277" target="_blank" rel="noopener noreferrer">
+        <a href="https://music.apple.com/us/artist/alarm-alarm/1494187277" target="_blank" rel="noopener noreferrer" aria-label="Listen to Alarm! Alarm! on Apple Music (opens in a new tab)">
           Apple Music
         </a>
-        <a href="https://alarmalarm.bandcamp.com/" target="_blank" rel="noopener noreferrer">
+        <a href="https://alarmalarm.bandcamp.com/" target="_blank" rel="noopener noreferrer" aria-label="Listen to and buy music on Alarm! Alarm! Bandcamp (opens in a new tab)">
           Bandcamp
         </a>
-        <a href="https://music.youtube.com/channel/UCmn_2X05dsJOHFXRM7fERsQ" target="_blank" rel="noopener noreferrer">
+        <a href="https://music.youtube.com/channel/UCmn_2X05dsJOHFXRM7fERsQ" target="_blank" rel="noopener noreferrer" aria-label="Listen to Alarm! Alarm! on YouTube Music (opens in a new tab)">
           YouTube Music
         </a>
       </div>
