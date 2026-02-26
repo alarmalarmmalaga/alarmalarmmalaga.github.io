@@ -25,15 +25,16 @@ ALTER TABLE songs ENABLE ROW LEVEL SECURITY;
 ALTER TABLE press_kit ENABLE ROW LEVEL SECURITY;
 
 -- Create policies to allow public read access (SELECT)
-CREATE POLICY "Allow public read access" ON brutalist_grid FOR SELECT USING (true);
-CREATE POLICY "Allow public read access" ON albums FOR SELECT USING (true);
-CREATE POLICY "Allow public read access" ON songs FOR SELECT USING (true);
-CREATE POLICY "Allow public read access" ON press_kit FOR SELECT USING (true);
+-- Explicitly grant to both 'anon' and 'authenticated' roles.
+CREATE POLICY "Allow public read access" ON brutalist_grid FOR SELECT TO anon, authenticated USING (true);
+CREATE POLICY "Allow public read access" ON albums FOR SELECT TO anon, authenticated USING (true);
+CREATE POLICY "Allow public read access" ON songs FOR SELECT TO anon, authenticated USING (true);
+CREATE POLICY "Allow public read access" ON press_kit FOR SELECT TO anon, authenticated USING (true);
 
 -- Storage Policies for public buckets
-CREATE POLICY "Allow public select on band_assets" ON storage.objects FOR SELECT USING (bucket_id = 'band_assets');
-CREATE POLICY "Allow public select on albums" ON storage.objects FOR SELECT USING (bucket_id = 'albums');
-CREATE POLICY "Allow public select on press_kit" ON storage.objects FOR SELECT USING (bucket_id = 'press_kit');
+CREATE POLICY "Allow public select on band_assets" ON storage.objects FOR SELECT TO anon, authenticated USING (bucket_id = 'band_assets');
+CREATE POLICY "Allow public select on albums" ON storage.objects FOR SELECT TO anon, authenticated USING (bucket_id = 'albums');
+CREATE POLICY "Allow public select on press_kit" ON storage.objects FOR SELECT TO anon, authenticated USING (bucket_id = 'press_kit');
 ```
 
 ## 3. Realtime Configuration
@@ -72,6 +73,12 @@ Add these as **Secrets** or **Variables** in your GitHub repository settings (**
 The deployment workflow is configured to check both locations. If you use **Environments**, ensure the secrets/variables are added to the `github-pages` environment.
 
 These will be automatically injected during the GitHub Actions build process.
+
+### Troubleshooting Deployment
+If the deployment succeeds but the website shows "Supabase environment variables are missing":
+1.  **Check Workflow Permissions:** Go to **Settings > Actions > General**. Scroll down to **Workflow permissions** and ensure **Read and write permissions** is selected. (Even with the YAML permissions block, some organizational settings require this manual toggle).
+2.  **Verify Secrets Scope:** Ensure the secrets are named exactly `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`. If you are using an **Environment** (like `github-pages`), make sure the secrets are added *to that environment* specifically, not just the repository.
+3.  **Avoid Manual Deploys:** Do not use `npm run deploy` locally unless you have a `.env` file with the correct values. The automated GitHub Action is the preferred way to deploy as it handles the injection automatically.
 
 ## 5. Database Schema Notes
 
