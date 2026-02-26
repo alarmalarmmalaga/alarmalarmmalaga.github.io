@@ -16,17 +16,39 @@ const SocialFeed = () => {
       const { data, error } = await supabase
         .from('brutalist_grid')
         .select('*')
-        .order('display_order', { ascending: true });
+        .order('created_at', { ascending: false })
+        .limit(8);
 
       if (error) {
         console.error('Error fetching brutalist grid:', error);
       } else {
-        setPosts(data);
+        // Ensure we only have 8 even if the fetch returns more (safeguard)
+        setPosts(data ? data.slice(0, 8) : []);
       }
       setLoading(false);
     };
 
     fetchPosts();
+
+    // Real-time subscription for new entries
+    const channel = supabase
+      .channel('brutalist_grid_realtime')
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'brutalist_grid' },
+        (payload) => {
+          setPosts((currentPosts) => {
+            // Add the new post to the top and keep only the latest 8
+            const updatedPosts = [payload.new, ...currentPosts];
+            return updatedPosts.slice(0, 8);
+          });
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   if (loading) {

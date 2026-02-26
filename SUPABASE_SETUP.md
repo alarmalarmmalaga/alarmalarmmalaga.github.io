@@ -4,16 +4,18 @@ This guide details the steps required to configure Supabase for the Alarm! Alarm
 
 ## 1. Storage Configuration
 
-Create a **public** bucket named `band-assets` in the Supabase Storage dashboard.
+Create the following **public** buckets in the Supabase Storage dashboard:
+- `band_assets` - General band photos and assets.
+- `albums` - Album and EP cover images.
+- `press_kit` - Zip files and promotional documents for download.
 
-Organize the bucket with the following folder structure:
-- `brutalist-grid/` - High-resolution images for the social feed grid.
-- `discography/` - Album and EP cover images.
-- `press-kit/` - Zip files and promotional photos for download.
+### URL Format
+Ensure your database tables use the public URL format:
+`https://[PROJECT_ID].supabase.co/storage/v1/object/public/[BUCKET_NAME]/[FILENAME]`
 
 ## 2. Row Level Security (RLS)
 
-Execute the following SQL in the Supabase SQL Editor to enable RLS and allow public read access to your data:
+Execute the following SQL in the Supabase SQL Editor to enable RLS and allow public read access:
 
 ```sql
 -- Enable RLS for all tables
@@ -28,14 +30,23 @@ CREATE POLICY "Allow public read access" ON albums FOR SELECT USING (true);
 CREATE POLICY "Allow public read access" ON songs FOR SELECT USING (true);
 CREATE POLICY "Allow public read access" ON press_kit FOR SELECT USING (true);
 
--- Storage Policies for 'band-assets' bucket
--- This allows anyone to view/download files in the 'band-assets' bucket
-CREATE POLICY "Allow public select on band-assets"
-ON storage.objects FOR SELECT
-USING (bucket_id = 'band-assets');
+-- Storage Policies for public buckets
+CREATE POLICY "Allow public select on band_assets" ON storage.objects FOR SELECT USING (bucket_id = 'band_assets');
+CREATE POLICY "Allow public select on albums" ON storage.objects FOR SELECT USING (bucket_id = 'albums');
+CREATE POLICY "Allow public select on press_kit" ON storage.objects FOR SELECT USING (bucket_id = 'press_kit');
 ```
 
-## 3. Environment Variables & GitHub Secrets
+## 3. Realtime Configuration
+
+To enable real-time updates for the "Brutalist Grid" (Social Feed):
+1.  Go to the **Database** tab in your Supabase dashboard.
+2.  Select **Replication** from the sidebar.
+3.  Under `supabase_realtime`, click on **Source**.
+4.  Toggle the switch for the `brutalist_grid` table to enable it for Realtime.
+
+The website is configured to show only the last 8 entries and will automatically update when a new row is inserted into this table.
+
+## 4. Environment Variables & GitHub Secrets
 
 For the application to connect to Supabase, you must set the following environment variables.
 
@@ -51,10 +62,4 @@ Add these as Secrets in your GitHub repository settings (**Settings > Secrets an
 - `VITE_SUPABASE_URL`
 - `VITE_SUPABASE_ANON_KEY`
 
-These will be injected during the build process (Vite automatically picks up variables prefixed with `VITE_`).
-
-## 4. Data Population
-
-Ensure your tables are populated with the correct URLs pointing to your files in the `band-assets` bucket.
-Example URL format:
-`https://[PROJECT_ID].supabase.co/storage/v1/object/public/band-assets/[FOLDER]/[FILENAME]`
+These will be injected during the build process.
