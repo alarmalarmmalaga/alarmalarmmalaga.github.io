@@ -38,13 +38,16 @@ CREATE POLICY "Allow public select on press_kit" ON storage.objects FOR SELECT U
 
 ## 3. Realtime Configuration
 
-To enable real-time updates for the "Brutalist Grid" (Social Feed):
+To enable real-time updates for the "Brutalist Grid" (Social Feed) and the "Releases" section:
 1.  Go to the **Database** tab in your Supabase dashboard.
 2.  Select **Replication** from the sidebar.
 3.  Under `supabase_realtime`, click on **Source**.
-4.  Toggle the switch for the `brutalist_grid` table to enable it for Realtime.
+4.  Toggle the switches for the following tables to enable them for Realtime:
+    - `brutalist_grid`
+    - `albums`
+    - `songs`
 
-The website is configured to show only the last 8 entries and will automatically update when a new row is inserted into this table.
+The website will automatically update when new entries are added to these tables. Note that the "Brutalist Grid" is configured to show only the last 8 entries.
 
 ## 4. Environment Variables & GitHub Secrets
 

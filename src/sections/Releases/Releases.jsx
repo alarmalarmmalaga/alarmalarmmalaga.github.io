@@ -1,5 +1,5 @@
 // src/sections/Releases/Releases.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { supabase } from '../../supabaseClient';
 import styles from './Releases.module.css';
 
@@ -7,28 +7,52 @@ const Releases = () => {
   const [releases, setReleases] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchReleases = async () => {
-      const { data, error } = await supabase
-        .from('albums')
-        .select('*, songs(*)')
-        .order('release_date', { ascending: false });
+  const fetchReleases = useCallback(async () => {
+    const { data, error } = await supabase
+      .from('albums')
+      .select('*, songs(*)')
+      .order('release_date', { ascending: false });
 
-      if (error) {
-        console.error('Error fetching releases:', error);
-      } else {
-        // Sort songs by track_number within each album
-        const sortedData = data.map(album => ({
-          ...album,
-          songs: album.songs.sort((a, b) => (a.track_number || 0) - (b.track_number || 0))
-        }));
-        setReleases(sortedData);
-      }
-      setLoading(false);
-    };
-
-    fetchReleases();
+    if (error) {
+      console.error('Error fetching releases:', error);
+    } else {
+      // Sort songs by track_number within each album
+      const sortedData = data.map(album => ({
+        ...album,
+        songs: album.songs.sort((a, b) => (a.track_number || 0) - (b.track_number || 0))
+      }));
+      setReleases(sortedData);
+    }
+    setLoading(false);
   }, []);
+
+  useEffect(() => {
+    fetchReleases();
+
+    // Subscribe to changes in albums and songs for real-time updates
+    const albumsChannel = supabase
+      .channel('albums_realtime')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'albums' },
+        () => fetchReleases()
+      )
+      .subscribe();
+
+    const songsChannel = supabase
+      .channel('songs_realtime')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'songs' },
+        () => fetchReleases()
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(albumsChannel);
+      supabase.removeChannel(songsChannel);
+    };
+  }, [fetchReleases]);
 
   if (loading) {
     return (
