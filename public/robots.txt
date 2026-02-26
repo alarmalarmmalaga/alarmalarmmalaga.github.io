@@ -1,8 +1,7 @@
-# Allow all crawlers, including AI
 User-agent: *
 Allow: /
+Sitemap: https://alarmalarmmalaga.github.io/sitemap.xml
 
-# Specific AI crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -14,5 +13,3 @@ Allow: /
 
 User-agent: PerplexityBot
 Allow: /
-
-Sitemap: https://alarmalarmmalaga.github.io/sitemap.xml

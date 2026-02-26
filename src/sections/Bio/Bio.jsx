@@ -20,6 +20,15 @@ const Bio = () => {
         {/* <h3>Our Story</h3> This sub-heading might be redundant if the main title is "Our Story" */}
         <p>{bio || 'Loading bio...'}</p>
       </div>
+
+      <div className={styles.pressLinks}>
+        <h3>Connect & Verify</h3>
+        <div className={styles.meLinks}>
+          <a href="https://open.spotify.com/artist/6Q3jUbGq2b2MeN2lMBYDxz" rel="me" target="_blank" aria-label="Official Spotify Profile">Spotify</a>
+          <a href="https://alarmalarm.bandcamp.com/" rel="me" target="_blank" aria-label="Official Bandcamp Profile">Bandcamp</a>
+          <a href="https://www.instagram.com/alarmalarmmalaga/" rel="me" target="_blank" aria-label="Official Instagram Profile">Instagram</a>
+        </div>
+      </div>
     </section>
   );
 };

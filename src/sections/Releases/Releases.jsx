@@ -62,12 +62,13 @@ const releasesData = [
   },
 ];
 
-const Releases = () => {
+const Releases = ({ albums }) => {
+  const dataToRender = albums || releasesData;
   return (
     <section id="releases" className={styles.releasesSection}>
       <h2 className={styles.sectionTitle}>Releases</h2>
       <div className={styles.releasesGrid}>
-        {releasesData.map((release) => (
+        {dataToRender.map((release) => (
           <article key={release.id} className={styles.releaseItemContainer}>
             <div className={styles.albumArtContainer}>
               <img
@@ -77,20 +78,20 @@ const Releases = () => {
               />
             </div>
             <div className={styles.releaseInfoContainer}>
-              <h3 className={styles.releaseTitle}>{release.title}</h3>
+              <h3 className={styles.releaseTitle}>{release.title || release.name}</h3>
               <ul className={styles.tracklist}>
-                {release.tracklist.map((track, index) => (
-                  <li key={index} className={styles.tracklistItem}>{track}</li>
+                {(release.tracklist || release.tracks || []).map((track, index) => (
+                  <li key={index} className={styles.tracklistItem}>{typeof track === 'string' ? track : track.name}</li>
                 ))}
               </ul>
               <div className={styles.releaseLinks}>
-                {release.spotifyUrl && (
-                  <a href={release.spotifyUrl} target="_blank" rel="noopener noreferrer" className={styles.spotifyLink} aria-label={`Listen to ${release.title} on Spotify (opens in a new tab)`}>
+                {(release.spotifyUrl || release.spotify_url) && (
+                  <a href={release.spotifyUrl || release.spotify_url} target="_blank" rel="noopener noreferrer" className={styles.spotifyLink} aria-label={`Listen to ${release.title || release.name} on Spotify (opens in a new tab)`}>
                     Spotify
                   </a>
                 )}
-                {release.bandcampUrl && (
-                  <a href={release.bandcampUrl} target="_blank" rel="noopener noreferrer" className={styles.bandcampLink} aria-label={`Listen to and buy ${release.title} on Bandcamp (opens in a new tab)`}>
+                {(release.bandcampUrl || release.bandcamp_url) && (
+                  <a href={release.bandcampUrl || release.bandcamp_url} target="_blank" rel="noopener noreferrer" className={styles.bandcampLink} aria-label={`Listen to and buy ${release.title || release.name} on Bandcamp (opens in a new tab)`}>
                     Bandcamp
                   </a>
                 )}

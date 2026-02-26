@@ -8,16 +8,28 @@ import Video from './sections/Video/Video';
 import Releases from './sections/Releases/Releases'; // Import Releases
 import Bio from './sections/Bio/Bio.jsx';
 import Contact from './sections/Contact/Contact'; // Import Contact
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [data, setData] = useState(window.__SITE_DATA__ || null);
+
+  useEffect(() => {
+    if (!data) {
+      fetch('/site-data.json')
+        .then(res => res.json())
+        .then(setData)
+        .catch(console.error);
+    }
+  }, [data]);
+
   return (
     <div className={styles.container}>
       <Hero />
       <Music />
       <Tour />
-      <SocialFeed />
+      <SocialFeed gridItems={data?.gridItems} />
       <Video />
-      <Releases /> {/* Add Releases component */}
+      <Releases albums={data?.albums} /> {/* Add Releases component */}
       <Bio /> {/* Add PressKit section here */}
       <Contact /> {/* Add Contact component */}
     </div>

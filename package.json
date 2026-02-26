@@ -6,13 +6,17 @@
   "homepage": "https://alarmalarmmalaga.github.io",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/prerender.js",
     "build": "vite build",
+    "postbuild": "node scripts/prerender.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.97.0",
+    "dotenv": "^17.3.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

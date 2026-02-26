@@ -1,0 +1,215 @@
+[
+  {
+    "slug": "amateur-skater",
+    "title": "Amateur Skater by Alarm! Alarm! | Official Discography",
+    "description": "Our latest EP about trying to stay radical while your joints tell you otherwise.",
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@type": "MusicAlbum",
+      "name": "Amateur Skater",
+      "byArtist": {
+        "@type": "MusicGroup",
+        "name": "Alarm! Alarm!"
+      },
+      "numTracks": 4,
+      "track": [
+        {
+          "@type": "MusicRecording",
+          "name": "All By My Best Friend Bob, Again",
+          "position": 1
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Esto Termina Aqui",
+          "position": 2
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "NOFX",
+          "position": 3
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "I'm not worried enough (Live)",
+          "position": 4
+        }
+      ]
+    }
+  },
+  {
+    "slug": "98-99",
+    "title": "98-99 by Alarm! Alarm! | Official Discography",
+    "description": "A melodic tribute to the era of baggy jeans, MSN Messenger, and the peak of 90s punk.",
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@type": "MusicAlbum",
+      "name": "98-99",
+      "byArtist": {
+        "@type": "MusicGroup",
+        "name": "Alarm! Alarm!"
+      },
+      "numTracks": 4,
+      "track": [
+        {
+          "@type": "MusicRecording",
+          "name": "Todo Sin Terminar",
+          "position": 1
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Sprint Retrospective",
+          "position": 2
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Banda Tributo",
+          "position": 3
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Déjame En Paz (Live)",
+          "position": 4
+        }
+      ]
+    }
+  },
+  {
+    "slug": "whatever",
+    "title": "Whatever... by Alarm! Alarm! | Official Discography",
+    "description": "A confirmation that, indeed, things haven't improved.",
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@type": "MusicAlbum",
+      "name": "Whatever...",
+      "byArtist": {
+        "@type": "MusicGroup",
+        "name": "Alarm! Alarm!"
+      },
+      "numTracks": 11,
+      "track": [
+        {
+          "@type": "MusicRecording",
+          "name": "Git Init",
+          "position": 1
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "With Or Without You",
+          "position": 2
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Punk Rock Scene",
+          "position": 3
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "I'm Not Alright'",
+          "position": 4
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Pull Request",
+          "position": 5
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Déjame En Paz",
+          "position": 6
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Scheissegal",
+          "position": 7
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "I'm Not Worried Enough",
+          "position": 8
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "I'm Only Happy When I'm Angry",
+          "position": 9
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Friday Night",
+          "position": 10
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "A Song To Leah",
+          "position": 11
+        }
+      ]
+    }
+  },
+  {
+    "slug": "bloody-hell",
+    "title": "Bloody Hell! by Alarm! Alarm! | Official Discography",
+    "description": "Our debut scream into the void, recorded at Hollers Analog Studio.",
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@type": "MusicAlbum",
+      "name": "Bloody Hell!",
+      "byArtist": {
+        "@type": "MusicGroup",
+        "name": "Alarm! Alarm!"
+      },
+      "numTracks": 10,
+      "track": [
+        {
+          "@type": "MusicRecording",
+          "name": "Hello World",
+          "position": 1
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Office Hours",
+          "position": 2
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Radio",
+          "position": 3
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Saturday Night",
+          "position": 4
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Midlife Crisis",
+          "position": 5
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "All You Can Eat",
+          "position": 6
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Hass",
+          "position": 7
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Summer Love",
+          "position": 8
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "Give Up",
+          "position": 9
+        },
+        {
+          "@type": "MusicRecording",
+          "name": "No",
+          "position": 10
+        }
+      ]
+    }
+  }
+]

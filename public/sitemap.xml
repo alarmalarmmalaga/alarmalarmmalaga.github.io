@@ -2,42 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://alarmalarmmalaga.github.io/</loc>
-    <lastmod>2025-05-15</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://alarmalarmmalaga.github.io/#music</loc>
-    <lastmod>2025-05-15</lastmod>
+    <loc>https://alarmalarmmalaga.github.io/albums/amateur-skater</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://alarmalarmmalaga.github.io/#tour</loc>
-    <lastmod>2025-05-15</lastmod>
+    <loc>https://alarmalarmmalaga.github.io/albums/98-99</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://alarmalarmmalaga.github.io/#releases</loc>
-    <lastmod>2025-05-15</lastmod>
+    <loc>https://alarmalarmmalaga.github.io/albums/whatever</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://alarmalarmmalaga.github.io/#bio</loc>
-    <lastmod>2025-05-15</lastmod>
+    <loc>https://alarmalarmmalaga.github.io/albums/bloody-hell</loc>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://alarmalarmmalaga.github.io/#video</loc>
-    <lastmod>2025-05-15</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://alarmalarmmalaga.github.io/#social</loc>
-    <lastmod>2025-05-15</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://alarmalarmmalaga.github.io/#contact</loc>
-    <lastmod>2025-05-15</lastmod>
-    <priority>0.6</priority>
   </url>
 </urlset>

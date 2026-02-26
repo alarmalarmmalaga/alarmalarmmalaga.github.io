@@ -68,18 +68,19 @@ const socialPosts = [
 const getRandomRotation = () =>
   `rotate(${(Math.random() * 4 - 2).toFixed(1)}deg)`;
 
-const SocialFeed = () => {
+const SocialFeed = ({ gridItems }) => {
+  const dataToRender = gridItems || socialPosts;
   return (
     <section id="social" className={styles.socialFeedSection}>
       <h2 className={styles.sectionTitle}>The Brutalist Grid</h2>
       <div className={styles.feedContainer}>
-        {socialPosts.map((post) => (
+        {dataToRender.map((post) => (
           <figure
             key={post.id}
             className={styles.gridItem}
             style={{ transform: getRandomRotation() }}
           >
-            <img src={post.image} alt={post.alt} />
+            <img src={post.image || post.image_url} alt={post.alt || post.alt_description} />
             <figcaption className={styles.caption}>{post.caption}</figcaption>
           </figure>
         ))}
