@@ -25,15 +25,16 @@ ALTER TABLE songs ENABLE ROW LEVEL SECURITY;
 ALTER TABLE press_kit ENABLE ROW LEVEL SECURITY;
 
 -- Create policies to allow public read access (SELECT)
-CREATE POLICY "Allow public read access" ON brutalist_grid FOR SELECT USING (true);
-CREATE POLICY "Allow public read access" ON albums FOR SELECT USING (true);
-CREATE POLICY "Allow public read access" ON songs FOR SELECT USING (true);
-CREATE POLICY "Allow public read access" ON press_kit FOR SELECT USING (true);
+-- Explicitly grant to both 'anon' and 'authenticated' roles.
+CREATE POLICY "Allow public read access" ON brutalist_grid FOR SELECT TO anon, authenticated USING (true);
+CREATE POLICY "Allow public read access" ON albums FOR SELECT TO anon, authenticated USING (true);
+CREATE POLICY "Allow public read access" ON songs FOR SELECT TO anon, authenticated USING (true);
+CREATE POLICY "Allow public read access" ON press_kit FOR SELECT TO anon, authenticated USING (true);
 
 -- Storage Policies for public buckets
-CREATE POLICY "Allow public select on band_assets" ON storage.objects FOR SELECT USING (bucket_id = 'band_assets');
-CREATE POLICY "Allow public select on albums" ON storage.objects FOR SELECT USING (bucket_id = 'albums');
-CREATE POLICY "Allow public select on press_kit" ON storage.objects FOR SELECT USING (bucket_id = 'press_kit');
+CREATE POLICY "Allow public select on band_assets" ON storage.objects FOR SELECT TO anon, authenticated USING (bucket_id = 'band_assets');
+CREATE POLICY "Allow public select on albums" ON storage.objects FOR SELECT TO anon, authenticated USING (bucket_id = 'albums');
+CREATE POLICY "Allow public select on press_kit" ON storage.objects FOR SELECT TO anon, authenticated USING (bucket_id = 'press_kit');
 ```
 
 ## 3. Realtime Configuration
