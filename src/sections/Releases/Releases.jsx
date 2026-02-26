@@ -19,7 +19,7 @@ const Releases = () => {
       // Sort songs by track_number within each album
       const sortedData = data.map(album => ({
         ...album,
-        songs: album.songs.sort((a, b) => (a.track_number || 0) - (b.track_number || 0))
+        songs: album.songs ? album.songs.sort((a, b) => (a.track_number || 0) - (b.track_number || 0)) : []
       }));
       setReleases(sortedData);
     }
@@ -84,12 +84,16 @@ const Releases = () => {
                 ))}
               </ul>
               <div className={styles.releaseLinks}>
-                {release.streaming_link && (
-                  <a href={release.streaming_link} target="_blank" rel="noopener noreferrer" className={styles.spotifyLink}>
+                {release.spotify_link && (
+                  <a href={release.spotify_link} target="_blank" rel="noopener noreferrer" className={styles.spotifyLink}>
                     Spotify
                   </a>
                 )}
-                {/* Bandcamp link can be added here if included in the schema later */}
+                {release.bandcamp_link && (
+                  <a href={release.bandcamp_link} target="_blank" rel="noopener noreferrer" className={styles.bandcampLink}>
+                    Bandcamp
+                  </a>
+                )}
               </div>
             </div>
           </article>

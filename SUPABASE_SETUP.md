@@ -66,3 +66,10 @@ Add these as Secrets in your GitHub repository settings (**Settings > Secrets an
 - `VITE_SUPABASE_ANON_KEY`
 
 These will be injected during the build process.
+
+## 5. Database Schema Notes
+
+The `albums` table should have the following columns (among others):
+- `spotify_link` (TEXT)
+- `bandcamp_link` (TEXT)
+(Replaced the previous `streaming_link` column to support both platforms.)
