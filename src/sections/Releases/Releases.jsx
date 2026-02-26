@@ -89,7 +89,9 @@ const Releases = () => {
               />
             </div>
             <div className={styles.releaseInfoContainer}>
-              <h3 className={styles.releaseTitle}>{release.title}</h3>
+              <h3 className={styles.releaseTitle}>
+                {release.title} {release.release_date && `(${new Date(release.release_date).getFullYear()})`}
+              </h3>
               <ul className={styles.tracklist}>
                 {release.songs && release.songs.map((song) => (
                   <li key={song.id} className={styles.tracklistItem}>{song.title}</li>
