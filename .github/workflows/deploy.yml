@@ -9,6 +9,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     environment: github-pages # Ensure environment-specific secrets/variables are accessible
     steps:
       - name: Checkout repository
