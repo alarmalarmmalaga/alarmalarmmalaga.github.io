@@ -1,9 +1,26 @@
 // src/sections/Contact/Contact.jsx
+import React, { useEffect, useState } from 'react';
+import { supabase } from '../../supabaseClient';
 import styles from './Contact.module.css';
-import photo1 from '../../assets/images/photo1.jpg';
-import bandLogo from '../../assets/images/band_logo.png';
 
 const Contact = () => {
+  const [assets, setAssets] = useState([]);
+
+  useEffect(() => {
+    const fetchAssets = async () => {
+      const { data, error } = await supabase
+        .from('press_kit')
+        .select('*');
+
+      if (error) {
+        console.error('Error fetching press kit assets:', error);
+      } else {
+        setAssets(data);
+      }
+    };
+
+    fetchAssets();
+  }, []);
 
   return (
     <section id="contact" className={styles.contactSection}>
@@ -14,16 +31,21 @@ const Contact = () => {
         </p>
       </div>
       <div className={styles.pressKit}>
-        <a href="/press-kit.zip" download="AlarmAlarm-PressKit.zip" className={styles.pressKitButton}>
-          DOWNLOAD FULL PRESS KIT
-        </a>
-        {/* New buttons added below */}
-        <a href={photo1} download="AlarmAlarm_Photo1.jpg" className={styles.pressKitButton}>
-          Photo (High Res)
-        </a>
-        <a href={bandLogo} download="AlarmAlarm_Logo.png" className={styles.pressKitButton}>
-          Band Logo (High Res)
-        </a>
+        {assets.length > 0 ? (
+          assets.map((asset) => (
+            <a
+              key={asset.id}
+              href={asset.file_url}
+              download
+              className={styles.pressKitButton}
+              aria-label={`Download ${asset.label}`}
+            >
+              {asset.label.toUpperCase()}
+            </a>
+          ))
+        ) : (
+          <p className={styles.loading}>Loading downloads...</p>
+        )}
       </div>
     </section>
   );
