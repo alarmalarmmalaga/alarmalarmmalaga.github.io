@@ -61,11 +61,17 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ### GitHub Actions / Production
-Add these as Secrets in your GitHub repository settings (**Settings > Secrets and variables > Actions**):
+Add these as **Secrets** or **Variables** in your GitHub repository settings (**Settings > Secrets and variables > Actions**):
 - `VITE_SUPABASE_URL`
 - `VITE_SUPABASE_ANON_KEY`
 
-These will be injected during the build process.
+#### Secrets vs. Variables
+- **Secrets:** Use these for the `VITE_SUPABASE_ANON_KEY`. Values are encrypted and not visible after being saved.
+- **Variables:** Use these for `VITE_SUPABASE_URL` if you want them to be visible in the settings.
+
+The deployment workflow is configured to check both locations. If you use **Environments**, ensure the secrets/variables are added to the `github-pages` environment.
+
+These will be automatically injected during the GitHub Actions build process.
 
 ## 5. Database Schema Notes
 
