@@ -1,13 +1,17 @@
 -- Alarm! Alarm! Supabase Permission Setup Script
 -- Execute this in the Supabase SQL Editor to enable RLS and public read access.
 
--- 1. Enable Row Level Security (RLS) for all tables
+-- 1. Database Schema Updates
+-- Add alt_description column to brutalist_grid for SEO/GEO
+ALTER TABLE brutalist_grid ADD COLUMN IF NOT EXISTS alt_description TEXT;
+
+-- 2. Enable Row Level Security (RLS) for all tables
 ALTER TABLE brutalist_grid ENABLE ROW LEVEL SECURITY;
 ALTER TABLE albums ENABLE ROW LEVEL SECURITY;
 ALTER TABLE songs ENABLE ROW LEVEL SECURITY;
 ALTER TABLE press_kit ENABLE ROW LEVEL SECURITY;
 
--- 2. Create policies to allow public read access (SELECT)
+-- 3. Create policies to allow public read access (SELECT)
 -- We explicitly grant to 'anon' (unauthenticated) and 'authenticated' roles.
 -- Note: 'DROP POLICY IF EXISTS' is used to ensure the script can be re-run safely.
 
@@ -23,7 +27,7 @@ CREATE POLICY "Allow public read access" ON songs FOR SELECT TO anon, authentica
 DROP POLICY IF EXISTS "Allow public read access" ON press_kit;
 CREATE POLICY "Allow public read access" ON press_kit FOR SELECT TO anon, authenticated USING (true);
 
--- 3. Storage Policies for public buckets
+-- 4. Storage Policies for public buckets
 -- Ensure these buckets (band_assets, albums, press_kit) are created and set to 'Public' in the dashboard.
 
 DROP POLICY IF EXISTS "Allow public select on band_assets" ON storage.objects;
