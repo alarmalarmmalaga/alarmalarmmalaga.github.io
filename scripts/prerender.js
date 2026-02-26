@@ -61,7 +61,7 @@ function mockData() {
         description: 'Our latest EP about trying to stay radical while your joints tell you otherwise.',
         spotify_url: 'https://open.spotify.com/album/38AXd6UNJ3EDpUUZGx0ubE',
         bandcamp_url: 'https://alarmalarm.bandcamp.com/music',
-        image_url: '/src/assets/images/album-cover-ep2.jpg',
+        image_url: 'https://via.placeholder.com/300?text=Amateur+Skater',
         tracks: [
           { name: "All By My Best Friend Bob, Again", position: 1 },
           { name: "Esto Termina Aqui", position: 2 },
@@ -76,7 +76,7 @@ function mockData() {
         description: 'A melodic tribute to the era of baggy jeans, MSN Messenger, and the peak of 90s punk.',
         spotify_url: 'https://open.spotify.com/album/2bFikvFpFiMqFP8CmU2ttM',
         bandcamp_url: 'https://alarmalarm.bandcamp.com/music',
-        image_url: '/src/assets/images/album-cover-ep1.jpg',
+        image_url: 'https://via.placeholder.com/300?text=98-99',
         tracks: [
           { name: "Todo Sin Terminar", position: 1 },
           { name: "Sprint Retrospective", position: 2 },
@@ -91,7 +91,7 @@ function mockData() {
         description: 'A confirmation that, indeed, things haven\'t improved.',
         spotify_url: 'https://open.spotify.com/album/1cb5wJKrETBtXU5iauhmj2',
         bandcamp_url: 'https://alarmalarm.bandcamp.com/album/whatever',
-        image_url: '/src/assets/images/album-cover-lp2.jpg',
+        image_url: 'https://via.placeholder.com/300?text=Whatever',
         tracks: [
           { name: "Git Init", position: 1 },
           { name: "With Or Without You", position: 2 },
@@ -113,7 +113,7 @@ function mockData() {
         description: 'Our debut scream into the void, recorded at Hollers Analog Studio.',
         spotify_url: 'https://open.spotify.com/album/4SIJzb8ZWfxtvz6kjQlJe0',
         bandcamp_url: 'https://alarmalarm.bandcamp.com/album/bloody-hell',
-        image_url: '/src/assets/images/album-cover-lp1.jpg',
+        image_url: 'https://via.placeholder.com/300?text=Bloody+Hell',
         tracks: [
           { name: "Hello World", position: 1 },
           { name: "Office Hours", position: 2 },
@@ -129,8 +129,8 @@ function mockData() {
       }
     ],
     gridItems: [
-      { id: '1', image_url: '/src/assets/images/photo1.jpg', caption: 'Preparing new stuff! #bandlife #phototime #punk', alt_description: 'Alarm! Alarm! band members posing for a photo in a gritty urban setting.' },
-      { id: '2', image_url: '/src/assets/images/photo2.jpeg', caption: 'Thanks everyone! Almost 8K listeners! We love you! #spotify #punkrock #alarmalarm', alt_description: 'Alarm! Alarm! 2025 Spotify stats screenshot showing streams and listeners.' }
+      { id: '1', image_url: 'https://via.placeholder.com/300?text=Band+Photo+1', caption: 'Preparing new stuff! #bandlife #phototime #punk', alt_description: 'Alarm! Alarm! band members posing for a photo in a gritty urban setting.' },
+      { id: '2', image_url: 'https://via.placeholder.com/300?text=Spotify+Stats', caption: 'Thanks everyone! Almost 8K listeners! We love you! #spotify #punkrock #alarmalarm', alt_description: 'Alarm! Alarm! 2025 Spotify stats screenshot showing streams and listeners.' }
       // ... more mock grid items can be added
     ]
   };
