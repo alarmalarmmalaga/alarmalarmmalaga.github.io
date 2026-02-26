@@ -8,6 +8,12 @@ const Releases = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchReleases = useCallback(async () => {
+    if (!supabase) {
+      console.warn('Supabase client not initialized. Releases will not be available.');
+      setLoading(false);
+      return;
+    }
+
     const { data, error } = await supabase
       .from('albums')
       .select('*, songs(*)')
@@ -17,10 +23,10 @@ const Releases = () => {
       console.error('Error fetching releases:', error);
     } else {
       // Sort songs by track_number within each album
-      const sortedData = data.map(album => ({
+      const sortedData = data ? data.map(album => ({
         ...album,
         songs: album.songs ? album.songs.sort((a, b) => (a.track_number || 0) - (b.track_number || 0)) : []
-      }));
+      })) : [];
       setReleases(sortedData);
     }
     setLoading(false);
@@ -28,6 +34,8 @@ const Releases = () => {
 
   useEffect(() => {
     fetchReleases();
+
+    if (!supabase) return;
 
     // Subscribe to changes in albums and songs for real-time updates
     const albumsChannel = supabase
@@ -49,8 +57,10 @@ const Releases = () => {
       .subscribe();
 
     return () => {
-      supabase.removeChannel(albumsChannel);
-      supabase.removeChannel(songsChannel);
+      if (supabase) {
+        if (albumsChannel) supabase.removeChannel(albumsChannel);
+        if (songsChannel) supabase.removeChannel(songsChannel);
+      }
     };
   }, [fetchReleases]);
 

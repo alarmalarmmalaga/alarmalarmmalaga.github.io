@@ -5,8 +5,15 @@ import styles from './Contact.module.css';
 
 const Contact = () => {
   const [assets, setAssets] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!supabase) {
+      console.warn('Supabase client not initialized. Press kit assets will not be available.');
+      setLoading(false);
+      return;
+    }
+
     const fetchAssets = async () => {
       const { data, error } = await supabase
         .from('press_kit')
@@ -15,8 +22,9 @@ const Contact = () => {
       if (error) {
         console.error('Error fetching press kit assets:', error);
       } else {
-        setAssets(data);
+        setAssets(data || []);
       }
+      setLoading(false);
     };
 
     fetchAssets();
@@ -31,7 +39,9 @@ const Contact = () => {
         </p>
       </div>
       <div className={styles.pressKit}>
-        {assets.length > 0 ? (
+        {loading ? (
+          <p className={styles.loading}>Loading downloads...</p>
+        ) : assets.length > 0 ? (
           assets.map((asset) => (
             <a
               key={asset.id}
@@ -44,7 +54,7 @@ const Contact = () => {
             </a>
           ))
         ) : (
-          <p className={styles.loading}>Loading downloads...</p>
+          <p className={styles.loading}>Downloads currently unavailable.</p>
         )}
       </div>
     </section>
