@@ -12,6 +12,12 @@ const SocialFeed = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!supabase) {
+      console.warn('Supabase client not initialized. Social feed will not be available.');
+      setLoading(false);
+      return;
+    }
+
     const fetchPosts = async () => {
       const { data, error } = await supabase
         .from('brutalist_grid')
@@ -47,7 +53,9 @@ const SocialFeed = () => {
       .subscribe();
 
     return () => {
-      supabase.removeChannel(channel);
+      if (supabase && channel) {
+        supabase.removeChannel(channel);
+      }
     };
   }, []);
 
