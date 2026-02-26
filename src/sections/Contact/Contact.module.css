@@ -82,11 +82,15 @@
 /* Container for all press kit download buttons */
 .pressKit {
   margin-top: 1.5rem;
+}
+
+.pressKitButtonsContainer {
   display: flex;
   flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
   justify-content: flex-start; /* Changed for asymmetry */
   align-items: center;
   gap: 1rem; /* Spacing between buttons */
+  margin-top: 1rem;
 }
 
 .pressKitButton {
@@ -121,7 +125,7 @@
     font-size: 1.2rem; /* Adjusted */
     padding: 12px 25px; /* Keep padding */
   }
-  .pressKit {
+  .pressKitButtonsContainer {
     justify-content: center; /* Center buttons on smaller screens */
   }
 }

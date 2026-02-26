@@ -71,23 +71,25 @@ const Contact = () => {
 
       <div className={styles.pressKit}>
         <h3 className={styles.subTitle}>Press Kit & Downloads</h3>
-        {loading ? (
-          <p className={styles.loading}>Loading downloads...</p>
-        ) : assets.length > 0 ? (
-          assets.map((asset) => (
-            <a
-              key={asset.id}
-              href={asset.file_url}
-              download
-              className={styles.pressKitButton}
-              aria-label={`Download ${asset.label}`}
-            >
-              {asset.label.toUpperCase()}
-            </a>
-          ))
-        ) : (
-          <p className={styles.loading}>Downloads currently unavailable.</p>
-        )}
+        <div className={styles.pressKitButtonsContainer}>
+          {loading ? (
+            <p className={styles.loading}>Loading downloads...</p>
+          ) : assets.length > 0 ? (
+            assets.map((asset) => (
+              <a
+                key={asset.id}
+                href={asset.file_url}
+                download
+                className={styles.pressKitButton}
+                aria-label={`Download ${asset.label}`}
+              >
+                {asset.label.toUpperCase()}
+              </a>
+            ))
+          ) : (
+            <p className={styles.loading}>Downloads currently unavailable.</p>
+          )}
+        </div>
       </div>
     </section>
   );
