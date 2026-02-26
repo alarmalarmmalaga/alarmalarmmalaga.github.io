@@ -38,7 +38,39 @@ const Contact = () => {
           BOOKING/PRESS: <a href="mailto:alarmalarmmalaga@gmail.com" className={styles.emailLink}>alarmalarmmalaga@gmail.com</a>
         </p>
       </div>
+
+      <div className={styles.officialLinks}>
+        <h3 className={styles.subTitle}>Official Channels (E-E-A-T)</h3>
+        <div className={styles.linksGrid}>
+          <a
+            href="https://open.spotify.com/artist/6Q3jUbGq2b2MeN2lMBYDxz"
+            target="_blank"
+            rel="me noopener noreferrer"
+            className={styles.officialLink}
+          >
+            Spotify Official
+          </a>
+          <a
+            href="https://alarmalarm.bandcamp.com/"
+            target="_blank"
+            rel="me noopener noreferrer"
+            className={styles.officialLink}
+          >
+            Bandcamp Official
+          </a>
+          <a
+            href="https://www.instagram.com/alarmalarmmalaga"
+            target="_blank"
+            rel="me noopener noreferrer"
+            className={styles.officialLink}
+          >
+            Instagram
+          </a>
+        </div>
+      </div>
+
       <div className={styles.pressKit}>
+        <h3 className={styles.subTitle}>Press Kit & Downloads</h3>
         {loading ? (
           <p className={styles.loading}>Loading downloads...</p>
         ) : assets.length > 0 ? (

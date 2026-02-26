@@ -8,8 +8,10 @@ const getRandomRotation = () =>
   `rotate(${(Math.random() * 4 - 2).toFixed(1)}deg)`;
 
 const SocialFeed = () => {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // Use window.__SITE_DATA__ if available (for SEO/Prerendering)
+  const initialPosts = window.__SITE_DATA__?.gridItems?.slice(0, 8) || [];
+  const [posts, setPosts] = useState(initialPosts);
+  const [loading, setLoading] = useState(initialPosts.length === 0);
 
   useEffect(() => {
     if (!supabase) {
@@ -78,7 +80,10 @@ const SocialFeed = () => {
             className={styles.gridItem}
             style={{ transform: getRandomRotation() }}
           >
-            <img src={post.image_url} alt={post.caption || "Band photo"} />
+            <img
+              src={post.image_url}
+              alt={post.alt_description || post.caption || "Band photo"}
+            />
             <figcaption className={styles.caption}>{post.caption}</figcaption>
           </figure>
         ))}

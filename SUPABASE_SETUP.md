@@ -18,7 +18,11 @@ Ensure your database tables use the public URL format:
 Execute the following SQL in the Supabase SQL Editor to enable RLS and allow public read access:
 
 ```sql
--- Enable RLS for all tables
+-- 1. Database Schema Updates
+-- Add alt_description column to brutalist_grid for SEO/GEO
+ALTER TABLE brutalist_grid ADD COLUMN IF NOT EXISTS alt_description TEXT;
+
+-- 2. Enable RLS for all tables
 ALTER TABLE brutalist_grid ENABLE ROW LEVEL SECURITY;
 ALTER TABLE albums ENABLE ROW LEVEL SECURITY;
 ALTER TABLE songs ENABLE ROW LEVEL SECURITY;
@@ -50,7 +54,13 @@ To enable real-time updates for the "Brutalist Grid" (Social Feed) and the "Rele
 
 The website will automatically update when new entries are added to these tables. Note that the "Brutalist Grid" is configured to show only the last 8 entries.
 
-## 4. Environment Variables & GitHub Secrets
+## 4. Generative Engine Optimization (GEO) & SEO
+To maximize visibility for AI crawlers (Gemini, Perplexity) and traditional search engines:
+1.  **Alt Text:** Ensure the `alt_description` column in `brutalist_grid` is populated with semantic descriptions of band photos.
+2.  **Entity Links:** Use the `rel="me"` links provided in the Contact section to link the website to official Spotify and Bandcamp profiles, helping AIs build a correct Knowledge Graph.
+3.  **Automated Prerendering:** The build process automatically generates static HTML and JSON-LD for all albums to ensure content is indexable without JavaScript.
+
+## 5. Environment Variables & GitHub Secrets
 
 For the application to connect to Supabase, you must set the following environment variables.
 
@@ -80,7 +90,7 @@ If the deployment succeeds but the website shows "Supabase environment variables
 2.  **Verify Secrets Scope:** Ensure the secrets are named exactly `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`. If you are using an **Environment** (like `github-pages`), make sure the secrets are added *to that environment* specifically, not just the repository.
 3.  **Avoid Manual Deploys:** Do not use `npm run deploy` locally unless you have a `.env` file with the correct values. The automated GitHub Action is the preferred way to deploy as it handles the injection automatically.
 
-## 5. Database Schema Notes
+## 6. Database Schema Notes
 
 The `albums` table should have the following columns (among others):
 - `spotify_link` (TEXT)

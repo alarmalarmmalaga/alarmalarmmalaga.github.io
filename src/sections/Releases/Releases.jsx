@@ -4,8 +4,10 @@ import { supabase } from '../../supabaseClient';
 import styles from './Releases.module.css';
 
 const Releases = () => {
-  const [releases, setReleases] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // Use window.__SITE_DATA__ if available (for SEO/Prerendering)
+  const initialReleases = window.__SITE_DATA__?.albums || [];
+  const [releases, setReleases] = useState(initialReleases);
+  const [loading, setLoading] = useState(initialReleases.length === 0);
 
   const fetchReleases = useCallback(async () => {
     if (!supabase) {
