@@ -22,11 +22,24 @@ Execute the following SQL in the Supabase SQL Editor to enable RLS and allow pub
 -- Add alt_description column to brutalist_grid for SEO/GEO
 ALTER TABLE brutalist_grid ADD COLUMN IF NOT EXISTS alt_description TEXT;
 
+-- Create latest_noise table
+CREATE TABLE IF NOT EXISTS latest_noise (
+  id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  title TEXT NOT NULL,
+  message TEXT NOT NULL,
+  spotify_embed_url TEXT NOT NULL,
+  apple_music_url TEXT,
+  bandcamp_url TEXT,
+  youtube_music_url TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
 -- 2. Enable RLS for all tables
 ALTER TABLE brutalist_grid ENABLE ROW LEVEL SECURITY;
 ALTER TABLE albums ENABLE ROW LEVEL SECURITY;
 ALTER TABLE songs ENABLE ROW LEVEL SECURITY;
 ALTER TABLE press_kit ENABLE ROW LEVEL SECURITY;
+ALTER TABLE latest_noise ENABLE ROW LEVEL SECURITY;
 
 -- Create policies to allow public read access (SELECT)
 -- Explicitly grant to both 'anon' and 'authenticated' roles.
@@ -34,6 +47,7 @@ CREATE POLICY "Allow public read access" ON brutalist_grid FOR SELECT TO anon, a
 CREATE POLICY "Allow public read access" ON albums FOR SELECT TO anon, authenticated USING (true);
 CREATE POLICY "Allow public read access" ON songs FOR SELECT TO anon, authenticated USING (true);
 CREATE POLICY "Allow public read access" ON press_kit FOR SELECT TO anon, authenticated USING (true);
+CREATE POLICY "Allow public read access" ON latest_noise FOR SELECT TO anon, authenticated USING (true);
 
 -- Storage Policies for public buckets
 CREATE POLICY "Allow public select on band_assets" ON storage.objects FOR SELECT TO anon, authenticated USING (bucket_id = 'band_assets');
@@ -43,7 +57,7 @@ CREATE POLICY "Allow public select on press_kit" ON storage.objects FOR SELECT T
 
 ## 3. Realtime Configuration
 
-To enable real-time updates for the "Brutalist Grid" (Social Feed) and the "Releases" section:
+To enable real-time updates for the "Brutalist Grid" (Social Feed), "Releases", and "Latest Noise" sections:
 1.  Go to the **Database** tab in your Supabase dashboard.
 2.  Select **Replication** from the sidebar.
 3.  Under `supabase_realtime`, click on **Source**.
@@ -51,6 +65,7 @@ To enable real-time updates for the "Brutalist Grid" (Social Feed) and the "Rele
     - `brutalist_grid`
     - `albums`
     - `songs`
+    - `latest_noise`
 
 The website will automatically update when new entries are added to these tables. Note that the "Brutalist Grid" is configured to show only the last 8 entries.
 

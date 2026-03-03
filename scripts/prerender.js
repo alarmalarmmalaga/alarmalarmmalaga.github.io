@@ -36,18 +36,28 @@ async function fetchData() {
       gridItems: [
         { id: 1, image_url: '', caption: 'Mock Photo', alt_description: 'Mock Alt' }
       ],
-      pressKit: []
+      pressKit: [],
+      latestNoise: {
+        title: 'Amateur Skater',
+        message: 'Stream our new EP, "Amateur Skater," right here via Spotify. For the best experience, use headphones and turn it up loud. Also available on all major streaming platforms.',
+        spotify_embed_url: 'https://open.spotify.com/embed/album/38AXd6UNJ3EDpUUZGx0ubE?utm_source=generator',
+        apple_music_url: 'https://music.apple.com/us/artist/alarm-alarm/1494187277',
+        bandcamp_url: 'https://alarmalarm.bandcamp.com/',
+        youtube_music_url: 'https://music.youtube.com/channel/UCmn_2X05dsJOHFXRM7fERsQ'
+      }
     };
   }
 
   const { data: albums } = await supabase.from('albums').select('*, songs(*)').order('release_date', { ascending: false });
   const { data: gridItems } = await supabase.from('brutalist_grid').select('*').order('created_at', { ascending: false }).limit(8);
   const { data: pressKit } = await supabase.from('press_kit').select('*');
+  const { data: latestNoise } = await supabase.from('latest_noise').select('*').order('created_at', { ascending: false }).limit(1).single();
 
   return {
     albums: albums || [],
     gridItems: gridItems || [],
-    pressKit: pressKit || []
+    pressKit: pressKit || [],
+    latestNoise: latestNoise || null
   };
 }
 
@@ -115,9 +125,26 @@ function generateHomeStaticHtml(data) {
     <p><a href="${asset.file_url}">${asset.label}</a></p>
   `).join('');
 
+  const noise = data.latestNoise;
+  const noiseHtml = noise ? `
+    <section id="music">
+      <h2>Our Latest Noise: "${noise.title}"</h2>
+      <p>${noise.message}</p>
+      <div>
+        <iframe src="${noise.spotify_embed_url}" width="100%" height="352" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+      <div>
+        ${noise.apple_music_url ? `<a href="${noise.apple_music_url}">Apple Music</a>` : ''}
+        ${noise.bandcamp_url ? `<a href="${noise.bandcamp_url}">Bandcamp</a>` : ''}
+        ${noise.youtube_music_url ? `<a href="${noise.youtube_music_url}">YouTube Music</a>` : ''}
+      </div>
+    </section>
+  ` : '';
+
   return `
     <header><h1>Alarm! Alarm! | Official Website</h1></header>
     <main>
+      ${noiseHtml}
       <section id="releases">
         <h2>Latest Releases</h2>
         ${releasesHtml}
