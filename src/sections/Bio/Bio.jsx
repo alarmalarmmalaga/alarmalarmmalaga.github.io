@@ -1,24 +1,17 @@
 // src/sections/Bio/Bio.jsx
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import useTranslation from '../../hooks/useTranslation';
 import styles from './Bio.module.css';
 
 const Bio = () => {
-  const [bio, setBio] = useState('');
-
-  useEffect(() => {
-    fetch('/press-kit/bio.txt')
-      .then(response => response.text())
-      .then(text => setBio(text))
-      .catch(error => console.error('Error fetching bio:', error));
-  }, []);
+  const { t } = useTranslation();
 
   return (
     <section id="bio" className={styles.bioSection}>
-      <h2 className={styles.sectionTitle}>Our Story</h2> {/* Changed title */}
+      <h2 className={styles.sectionTitle}>{t('bio_title')}</h2>
 
       <div className={styles.bioContainer}>
-        {/* <h3>Our Story</h3> This sub-heading might be redundant if the main title is "Our Story" */}
-        <p>{bio || 'Loading bio...'}</p>
+        <p>{t('bio_content')}</p>
       </div>
     </section>
   );

@@ -2,8 +2,10 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { supabase } from '../../supabaseClient';
 import styles from './Releases.module.css';
+import useTranslation from '../../hooks/useTranslation';
 
 const Releases = () => {
+  const { t } = useTranslation();
   // Use window.__SITE_DATA__ if available (for SEO/Prerendering)
   const initialReleases = window.__SITE_DATA__?.albums || [];
   const [releases, setReleases] = useState(initialReleases);
@@ -69,15 +71,15 @@ const Releases = () => {
   if (loading) {
     return (
       <section id="releases" className={styles.releasesSection}>
-        <h2 className={styles.sectionTitle}>Releases</h2>
-        <p className={styles.loading}>Loading releases...</p>
+        <h2 className={styles.sectionTitle}>{t('releases_title')}</h2>
+        <p className={styles.loading}>{t('loading_releases')}</p>
       </section>
     );
   }
 
   return (
     <section id="releases" className={styles.releasesSection}>
-      <h2 className={styles.sectionTitle}>Releases</h2>
+      <h2 className={styles.sectionTitle}>{t('releases_title')}</h2>
       <div className={styles.releasesGrid}>
         {releases.map((release) => (
           <article key={release.id} className={styles.releaseItemContainer}>

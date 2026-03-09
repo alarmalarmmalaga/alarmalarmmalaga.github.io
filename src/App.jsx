@@ -8,10 +8,12 @@ import Video from './sections/Video/Video';
 import Releases from './sections/Releases/Releases'; // Import Releases
 import Bio from './sections/Bio/Bio.jsx';
 import Contact from './sections/Contact/Contact'; // Import Contact
+import LanguageToggle from './components/LanguageToggle';
 
 function App() {
   return (
     <div className={styles.container}>
+      <LanguageToggle />
       {/*
         Note: Title and Meta tags are now managed via static prerendering
         in scripts/prerender.js to ensure better SEO/GEO and prevent runtime overrides.

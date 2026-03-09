@@ -3,10 +3,11 @@ import styles from "./Music.module.css";
 import React, { useEffect, useState, useCallback } from 'react';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import { supabase } from '../../supabaseClient';
+import useTranslation from '../../hooks/useTranslation';
 
-const SpotifyFallback = ({ url }) => (
+const SpotifyFallback = ({ url, t }) => (
   <div className={styles.spotifyFallback}>
-    <p>The Spotify player is currently unavailable.</p>
+    <p>{t('spotify_fallback')}</p>
     {url && (
       <a
         href={url}
@@ -14,13 +15,14 @@ const SpotifyFallback = ({ url }) => (
         rel="noopener noreferrer"
         className={styles.fallbackLink}
       >
-        Listen on Spotify
+        {t('listen_on_spotify')}
       </a>
     )}
   </div>
 );
 
 const Music = () => {
+  const { t } = useTranslation();
   const initialData = window.__SITE_DATA__?.latestNoise || null;
   const [noise, setNoise] = useState(initialData);
 
@@ -65,11 +67,11 @@ const Music = () => {
   return (
     <section id="music" className={styles.musicSection}>
       <meta name="description" content={`Stream the latest noise from Alarm! Alarm!: ${noise.title}. ${noise.message}`} />
-      <h2 className={styles.sectionTitle}>Our Latest Noise: "{noise.title}"</h2>
+      <h2 className={styles.sectionTitle}>{t('latest_noise_header')}: "{noise.title}"</h2>
       <p className={styles.musicIntro}>
         {noise.message}
       </p>
-      <ErrorBoundary fallback={<SpotifyFallback url={noise.spotify_embed_url.replace('/embed', '')} />}>
+      <ErrorBoundary fallback={<SpotifyFallback t={t} url={noise.spotify_embed_url.replace('/embed', '')} />}>
         <div className={styles.spotifyEmbed}>
           <iframe
             src={noise.spotify_embed_url}

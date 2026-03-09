@@ -1,14 +1,16 @@
 // src/sections/Tour/Tour.jsx
 import React, { useEffect } from "react";
 import styles from "./Tour.module.css";
+import useTranslation from "../../hooks/useTranslation";
 
 const Tour = () => {
+  const { t, language } = useTranslation();
+
   useEffect(() => {
     const scriptId = 'bandsintown-widget-script';
     if (document.getElementById(scriptId)) {
-      // If script already exists, assume it's loaded and will handle the widget.
-      // Optionally, if Bandsintown API provides a way to re-scan/re-init widgets, call it here.
-      // For now, we return, preventing duplicate script injection.
+      // If script already exists, we might need to tell it to re-initialize if the language changed
+      // but usually these widgets are static.
       return;
     }
 
@@ -18,24 +20,20 @@ const Tour = () => {
     script.async = true;
     script.charset = 'utf-8';
 
-    // The <a> tag should be in the DOM when this script executes.
-    // useEffect runs after the render that includes the <a> tag.
     document.body.appendChild(script);
-
-    // No cleanup function for removing main.min.js, as it's likely intended to be global once loaded.
-  }, []); // Empty dependency array ensures this runs once on mount
+  }, []);
 
   return (
     <section id="tour" className={styles.tourSection}>
       <meta name="description" content="Find upcoming tour dates for Alarm! Alarm!. See the punk rock band live in Málaga and other cities. Get tickets and RSVP." />
-      <h2 className={styles.sectionTitle}>See Alarm! Alarm! Live in Málaga and Beyond</h2>
+      <h2 className={styles.sectionTitle}>{t('tour_title')}</h2>
       <p className={styles.tourIntro}>
-        We're hitting the road. Check out our upcoming dates below, powered by Bandsintown. Never miss a show.
+        {t('tour_intro')}
       </p>
       <div className={styles.widgetContainer}>
         <a
-          className="bit-widget-initializer" // Changed class to className
-          data-artist-name="Alarm! Alarm!" // Updated artist name
+          className="bit-widget-initializer"
+          data-artist-name="Alarm! Alarm!"
           data-events-to-display=""
           data-background-color="rgba(0,0,0,1)"
           data-separator-color="rgba(221,221,221,1)"
@@ -108,11 +106,10 @@ const Tour = () => {
           data-optin-text-color=""
           data-optin-bg-color=""
           data-optin-cta-text-color=""
-          data-optin-cta-bg-color=""
           data-optin-cta-border-width=""
           data-optin-cta-border-radius=""
           data-optin-cta-border-color=""
-          data-language="en"
+          data-language={language}
           data-layout-breakpoint="900"
           data-app-id=""
           data-affil-code=""
