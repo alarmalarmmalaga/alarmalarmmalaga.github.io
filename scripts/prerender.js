@@ -47,6 +47,12 @@ async function fetchData() {
       },
       strings: {
         latest_noise_header: { en: 'Our Latest Noise', es: 'Nuestro último ruido', de: 'Unser neuester Lärm', jp: '最新のノイズ' },
+        latest_noise_message: {
+          en: 'Stream our new release, \'Stuck at the Green Hill Zone,\' right here via Spotify. For the best experience, use headphones and turn it up loud. Also available on all major streaming platforms.',
+          es: 'Escucha nuestro nuevo lanzamiento, \'Stuck at the Green Hill Zone,\' aquí mismo a través de Spotify. Para la mejor experiencia, usa auriculares y sube el volumen. También disponible en todas las principales plataformas de streaming.',
+          de: 'Streame unsere neue Veröffentlichung \'Stuck at the Green Hill Zone\' direkt hier über Spotify. Für das beste Erlebnis verwende Kopfhörer und drehe die Lautstärke auf. Auch auf allen gängigen Streaming-Plattformen verfügbar.',
+          jp: '最新リリース「Stuck at the Green Hill Zone」をここSpotifyでストリーミング。最高の体験のために、ヘッドフォンを使用して音量を上げてお楽しみください。主要なすべてのストリーミングプラットフォームでも配信中。'
+        },
         tour_title: { en: 'See Alarm! Alarm! Live in Málaga and Beyond' },
         tour_intro: { en: "We're hitting the road. Check out our upcoming dates below, powered by Bandsintown. Never miss a show." },
         social_title: { en: 'The Brutalist Grid', jp: 'ブルータリスト・グリッド' },
@@ -158,7 +164,7 @@ function generateHomeStaticHtml(data, lang) {
   const noiseHtml = noise ? `
     <section id="music">
       <h2>${t(data.strings, 'latest_noise_header', lang)}: "${noise.title}"</h2>
-      <p>${noise.message}</p>
+      <p>${t(data.strings, 'latest_noise_message', lang)}</p>
       <div>
         <iframe src="${noise.spotify_embed_url}" width="100%" height="352" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>

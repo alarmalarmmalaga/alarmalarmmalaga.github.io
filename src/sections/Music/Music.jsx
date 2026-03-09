@@ -66,10 +66,10 @@ const Music = () => {
 
   return (
     <section id="music" className={styles.musicSection}>
-      <meta name="description" content={`Stream the latest noise from Alarm! Alarm!: ${noise.title}. ${noise.message}`} />
+      <meta name="description" content={`Stream the latest noise from Alarm! Alarm!: ${noise.title}. ${t('latest_noise_message')}`} />
       <h2 className={styles.sectionTitle}>{t('latest_noise_header')}: "{noise.title}"</h2>
       <p className={styles.musicIntro}>
-        {noise.message}
+        {t('latest_noise_message')}
       </p>
       <ErrorBoundary fallback={<SpotifyFallback t={t} url={noise.spotify_embed_url.replace('/embed', '')} />}>
         <div className={styles.spotifyEmbed}>
