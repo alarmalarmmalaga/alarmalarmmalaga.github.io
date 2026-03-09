@@ -44,6 +44,22 @@ async function fetchData() {
         apple_music_url: 'https://music.apple.com/us/artist/alarm-alarm/1494187277',
         bandcamp_url: 'https://alarmalarm.bandcamp.com/',
         youtube_music_url: 'https://music.youtube.com/channel/UCmn_2X05dsJOHFXRM7fERsQ'
+      },
+      strings: {
+        latest_noise_header: { en: 'Our Latest Noise', es: 'Nuestro último ruido', de: 'Unser neuester Lärm', jp: '最新のノイズ' },
+        tour_title: { en: 'See Alarm! Alarm! Live in Málaga and Beyond' },
+        tour_intro: { en: "We're hitting the road. Check out our upcoming dates below, powered by Bandsintown. Never miss a show." },
+        social_title: { en: 'The Brutalist Grid', jp: 'ブルータリスト・グリッド' },
+        instagram_cta: { en: 'WE LIVE ON INSTAGRAM. FOLLOW THE CHAOS @ALARMALARMMALAGA →' },
+        video_title: { en: 'Watch Us' },
+        releases_title: { en: 'Releases' },
+        bio_title: { en: 'Our Story' },
+        bio_content: { en: 'Alarm! Alarm! is a punk band from Málaga singing about all the stuff we try to ignore: aging, work, and the general disappointment of modern life.' },
+        contact_title: { en: 'Contact & Downloads' },
+        booking_press: { en: 'BOOKING/PRESS:' },
+        official_channels: { en: 'Official Channels (E-E-A-T)' },
+        press_kit_title: { en: 'Press Kit & Downloads' },
+        back_to_home: { en: 'Back to Home' }
       }
     };
   }
@@ -52,13 +68,26 @@ async function fetchData() {
   const { data: gridItems } = await supabase.from('brutalist_grid').select('*').order('created_at', { ascending: false }).limit(8);
   const { data: pressKit } = await supabase.from('press_kit').select('*');
   const { data: latestNoise } = await supabase.from('latest_noise').select('*').order('created_at', { ascending: false }).limit(1).single();
+  const { data: siteStrings } = await supabase.from('site_strings').select('*');
+
+  const stringsMap = (siteStrings || []).reduce((acc, row) => {
+    acc[row.key] = row;
+    return acc;
+  }, {});
 
   return {
     albums: albums || [],
     gridItems: gridItems || [],
     pressKit: pressKit || [],
-    latestNoise: latestNoise || null
+    latestNoise: latestNoise || null,
+    strings: stringsMap
   };
+}
+
+function t(strings, key, lang) {
+  const row = strings[key];
+  if (!row) return key;
+  return row[lang] || row['en'] || key;
 }
 
 function generateMusicAlbumSchema(album) {
@@ -103,7 +132,7 @@ function generateMusicGroupSchema() {
   };
 }
 
-function generateHomeStaticHtml(data) {
+function generateHomeStaticHtml(data, lang) {
   const releasesHtml = data.albums.map(album => `
     <article>
       <h3>${album.title} (${new Date(album.release_date).getFullYear()})</h3>
@@ -128,7 +157,7 @@ function generateHomeStaticHtml(data) {
   const noise = data.latestNoise;
   const noiseHtml = noise ? `
     <section id="music">
-      <h2>Our Latest Noise: "${noise.title}"</h2>
+      <h2>${t(data.strings, 'latest_noise_header', lang)}: "${noise.title}"</h2>
       <p>${noise.message}</p>
       <div>
         <iframe src="${noise.spotify_embed_url}" width="100%" height="352" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -146,31 +175,35 @@ function generateHomeStaticHtml(data) {
     <main>
       ${noiseHtml}
       <section id="releases">
-        <h2>Latest Releases</h2>
+        <h2>${t(data.strings, 'releases_title', lang)}</h2>
         ${releasesHtml}
       </section>
       <section id="social">
-        <h2>The Brutalist Grid</h2>
+        <h2>${t(data.strings, 'social_title', lang)}</h2>
         ${gridHtml}
       </section>
       <section id="contact">
-        <h2>Contact & Official Channels</h2>
-        <p>Email: <a href="mailto:alarmalarmmalaga@gmail.com">alarmalarmmalaga@gmail.com</a></p>
+        <h2>${t(data.strings, 'contact_title', lang)}</h2>
+        <p>${t(data.strings, 'booking_press', lang)} <a href="mailto:alarmalarmmalaga@gmail.com">alarmalarmmalaga@gmail.com</a></p>
         <ul>
           <li><a href="https://open.spotify.com/artist/6Q3jUbGq2b2MeN2lMBYDxz" rel="me">Spotify Official</a></li>
           <li><a href="https://alarmalarm.bandcamp.com/" rel="me">Bandcamp Official</a></li>
           <li><a href="https://www.instagram.com/alarmalarmmalaga" rel="me">Instagram</a></li>
         </ul>
         <div id="press-kit">
-          <h3>Press Kit Downloads</h3>
+          <h3>${t(data.strings, 'press_kit_title', lang)}</h3>
           ${pressKitHtml}
         </div>
+      </section>
+      <section id="bio">
+        <h2>${t(data.strings, 'bio_title', lang)}</h2>
+        <p>${t(data.strings, 'bio_content', lang)}</p>
       </section>
     </main>
   `;
 }
 
-function generateAlbumStaticHtml(album) {
+function generateAlbumStaticHtml(album, data, lang) {
   const year = new Date(album.release_date).getFullYear();
   return `
     <header>
@@ -192,7 +225,7 @@ function generateAlbumStaticHtml(album) {
       </article>
     </main>
     <footer>
-      <p><a href="/">Back to Home</a></p>
+      <p><a href="${lang === 'en' ? '/' : `/${lang}/`}">${t(data.strings, 'back_to_home', lang)}</a></p>
     </footer>
   `;
 }
@@ -205,76 +238,84 @@ async function prerender() {
 
   const template = fs.readFileSync(TEMPLATE_PATH, 'utf-8');
   const data = await fetchData();
-
   const baseUrl = 'https://alarmalarmmalaga.github.io';
+  const languages = ['en', 'es', 'de', 'jp'];
 
-  // 1. Generate Homepage
-  let homeHtml = template;
+  for (const lang of languages) {
+    const langSuffix = lang === 'en' ? '' : `${lang}/`;
+    const langDir = path.join(DIST_DIR, lang === 'en' ? '' : lang);
+    if (!fs.existsSync(langDir)) fs.mkdirSync(langDir, { recursive: true });
 
-  // Inject SITE_DATA
-  const siteDataScript = `<script>window.__SITE_DATA__ = ${JSON.stringify(data)};</script>`;
-  homeHtml = homeHtml.replace('</head>', `${siteDataScript}\n</head>`);
-
-  // Inject Home Schema
-  const homeSchema = `<script type="application/ld+json">${JSON.stringify(generateMusicGroupSchema())}</script>`;
-  homeHtml = homeHtml.replace('</head>', `${homeSchema}\n</head>`);
-
-  // Inject Static HTML for SEO (Idempotent replacement)
-  const homeStaticHtml = generateHomeStaticHtml(data);
-  homeHtml = homeHtml.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${homeStaticHtml}</div>`);
-
-  fs.writeFileSync(TEMPLATE_PATH, homeHtml);
-  console.log('Main index.html updated with site data, schema, and semantic HTML.');
-
-  // 2. Generate Album Pages
-  const albumsDir = path.join(DIST_DIR, 'albums');
-  if (!fs.existsSync(albumsDir)) fs.mkdirSync(albumsDir, { recursive: true });
-
-  for (const album of data.albums) {
-    const slug = slugify(album.title);
-    const albumPath = path.join(albumsDir, slug);
-    if (!fs.existsSync(albumPath)) fs.mkdirSync(albumPath, { recursive: true });
-
-    let albumHtml = template;
-    const year = new Date(album.release_date).getFullYear();
-    const albumTitle = `${album.title} (${year}) | Alarm! Alarm! Official Discography`;
-    const albumDesc = `Listen to ${album.title}, a release by Málaga punk rock band Alarm! Alarm!. Released in ${year}. Tracklist: ${(album.songs || []).map(s => s.title).join(', ')}.`;
-
-    // Replace title and meta tags
-    albumHtml = albumHtml.replace(/<title>.*?<\/title>/, `<title>${albumTitle}</title>`);
-    albumHtml = albumHtml.replace(/<meta name="description" content=".*?"\s*\/?>/g, `<meta name="description" content="${albumDesc}" />`);
-
-    // Update Open Graph tags
-    albumHtml = albumHtml.replace(/<meta property="og:title" content=".*?"\s*\/?>/g, `<meta property="og:title" content="${albumTitle}" />`);
-    albumHtml = albumHtml.replace(/<meta property="og:description" content=".*?"\s*\/?>/g, `<meta property="og:description" content="${albumDesc}" />`);
-    albumHtml = albumHtml.replace(/<meta property="og:image" content=".*?"\s*\/?>/g, `<meta property="og:image" content="${album.cover_url}" />`);
-    albumHtml = albumHtml.replace(/<meta property="og:url" content=".*?"\s*\/?>/g, `<meta property="og:url" content="${baseUrl}/albums/${slug}/" />`);
-
-    // Update Twitter tags
-    albumHtml = albumHtml.replace(/<meta property="twitter:title" content=".*?"\s*\/?>/g, `<meta property="twitter:title" content="${albumTitle}" />`);
-    albumHtml = albumHtml.replace(/<meta property="twitter:description" content=".*?"\s*\/?>/g, `<meta property="twitter:description" content="${albumDesc}" />`);
-    albumHtml = albumHtml.replace(/<meta property="twitter:image" content=".*?"\s*\/?>/g, `<meta property="twitter:image" content="${album.cover_url}" />`);
-
-    // Inject Album Schema
-    const albumSchema = `<script type="application/ld+json">${JSON.stringify(generateMusicAlbumSchema(album))}</script>`;
-    albumHtml = albumHtml.replace('</head>', `${albumSchema}\n</head>`);
+    // 1. Generate Homepage
+    let homeHtml = template;
+    homeHtml = homeHtml.replace('<html lang="en">', `<html lang="${lang}">`);
 
     // Inject SITE_DATA
-    albumHtml = albumHtml.replace('</head>', `${siteDataScript}\n</head>`);
+    const siteDataScript = `<script>window.__SITE_DATA__ = ${JSON.stringify(data)};</script>`;
+    homeHtml = homeHtml.replace('</head>', `${siteDataScript}\n</head>`);
+
+    // Inject Home Schema
+    const homeSchema = `<script type="application/ld+json">${JSON.stringify(generateMusicGroupSchema())}</script>`;
+    homeHtml = homeHtml.replace('</head>', `${homeSchema}\n</head>`);
 
     // Inject Static HTML for SEO
-    const albumStaticHtml = generateAlbumStaticHtml(album);
-    albumHtml = albumHtml.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${albumStaticHtml}</div>`);
+    const homeStaticHtml = generateHomeStaticHtml(data, lang);
+    homeHtml = homeHtml.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${homeStaticHtml}</div>`);
 
-    fs.writeFileSync(path.join(albumPath, 'index.html'), albumHtml);
-    console.log(`Generated page for album: ${album.title} (/albums/${slug})`);
+    fs.writeFileSync(path.join(langDir, 'index.html'), homeHtml);
+    console.log(`Generated ${lang.toUpperCase()} index.html`);
+
+    // 2. Generate Album Pages for this language
+    const albumsDir = path.join(langDir, 'albums');
+    if (!fs.existsSync(albumsDir)) fs.mkdirSync(albumsDir, { recursive: true });
+
+    for (const album of data.albums) {
+      const slug = slugify(album.title);
+      const albumPath = path.join(albumsDir, slug);
+      if (!fs.existsSync(albumPath)) fs.mkdirSync(albumPath, { recursive: true });
+
+      let albumHtml = template;
+      albumHtml = albumHtml.replace('<html lang="en">', `<html lang="${lang}">`);
+
+      const year = new Date(album.release_date).getFullYear();
+      const albumTitle = `${album.title} (${year}) | Alarm! Alarm! Official Discography`;
+      const albumDesc = `Listen to ${album.title}, a release by Málaga punk rock band Alarm! Alarm!. Released in ${year}. Tracklist: ${(album.songs || []).map(s => s.title).join(', ')}.`;
+
+      // Replace title and meta tags
+      albumHtml = albumHtml.replace(/<title>.*?<\/title>/, `<title>${albumTitle}</title>`);
+      albumHtml = albumHtml.replace(/<meta name="description" content=".*?"\s*\/?>/g, `<meta name="description" content="${albumDesc}" />`);
+
+      // Update Open Graph tags
+      albumHtml = albumHtml.replace(/<meta property="og:title" content=".*?"\s*\/?>/g, `<meta property="og:title" content="${albumTitle}" />`);
+      albumHtml = albumHtml.replace(/<meta property="og:description" content=".*?"\s*\/?>/g, `<meta property="og:description" content="${albumDesc}" />`);
+      albumHtml = albumHtml.replace(/<meta property="og:image" content=".*?"\s*\/?>/g, `<meta property="og:image" content="${album.cover_url}" />`);
+      albumHtml = albumHtml.replace(/<meta property="og:url" content=".*?"\s*\/?>/g, `<meta property="og:url" content="${baseUrl}/${langSuffix}albums/${slug}/" />`);
+
+      // Inject Album Schema
+      const albumSchema = `<script type="application/ld+json">${JSON.stringify(generateMusicAlbumSchema(album))}</script>`;
+      albumHtml = albumHtml.replace('</head>', `${albumSchema}\n</head>`);
+
+      // Inject SITE_DATA
+      albumHtml = albumHtml.replace('</head>', `${siteDataScript}\n</head>`);
+
+      // Inject Static HTML for SEO
+      const albumStaticHtml = generateAlbumStaticHtml(album, data, lang);
+      albumHtml = albumHtml.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${albumStaticHtml}</div>`);
+
+      fs.writeFileSync(path.join(albumPath, 'index.html'), albumHtml);
+    }
+    console.log(`Generated ${lang.toUpperCase()} album pages`);
   }
 
   // 3. Generate Sitemap
-  const urls = [
-    { loc: `${baseUrl}/`, priority: '1.0' },
-    ...data.albums.map(a => ({ loc: `${baseUrl}/albums/${slugify(a.title)}/`, priority: '0.8' }))
-  ];
+  const urls = [];
+  for (const lang of languages) {
+    const langSuffix = lang === 'en' ? '' : `${lang}/`;
+    urls.push({ loc: `${baseUrl}/${langSuffix}`, priority: lang === 'en' ? '1.0' : '0.9' });
+    for (const a of data.albums) {
+      urls.push({ loc: `${baseUrl}/${langSuffix}albums/${slugify(a.title)}/`, priority: '0.8' });
+    }
+  }
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

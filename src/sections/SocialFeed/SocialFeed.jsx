@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../supabaseClient';
 import styles from "./SocialFeed.module.css";
+import useTranslation from '../../hooks/useTranslation';
 
 // Function to generate a random rotation
 const getRandomRotation = () =>
   `rotate(${(Math.random() * 4 - 2).toFixed(1)}deg)`;
 
 const SocialFeed = () => {
+  const { t } = useTranslation();
   // Use window.__SITE_DATA__ if available (for SEO/Prerendering)
   const initialPosts = window.__SITE_DATA__?.gridItems?.slice(0, 8) || [];
   const [posts, setPosts] = useState(initialPosts);
@@ -64,15 +66,15 @@ const SocialFeed = () => {
   if (loading) {
     return (
       <section id="social" className={styles.socialFeedSection}>
-        <h2 className={styles.sectionTitle}>The Brutalist Grid</h2>
-        <p className={styles.loading}>Loading grid...</p>
+        <h2 className={styles.sectionTitle}>{t('social_title')}</h2>
+        <p className={styles.loading}>{t('loading_grid')}</p>
       </section>
     );
   }
 
   return (
     <section id="social" className={styles.socialFeedSection}>
-      <h2 className={styles.sectionTitle}>The Brutalist Grid</h2>
+      <h2 className={styles.sectionTitle}>{t('social_title')}</h2>
       <div className={styles.feedContainer}>
         {posts.map((post) => (
           <figure
@@ -95,7 +97,7 @@ const SocialFeed = () => {
           rel="noopener noreferrer"
           className={styles.footerLink}
         >
-          WE LIVE ON INSTAGRAM. FOLLOW THE CHAOS @ALARMALARMMALAGA →
+          {t('instagram_cta')}
         </a>
       </footer>
     </section>

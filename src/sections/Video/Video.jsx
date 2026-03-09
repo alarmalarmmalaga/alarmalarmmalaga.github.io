@@ -1,13 +1,15 @@
 // src/sections/Video/Video.jsx
 import styles from './Video.module.css';
+import useTranslation from '../../hooks/useTranslation';
 
 const Video = () => {
+  const { t } = useTranslation();
   const videoId1 = 'sNInMwOkwdw'; 
   const videoId2 = 'HSVprxESFAs';
 
   return (
     <section id="video" className={styles.videoSection}>
-      <h2 className={styles.sectionTitle}>Watch Us</h2>
+      <h2 className={styles.sectionTitle}>{t('video_title')}</h2>
       <div className={styles.videoGrid}>
         <div className={`${styles.videoWrapper} ${styles.videoWrapperLarge}`}>
           <iframe

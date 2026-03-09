@@ -1,9 +1,10 @@
 /* src/styles/global.css */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Rubik+Glitch&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Rubik+Glitch&family=Special+Elite&display=swap');
 
 :root {
   --font-primary: 'Inter', sans-serif;
   --font-headline: 'Rubik Glitch', cursive; /* Ensure 'cursive' or a suitable fallback for glitch fonts */
+  --font-mono: 'Special Elite', system-ui, monospace;
   --color-black: #000000;
   --color-off-white: #F5F5F5;
   --color-accent: #FFFF00;

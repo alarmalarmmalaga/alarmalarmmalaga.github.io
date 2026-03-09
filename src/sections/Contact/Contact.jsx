@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../supabaseClient';
 import styles from './Contact.module.css';
+import useTranslation from '../../hooks/useTranslation';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [assets, setAssets] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -32,15 +34,15 @@ const Contact = () => {
 
   return (
     <section id="contact" className={styles.contactSection}>
-      <h2 className={styles.sectionTitle}>Contact & Downloads</h2>
+      <h2 className={styles.sectionTitle}>{t('contact_title')}</h2>
       <div className={styles.contactInfo}>
         <p className={styles.emailLinkWrapper}>
-          BOOKING/PRESS: <a href="mailto:alarmalarmmalaga@gmail.com" className={styles.emailLink}>alarmalarmmalaga@gmail.com</a>
+          {t('booking_press')} <a href="mailto:alarmalarmmalaga@gmail.com" className={styles.emailLink}>alarmalarmmalaga@gmail.com</a>
         </p>
       </div>
 
       <div className={styles.officialLinks}>
-        <h3 className={styles.subTitle}>Official Channels (E-E-A-T)</h3>
+        <h3 className={styles.subTitle}>{t('official_channels')}</h3>
         <div className={styles.linksGrid}>
           <a
             href="https://open.spotify.com/artist/6Q3jUbGq2b2MeN2lMBYDxz"
@@ -70,10 +72,10 @@ const Contact = () => {
       </div>
 
       <div className={styles.pressKit}>
-        <h3 className={styles.subTitle}>Press Kit & Downloads</h3>
+        <h3 className={styles.subTitle}>{t('press_kit_title')}</h3>
         <div className={styles.pressKitButtonsContainer}>
           {loading ? (
-            <p className={styles.loading}>Loading downloads...</p>
+            <p className={styles.loading}>{t('loading_downloads')}</p>
           ) : assets.length > 0 ? (
             assets.map((asset) => (
               <a
@@ -87,7 +89,7 @@ const Contact = () => {
               </a>
             ))
           ) : (
-            <p className={styles.loading}>Downloads currently unavailable.</p>
+            <p className={styles.loading}>{t('downloads_unavailable')}</p>
           )}
         </div>
       </div>

@@ -1,0 +1,78 @@
+/* src/components/LanguageToggle.module.css */
+.toggleContainer {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 1.5rem;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.languageLink {
+  position: relative;
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background-color: #ffffff; /* Duct tape white */
+  color: #000000; /* Marker black */
+  font-family: var(--font-mono);
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+/* Duct tape effect: irregular rotations */
+.languageLink:nth-child(1) { transform: rotate(-2deg); }
+.languageLink:nth-child(2) { transform: rotate(1.5deg); }
+.languageLink:nth-child(3) { transform: rotate(-1deg); }
+.languageLink:nth-child(4) { transform: rotate(2.5deg); }
+
+.languageLink:hover {
+  transform: scale(1.1) rotate(0deg);
+  z-index: 10;
+}
+
+/* Active language: Marker cross-out or spray paint effect */
+.active {
+  color: #ff00ff; /* Neon spray-paint color */
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  width: 120%;
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.8); /* Marker stroke */
+  transform: translateY(-50%) rotate(-3deg);
+  pointer-events: none;
+}
+
+/* Optional: Additional spray-paint glow */
+.active::before {
+  content: "";
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  background: radial-gradient(circle, rgba(255, 0, 255, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .toggleContainer {
+    top: 0.5rem;
+    right: 0.5rem;
+    gap: 0.8rem;
+    padding: 0.5rem;
+  }
+
+  .languageLink {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}
