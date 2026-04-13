@@ -68,6 +68,14 @@ const Contact = () => {
           >
             Instagram
           </a>
+          <a
+            href="https://linktr.ee/alarmalarm"
+            target="_blank"
+            rel="me noopener noreferrer"
+            className={styles.officialLink}
+          >
+            {t('linktree_label') || 'Linktree'}
+          </a>
         </div>
       </div>
 
