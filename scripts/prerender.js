@@ -64,6 +64,7 @@ async function fetchData() {
         contact_title: { en: 'Contact & Downloads' },
         booking_press: { en: 'BOOKING/PRESS:' },
         official_channels: { en: 'Official Channels (E-E-A-T)' },
+        linktree_label: { en: 'Linktree Official', es: 'Linktree Oficial', de: 'Offizielles Linktree', jp: 'Linktree公式' },
         press_kit_title: { en: 'Press Kit & Downloads' },
         back_to_home: { en: 'Back to Home' }
       }
@@ -133,7 +134,8 @@ function generateMusicGroupSchema() {
     "sameAs": [
       "https://open.spotify.com/artist/6Q3jUbGq2b2MeN2lMBYDxz",
       "https://alarmalarm.bandcamp.com/",
-      "https://www.instagram.com/alarmalarmmalaga"
+      "https://www.instagram.com/alarmalarmmalaga",
+      "https://linktr.ee/alarmalarm"
     ]
   };
 }
@@ -195,6 +197,7 @@ function generateHomeStaticHtml(data, lang) {
           <li><a href="https://open.spotify.com/artist/6Q3jUbGq2b2MeN2lMBYDxz" rel="me">Spotify Official</a></li>
           <li><a href="https://alarmalarm.bandcamp.com/" rel="me">Bandcamp Official</a></li>
           <li><a href="https://www.instagram.com/alarmalarmmalaga" rel="me">Instagram</a></li>
+          <li><a href="https://linktr.ee/alarmalarm" rel="me">${t(data.strings, 'linktree_label', lang) || 'Linktree'}</a></li>
         </ul>
         <div id="press-kit">
           <h3>${t(data.strings, 'press_kit_title', lang)}</h3>

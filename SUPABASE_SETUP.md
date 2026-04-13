@@ -87,6 +87,7 @@ INSERT INTO site_strings (key, en, es, de, jp) VALUES
 ('booking_press', 'BOOKING/PRESS:', 'CONTRATACIÓN/PRENSA:', 'BOOKING/PRESSE:', 'ブッキング/プレス:'),
 ('official_channels', 'Official Channels (E-E-A-T)', 'Canales Oficiales (E-E-A-T)', 'Offizielle Kanäle (E-E-A-T)', '公式チャンネル (E-E-A-T)'),
 ('press_kit_title', 'Press Kit & Downloads', 'Press Kit y Descargas', 'Pressemappe & Downloads', 'プレス・キットとダウンロード'),
+('linktree_label', 'Linktree Official', 'Linktree Oficial', 'Offizielles Linktree', 'Linktree公式'),
 ('loading_downloads', 'Loading downloads...', 'Cargando descargas...', 'Downloads werden geladen...', 'ダウンロードを読み込み中...'),
 ('downloads_unavailable', 'Downloads currently unavailable.', 'Descargas no disponibles actualmente.', 'Downloads derzeit nicht verfügbar.', '現在ダウンロードできません。'),
 ('back_to_home', 'Back to Home', 'Volver al Inicio', 'Zurück zur Startseite', 'ホームに戻る')
