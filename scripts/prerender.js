@@ -423,15 +423,28 @@ async function prerender() {
     loc: `${baseUrl}/${l === 'en' ? '' : l + '/'}`
   }));
 
+  const videos = [
+    { id: 'sNInMwOkwdw', title: 'Alarm! Alarm! Official Music Video', description: 'Official punk rock music video from Málaga-based band Alarm! Alarm!.' },
+    { id: 'HSVprxESFAs', title: 'Alarm! Alarm! Live Performance', description: 'Alarm! Alarm! performing live punk rock in Málaga.' }
+  ];
+
   for (const page of homePages) {
     const links = homePages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${p.loc}" />`).join('\n');
     const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/" />`;
+
+    const videoTags = videos.map(v => `    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/${v.id}/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>${v.title}</video:title>
+      <video:description>${v.description}</video:description>
+      <video:player_loc>https://www.youtube.com/embed/${v.id}</video:player_loc>
+    </video:video>`).join('\n');
 
     sitemapUrls.push(`  <url>
     <loc>${page.loc}</loc>
     <lastmod>${lastmod}</lastmod>
 ${links}
 ${xDefault}
+${videoTags}
     <changefreq>weekly</changefreq>
     <priority>${page.lang === 'en' ? '1.0' : '0.9'}</priority>
   </url>`);
@@ -448,11 +461,18 @@ ${xDefault}
       const links = albumPages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${p.loc}" />`).join('\n');
       const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/albums/${slug}/" />`;
 
+      const imageTag = album.cover_url ? `    <image:image>
+      <image:loc>${album.cover_url}</image:loc>
+      <image:title>${album.title} - Alarm! Alarm!</image:title>
+      <image:caption>Cover art for the album ${album.title} by Alarm! Alarm!</image:caption>
+    </image:image>` : '';
+
       sitemapUrls.push(`  <url>
     <loc>${page.loc}</loc>
     <lastmod>${lastmod}</lastmod>
 ${links}
 ${xDefault}
+${imageTag}
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`);
@@ -460,7 +480,11 @@ ${xDefault}
   }
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${sitemapUrls.join('\n')}
 </urlset>`;
 
