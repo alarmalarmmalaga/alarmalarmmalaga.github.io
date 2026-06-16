@@ -6,11 +6,27 @@ import styles from './LanguageToggle.module.css';
 const LanguageToggle = () => {
   const { language } = useTranslation();
 
+  // Helper to get current subpage path preserving the rest of the URL
+  const getCurrentSubpage = () => {
+    const path = window.location.pathname;
+    // Remove language prefixes if they exist
+    let subpage = path;
+    ['/es/', '/de/', '/jp/'].forEach(prefix => {
+      if (subpage.startsWith(prefix)) {
+        subpage = subpage.replace(prefix, '/');
+      }
+    });
+    // Ensure it starts with / and remove leading double slashes
+    return subpage.startsWith('/') ? subpage : '/' + subpage;
+  };
+
+  const currentSubpage = getCurrentSubpage();
+
   const languages = [
-    { code: 'en', label: 'EN', path: '/' },
-    { code: 'es', label: 'ES', path: '/es/' },
-    { code: 'de', label: 'DE', path: '/de/' },
-    { code: 'jp', label: 'JP', path: '/jp/' },
+    { code: 'en', label: 'EN', path: currentSubpage },
+    { code: 'es', label: 'ES', path: '/es' + (currentSubpage === '/' ? '/' : currentSubpage) },
+    { code: 'de', label: 'DE', path: '/de' + (currentSubpage === '/' ? '/' : currentSubpage) },
+    { code: 'jp', label: 'JP', path: '/jp' + (currentSubpage === '/' ? '/' : currentSubpage) },
   ];
 
   return (

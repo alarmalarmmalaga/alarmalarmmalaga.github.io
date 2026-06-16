@@ -6,6 +6,7 @@
   --font-headline: 'Rubik Glitch', cursive; /* Ensure 'cursive' or a suitable fallback for glitch fonts */
   --font-mono: 'Special Elite', system-ui, monospace;
   --color-black: #000000;
+  --color-white: #ffffff;
   --color-off-white: #F5F5F5;
   --color-accent: #FFFF00;
   --color-accent-hover: #FF4500; /* Hotter orange for link hover */
