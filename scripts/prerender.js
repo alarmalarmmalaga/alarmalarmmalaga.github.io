@@ -277,6 +277,7 @@ async function prerender() {
   const data = await fetchData();
   const baseUrl = 'https://alarmalarmmalaga.github.io';
   const languages = ['en', 'es', 'de', 'jp'];
+  const seoLangCodes = { en: 'en', es: 'es', de: 'de', jp: 'ja' };
 
   for (const lang of languages) {
     const langSuffix = lang === 'en' ? '' : `${lang}/`;
@@ -287,13 +288,14 @@ async function prerender() {
     const generateHreflangTags = (currentSlug = '') => {
       return languages.map(l => {
         const lSuffix = l === 'en' ? '' : `${l}/`;
-        return `<link rel="alternate" hreflang="${l}" href="${baseUrl}/${lSuffix}${currentSlug}" />`;
+        const seoLang = seoLangCodes[l] || l;
+        return `<link rel="alternate" hreflang="${seoLang}" href="${baseUrl}/${lSuffix}${currentSlug}" />`;
       }).join('\n    ') + `\n    <link rel="alternate" hreflang="x-default" href="${baseUrl}/${currentSlug}" />`;
     };
 
     // 1. Generate Homepage
     let homeHtml = template;
-    homeHtml = homeHtml.replace('<html lang="en">', `<html lang="${lang}">`);
+    homeHtml = homeHtml.replace('<html lang="en">', `<html lang="${seoLangCodes[lang] || lang}">`);
 
     // Inject hreflang
     homeHtml = homeHtml.replace('<!--HREFLANG_PLACEHOLDER-->', generateHreflangTags(''));
@@ -323,7 +325,7 @@ async function prerender() {
       if (!fs.existsSync(albumPath)) fs.mkdirSync(albumPath, { recursive: true });
 
       let albumHtml = template;
-      albumHtml = albumHtml.replace('<html lang="en">', `<html lang="${lang}">`);
+      albumHtml = albumHtml.replace('<html lang="en">', `<html lang="${seoLangCodes[lang] || lang}">`);
 
       // Inject hreflang for albums
       albumHtml = albumHtml.replace('<!--HREFLANG_PLACEHOLDER-->', generateHreflangTags(`albums/${slug}/`));
@@ -366,7 +368,7 @@ async function prerender() {
   }));
 
   for (const page of homePages) {
-    const links = homePages.map(p => `    <xhtml:link rel="alternate" hreflang="${p.lang}" href="${p.loc}" />`).join('\n');
+    const links = homePages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${p.loc}" />`).join('\n');
     const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/" />`;
 
     sitemapUrls.push(`  <url>
@@ -386,7 +388,7 @@ ${xDefault}
     }));
 
     for (const page of albumPages) {
-      const links = albumPages.map(p => `    <xhtml:link rel="alternate" hreflang="${p.lang}" href="${p.loc}" />`).join('\n');
+      const links = albumPages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${p.loc}" />`).join('\n');
       const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/albums/${slug}/" />`;
 
       sitemapUrls.push(`  <url>
