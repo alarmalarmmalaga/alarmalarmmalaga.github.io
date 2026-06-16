@@ -97,13 +97,13 @@ const Releases = () => {
                 </p>
                 <div className={styles.miniLinks}>
                   {release.spotify_link && (
-                    <a href={release.spotify_link} target="_blank" rel="noopener noreferrer" aria-label="Listen on Spotify">
-                      <span className={styles.icon}>🎧</span>
+                    <a href={release.spotify_link} target="_blank" rel="noopener noreferrer" className={styles.releaseLink}>
+                      <i className="fa-brands fa-spotify"></i> <span>STREAM</span>
                     </a>
                   )}
                   {release.bandcamp_link && (
-                    <a href={release.bandcamp_link} target="_blank" rel="noopener noreferrer" aria-label="Buy on Bandcamp">
-                      <span className={styles.icon}>💰</span>
+                    <a href={release.bandcamp_link} target="_blank" rel="noopener noreferrer" className={styles.releaseLink}>
+                      <i className="fa-brands fa-bandcamp"></i> <span>BUY</span>
                     </a>
                   )}
                 </div>

@@ -238,9 +238,13 @@ function generateHomeStaticHtml(data, lang) {
     </figure>
   `).join('');
 
-  const pressKitHtml = data.pressKit.map(asset => `
-    <li><a href="${asset.file_url}" download>${asset.label}</a></li>
-  `).join('');
+  const tourHighlightsHtml = `
+    <ul class="show-list">
+      <li>Tue, May 19: <strong>THE RUMJACKS</strong> + ALARM! ALARM! at Jerez de la Frontera (Spain)</li>
+      <li>Fri, Jan 9: Sinergy Music Fest I (with <strong>Futuras Cuñadas + Picky Pressure</strong>) at Sala Roka (Málaga, Spain)</li>
+      <li>Sat, Jun 28, 2025: Malaga Shock Festival (with <strong>Fuzz Division, TV Dangers and The GTO's</strong>) at CSA Las Vegas (Málaga, Spain)</li>
+    </ul>
+  `;
 
   const noise = data.latestNoise;
   const noiseHtml = noise ? `
@@ -265,6 +269,14 @@ function generateHomeStaticHtml(data, lang) {
     </header>
     <main>
       ${noiseHtml}
+      <section id="tour" aria-labelledby="tour-header">
+        <h2 id="tour-header">${t(data.strings, 'tour_title', lang)}</h2>
+        <p>${t(data.strings, 'tour_intro', lang)}</p>
+        <div class="past-shows">
+          <h3>Recent Missions & Highlights:</h3>
+          ${tourHighlightsHtml}
+        </div>
+      </section>
       <section id="releases" aria-labelledby="releases-header">
         <h2 id="releases-header">${t(data.strings, 'releases_title', lang)}</h2>
         <div class="releases-grid">
@@ -275,22 +287,6 @@ function generateHomeStaticHtml(data, lang) {
         <h2 id="social-header">${t(data.strings, 'social_title', lang)}</h2>
         <div class="brutalist-grid">
           ${gridHtml}
-        </div>
-      </section>
-      <section id="contact" aria-labelledby="contact-header">
-        <h2 id="contact-header">${t(data.strings, 'contact_title', lang)}</h2>
-        <p>${t(data.strings, 'booking_press', lang)} <a href="mailto:alarmalarmmalaga@gmail.com">alarmalarmmalaga@gmail.com</a></p>
-        <nav aria-label="Social and streaming links">
-          <ul>
-            <li><a href="https://open.spotify.com/artist/6Q3jUbGq2b2MeN2lMBYDxz" rel="me noopener noreferrer" target="_blank">Spotify Official</a></li>
-            <li><a href="https://alarmalarm.bandcamp.com/" rel="me noopener noreferrer" target="_blank">Bandcamp Official</a></li>
-            <li><a href="https://www.instagram.com/alarmalarmmalaga" rel="me noopener noreferrer" target="_blank">Instagram</a></li>
-            <li><a href="https://linktr.ee/alarmalarm" rel="me noopener noreferrer" target="_blank">${t(data.strings, 'linktree_label', lang) || 'Linktree'}</a></li>
-          </ul>
-        </nav>
-        <div id="press-kit">
-          <h3>${t(data.strings, 'press_kit_title', lang)}</h3>
-          <ul>${pressKitHtml}</ul>
         </div>
       </section>
       <section id="bio" aria-labelledby="bio-header">
@@ -413,13 +409,21 @@ async function prerender() {
     epkHtml = epkHtml.replace('</head>', `${siteDataScript}\n</head>`);
     epkHtml = epkHtml.replace('</head>', `${homeSchema}\n</head>`);
 
-    // We can't easily inject the EPK component's HTML without rendering it,
-    // but we can put a placeholder or just leave it for client-side if needed.
-    // For SEO, we should at least put the bio.
+    // For SEO, we should at least put the bio, contact and downloads.
+    const epkDownloadsHtml = data.pressKit.map(asset => `
+      <li><a href="${asset.file_url}" download>${asset.label}</a></li>
+    `).join('') + `
+      <li><a href="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/press_kit/band_logo.png" download>Official Logo</a></li>
+      <li><a href="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/press_kit/alarmalarm25-64.jpg" download>Band Photo 1</a></li>
+      <li><a href="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/press_kit/alarmalarm25-83.jpg" download>Band Photo 2</a></li>
+      <li><a href="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/press_kit/alarmdossier.pdf" target="_blank">Official Dossier</a></li>
+    `;
+
     const epkStaticHtml = `
       <header><h1>${epkTitle}</h1></header>
       <main>
         <section><h2>Biography</h2><p>${t(data.strings, 'bio_content', lang)}</p></section>
+        <section><h2>Downloads</h2><ul>${epkDownloadsHtml}</ul></section>
         <section><h2>Contact</h2><p>alarmalarmmalaga@gmail.com</p></section>
       </main>
     `;
@@ -494,6 +498,11 @@ async function prerender() {
     { id: 'HSVprxESFAs', title: 'Alarm! Alarm! Live Performance', description: 'Alarm! Alarm! performing live punk rock in Málaga.' }
   ];
 
+  const epkPages = languages.map(l => ({
+    lang: l,
+    loc: `${baseUrl}/${l === 'en' ? '' : l + '/'}epk/`
+  }));
+
   for (const page of homePages) {
     const links = homePages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${p.loc}" />`).join('\n');
     const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/" />`;
@@ -513,6 +522,20 @@ ${xDefault}
 ${videoTags}
     <changefreq>weekly</changefreq>
     <priority>${page.lang === 'en' ? '1.0' : '0.9'}</priority>
+  </url>`);
+  }
+
+  for (const page of epkPages) {
+    const links = epkPages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${p.loc}" />`).join('\n');
+    const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/epk/" />`;
+
+    sitemapUrls.push(`  <url>
+    <loc>${page.loc}</loc>
+    <lastmod>${lastmod}</lastmod>
+${links}
+${xDefault}
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>`);
   }
 

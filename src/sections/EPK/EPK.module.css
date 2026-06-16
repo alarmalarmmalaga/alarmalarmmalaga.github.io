@@ -1,104 +1,153 @@
 /* src/sections/EPK/EPK.module.css */
 .epkPage {
-  max-width: 1000px;
-  margin: 0 auto;
   padding: 60px 5vw;
   background-color: var(--color-black);
-  color: var(--color-off-white);
+  color: var(--color-white);
   min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
+  border-bottom: 5px solid var(--color-accent);
+  padding-bottom: 40px;
 }
 
 .title {
+  font-family: var(--font-headline);
   font-size: 4rem;
   color: var(--color-accent);
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin: 0;
 }
 
 .subtitle {
-  font-family: var(--font-mono);
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
   opacity: 0.8;
 }
 
 .section {
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .sectionTitle {
+  font-family: var(--font-headline);
   font-size: 2.5rem;
-  border-bottom: 3px solid var(--color-accent);
+  background-color: var(--color-white);
+  color: var(--color-black);
   display: inline-block;
-  margin-bottom: 30px;
+  padding: 0.3em 0.8em;
+  margin-bottom: 40px;
   text-transform: uppercase;
+  transform: rotate(-1deg);
 }
 
 .content {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.8;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 800px;
 }
 
 .assetsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
 }
 
 .assetItem {
-  background: var(--color-off-white);
-  color: var(--color-black);
+  background-color: #111;
+  border: 3px solid var(--color-white);
   padding: 30px;
-  border: 3px solid var(--color-black);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: transform 0.1s;
+}
+
+.assetItem:hover {
+  transform: translate(-5px, -5px);
   box-shadow: 8px 8px 0px var(--color-accent);
 }
 
 .assetItem h3 {
-  color: var(--color-black);
-  margin-top: 0;
-  text-align: left;
+  font-family: var(--font-headline);
+  margin: 0;
+  color: var(--color-accent);
 }
 
 .downloadButton {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: var(--color-black);
-  color: var(--color-off-white);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  text-decoration: none;
   font-family: var(--font-headline);
+  font-weight: bold;
+  border: 2px solid var(--color-black);
   text-transform: uppercase;
-  transition: transform 0.2s;
+  width: fit-content;
+  transition: background-color 0.1s;
 }
 
 .downloadButton:hover {
-  transform: scale(1.05);
+  background-color: var(--color-accent);
+}
+
+.contactEmail {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.contactEmail a {
   color: var(--color-accent);
+  text-decoration: underline;
 }
 
 .playerContainer {
-  border: 3px solid var(--color-accent);
+  border: 4px solid var(--color-accent);
 }
 
 .epkFooter {
-  text-align: center;
-  margin-top: 80px;
+  margin-top: 100px;
+  padding: 40px 0;
+  border-top: 3px solid #333;
+  text-align: left;
 }
 
 .backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  text-decoration: none;
   font-family: var(--font-headline);
-  font-size: 1.5rem;
-  color: var(--color-accent);
+  font-size: 1.2rem;
+  border: 3px solid var(--color-white);
+  text-transform: uppercase;
+  transition: all 0.1s;
+}
+
+.backLink:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  transform: translateX(-10px);
 }
 
 @media (max-width: 768px) {
   .title {
     font-size: 2.5rem;
+  }
+  .sectionTitle {
+    font-size: 1.8rem;
   }
 }
