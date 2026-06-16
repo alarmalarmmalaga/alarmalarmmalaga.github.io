@@ -233,8 +233,11 @@ function generateMusicGroupSchema(data, lang) {
 function generateHomeStaticHtml(data, lang) {
   const releasesHtml = data.albums.map(album => `
     <article class="album-card">
-      <h3>${album.title} (${new Date(album.release_date).getFullYear()})</h3>
       <img src="${album.cover_url}" alt="${album.title} ${t(data.strings, 'album_cover_alt', lang)}" loading="lazy" width="300" height="300" />
+      <div class="album-info">
+        <h3>${album.title}</h3>
+        <p class="album-year">${new Date(album.release_date).getFullYear()}</p>
+      </div>
       <p>Tracks on ${album.title}:</p>
       <ul>
         ${(album.songs || []).map(song => `<li>${song.title}</li>`).join('')}
