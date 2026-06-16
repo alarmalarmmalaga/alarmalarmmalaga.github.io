@@ -10,8 +10,6 @@ const Tour = () => {
   useEffect(() => {
     const scriptId = 'bandsintown-widget-script';
     if (document.getElementById(scriptId)) {
-      // If script already exists, we might need to tell it to re-initialize if the language changed
-      // but usually these widgets are static.
       return;
     }
 
@@ -39,24 +37,24 @@ const Tour = () => {
         <h3>Recent Missions & Highlights:</h3>
         <ul className={styles.showList}>
           <li itemProp="event" itemScope itemType="https://schema.org/Event">
-            <span itemProp="startDate" content="2026-05-19">May 2026</span>:
-            <span itemProp="name">Opening for <strong>The Rumjacks</strong></span> at
+            <span itemProp="startDate" content="2026-05-19">Tue, May 19</span>:
+            <span itemProp="name"><strong>THE RUMJACKS</strong> + ALARM! ALARM!</span> at
             <span itemProp="location" itemScope itemType="https://schema.org/Place">
-              <span itemProp="name"> Jerez de la Frontera</span> (<span itemProp="addressLocality">Cádiz</span>, <span itemProp="addressCountry">Spain</span>)
+              <span itemProp="name"> Jerez de la Frontera</span> (<span itemProp="addressCountry">Spain</span>)
             </span>
           </li>
 
           <li itemProp="event" itemScope itemType="https://schema.org/Event">
-            <span itemProp="startDate" content="2026-01-09">Jan 2026</span>:
-            <span itemProp="name">Sinergy Music Fest I</span> at
+            <span itemProp="startDate" content="2026-01-09">Fri, Jan 9</span>:
+            <span itemProp="name">Sinergy Music Fest I (with <strong>Futuras Cuñadas + Picky Pressure</strong>)</span> at
             <span itemProp="location" itemScope itemType="https://schema.org/Place">
               <span itemProp="name"> Sala Roka</span> (<span itemProp="addressLocality">Málaga</span>, <span itemProp="addressCountry">Spain</span>)
             </span>
           </li>
 
           <li itemProp="event" itemScope itemType="https://schema.org/Event">
-            <span itemProp="startDate" content="2025-06-28">Jun 2025</span>:
-            <span itemProp="name">Malaga Shock Festival</span> at
+            <span itemProp="startDate" content="2025-06-28">Sat, Jun 28, 2025</span>:
+            <span itemProp="name">Malaga Shock Festival (with <strong>Fuzz Division, TV Dangers and The GTO's</strong>)</span> at
             <span itemProp="location" itemScope itemType="https://schema.org/Place">
               <span itemProp="name"> CSA Las Vegas</span> (<span itemProp="addressLocality">Málaga</span>, <span itemProp="addressCountry">Spain</span>)
             </span>
@@ -73,50 +71,50 @@ const Tour = () => {
         {showArchive && (
           <ul className={`${styles.showList} ${styles.archiveList}`}>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
-              <span itemProp="startDate" content="2025-06-07">Jun 2025</span>:
-              <span itemProp="name">Santa Costa Games Fuengirola</span> at
+              <span itemProp="startDate" content="2025-06-07">Sat, Jun 7, 2025</span>:
+              <span itemProp="name">Santa Costa Games Fuengirola (with <strong>FAiLS! and Ultimo Intento</strong>)</span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
                 <span itemProp="name"> Fuengirola</span> (<span itemProp="addressCountry">Spain</span>)
               </span>
             </li>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
-              <span itemProp="startDate" content="2025-02-01">Feb 2025</span>:
-              <span itemProp="name">RIP MY TWENTIES FEST 2025</span> at
+              <span itemProp="startDate" content="2025-02-01">Sat, Feb 1, 2025</span>:
+              <span itemProp="name">RIP MY TWENTIES FEST 2025 (with <strong>Evildog + Something about Tsunamis + Málaga idiots</strong>)</span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
                 <span itemProp="name"> Torremolinos</span> (<span itemProp="addressCountry">Spain</span>)
               </span>
             </li>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
-              <span itemProp="startDate" content="2024-12-21">Dec 2024</span>:
-              <span itemProp="name">Compu Global Hiper Mega Fest 2024</span> at
+              <span itemProp="startDate" content="2024-12-21">Sat, Dec 21, 2024</span>:
+              <span itemProp="name">Compu Global Hiper Mega Fest 2024 (with <strong>Fuet! + aggro + néboas + not your business + hast</strong>)</span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
                 <span itemProp="name"> Málaga</span> (<span itemProp="addressCountry">Spain</span>)
               </span>
             </li>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
-              <span itemProp="startDate" content="2024-12-08">Dec 2024</span>:
-              <span itemProp="name">Xmas Punk</span> at
+              <span itemProp="startDate" content="2024-12-08">Sun, Dec 8, 2024</span>:
+              <span itemProp="name">Xmas Punk (with <strong>Discomfort Zone + Not your business + Civilizencia V. + Swordlaek</strong>)</span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
                 <span itemProp="name"> La Nave</span> (<span itemProp="addressLocality">Málaga</span>, <span itemProp="addressCountry">Spain</span>)
               </span>
             </li>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
-              <span itemProp="startDate" content="2024-08-11">Aug 2024</span>:
-              <span itemProp="name">Pangea tour</span> at
+              <span itemProp="startDate" content="2024-08-11">Sun, Aug 11, 2024</span>:
+              <span itemProp="name">Pangea tour, with <strong>FAiLS!</strong></span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
                 <span itemProp="name"> Sala Marte</span> (<span itemProp="addressLocality">Málaga</span>, <span itemProp="addressCountry">Spain</span>)
               </span>
             </li>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
-              <span itemProp="startDate" content="2024-07-12">Jul 2024</span>:
+              <span itemProp="startDate" content="2024-07-12">Fri, Jul 12, 2024</span>:
               <span itemProp="name">Brisa en tu barrio Festival</span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
                 <span itemProp="name"> Málaga</span> (<span itemProp="addressCountry">Spain</span>)
               </span>
             </li>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
-              <span itemProp="startDate" content="2024-03-02">Mar 2024</span>:
-              <span itemProp="name">F***ing Punk Festival</span> at
+              <span itemProp="startDate" content="2024-03-02">Sat, Mar 2, 2024</span>:
+              <span itemProp="name">F***ing Punk Festival (with <strong>Vicolo and Último Intento</strong>)</span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
                 <span itemProp="name"> Málaga</span> (<span itemProp="addressCountry">Spain</span>)
               </span>
@@ -171,7 +169,7 @@ const Tour = () => {
           data-event-rsvp-text="RSVP"
           data-event-rsvp-icon="false"
           data-event-rsvp-cta-text-color="rgba(74,74,74,1)"
-          data-event-rsvp-cta-bg-color="rgba(255,255,255,1)"
+          data-event-rsvp-cta-bg-color="rgba(255,255,0,1)"
           data-event-rsvp-cta-border-color="rgba(74,74,74,1)"
           data-event-rsvp-cta-border-width="1px"
           data-event-rsvp-cta-border-radius="2px"

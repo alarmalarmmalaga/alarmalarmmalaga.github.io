@@ -77,7 +77,7 @@ const Music = () => {
           <div className={styles.ctaButtons}>
             {noise.bandcamp_url && (
               <a href={noise.bandcamp_url} target="_blank" rel="noopener noreferrer" className={styles.buyButton}>
-                Buy Vinyl / Cassette / Digital on Bandcamp
+                <i className="fa-brands fa-bandcamp"></i> BUY ON BANDCAMP
               </a>
             )}
           </div>
@@ -101,21 +101,29 @@ const Music = () => {
         </div>
       </div>
       <div className={styles.otherPlatforms}>
-        {noise.apple_music_url && (
-          <a href={noise.apple_music_url} target="_blank" rel="noopener noreferrer">
-            Apple Music
-          </a>
-        )}
-        {noise.bandcamp_url && (
-          <a href={noise.bandcamp_url} target="_blank" rel="noopener noreferrer">
-            Bandcamp
-          </a>
-        )}
-        {noise.youtube_music_url && (
-          <a href={noise.youtube_music_url} target="_blank" rel="noopener noreferrer">
-            YouTube Music
-          </a>
-        )}
+        <h4 className={styles.otherPlatformsTitle}>DEPLOY OUR SOUND:</h4>
+        <div className={styles.platformGrid}>
+          {noise.spotify_embed_url && (
+             <a href={noise.spotify_embed_url.replace('/embed', '')} target="_blank" rel="noopener noreferrer" className={styles.platformLink}>
+               <i className="fa-brands fa-spotify"></i> <span>STREAM ON SPOTIFY</span>
+             </a>
+          )}
+          {noise.apple_music_url && (
+            <a href={noise.apple_music_url} target="_blank" rel="noopener noreferrer" className={styles.platformLink}>
+              <i className="fa-brands fa-apple"></i> <span>STREAM ON APPLE MUSIC</span>
+            </a>
+          )}
+          {noise.bandcamp_url && (
+            <a href={noise.bandcamp_url} target="_blank" rel="noopener noreferrer" className={styles.platformLink}>
+              <i className="fa-brands fa-bandcamp"></i> <span>BUY ON BANDCAMP</span>
+            </a>
+          )}
+          {noise.youtube_music_url && (
+            <a href={noise.youtube_music_url} target="_blank" rel="noopener noreferrer" className={styles.platformLink}>
+              <i className="fa-brands fa-youtube"></i> <span>WATCH ON YOUTUBE</span>
+            </a>
+          )}
+        </div>
       </div>
     </section>
   );

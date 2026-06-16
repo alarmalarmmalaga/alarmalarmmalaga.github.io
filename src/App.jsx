@@ -7,7 +7,6 @@ import SocialFeed from './sections/SocialFeed/SocialFeed';
 import Video from './sections/Video/Video';
 import Releases from './sections/Releases/Releases'; // Import Releases
 import Bio from './sections/Bio/Bio.jsx';
-import Contact from './sections/Contact/Contact'; // Import Contact
 import EPK from './sections/EPK/EPK'; // Import EPK
 import Footer from './components/Footer/Footer'; // Import Footer
 import LanguageToggle from './components/LanguageToggle';
@@ -40,7 +39,6 @@ function App() {
       <SocialFeed />
       <Bio />
       <Video />
-      <Contact />
       <Footer />
     </div>
   );
