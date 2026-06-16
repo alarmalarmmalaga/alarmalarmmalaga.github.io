@@ -34,7 +34,7 @@ const Tour = () => {
         <meta itemProp="name" content="Alarm! Alarm!" />
         <meta itemProp="genre" content="Punk Rock" />
 
-        <h3>Recent Missions & Highlights:</h3>
+        <h3>{t('tour_recent_highlights')}</h3>
         <ul className={styles.showList}>
           <li itemProp="event" itemScope itemType="https://schema.org/Event">
             <span itemProp="startDate" content="2026-05-19">Tue, May 19</span>:
@@ -65,7 +65,7 @@ const Tour = () => {
           className={styles.archiveToggle}
           onClick={() => setShowArchive(!showArchive)}
         >
-          {showArchive ? "CLOSE ARCHIVE" : "VIEW FULL MISSION LOG"}
+          {showArchive ? t('tour_close_log') : t('tour_view_full_log')}
         </button>
 
         {showArchive && (

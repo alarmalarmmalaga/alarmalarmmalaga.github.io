@@ -46,38 +46,41 @@ async function fetchData() {
         youtube_music_url: 'https://music.youtube.com/channel/UCmn_2X05dsJOHFXRM7fERsQ'
       },
       strings: {
-        latest_noise_header: { en: 'Our Latest Noise', es: 'Nuestro último ruido', de: 'Unser neuester Lärm', jp: '最新のノイズ' },
+        latest_noise_header: { en: 'Our Latest Noise', es: 'Último trallazo', de: 'Unser neuester Lärm', jp: '最新のノイズ' },
         latest_noise_message: {
           en: 'Stream our new release, \'Stuck at the Green Hill Zone,\' right here via Spotify. For the best experience, use headphones and turn it up loud. Also available on all major streaming platforms.',
-          es: 'Escucha nuestro nuevo lanzamiento, \'Stuck at the Green Hill Zone,\' aquí mismo a través de Spotify. Para la mejor experiencia, usa auriculares y sube el volumen. También disponible en todas las principales plataformas de streaming.',
-          de: 'Streame unsere neue Veröffentlichung \'Stuck at the Green Hill Zone\' direkt hier über Spotify. Für das beste Erlebnis verwende Kopfhörer und drehe die Lautstärke auf. Auch auf allen gängigen Streaming-Plattformen verfügbar.',
+          es: 'Escucha nuestro nuevo lanzamiento, \'Stuck at the Green Hill Zone\', aquí mismo en Spotify. Para disfrutarlo de verdad, ponte los cascos y ponlo a todo volumen. También disponible en el resto de plataformas de streaming.',
+          de: 'Streame unsere neue Veröffentlichung \'Stuck at the Green Hill Zone\' direkt hier über Spotify. Kopfhörer aufsetzen und voll aufdrehen für das beste Erlebnis. Auch auf allen gängigen Streaming-Plattformen verfügbar.',
           jp: '最新リリース「Stuck at the Green Hill Zone」をここSpotifyでストリーミング。最高の体験のために、ヘッドフォンを使用して音量を上げてお楽しみください。主要なすべてのストリーミングプラットフォームでも配信中。'
         },
-        tour_title: { en: 'See Alarm! Alarm! Live in Málaga and Beyond' },
-        tour_intro: { en: "We're hitting the road. Check out our upcoming dates below, powered by Bandsintown. Never miss a show." },
-        social_title: { en: 'The Brutalist Grid', jp: 'ブルータリスト・グリッド' },
+        tour_title: { en: 'See Alarm! Alarm! Live in Málaga and Beyond', es: 'Alarm! Alarm! en directo en Málaga y más allá' },
+        tour_intro: { en: "We're hitting the road. Check out our upcoming dates below, powered by Bandsintown. Never miss a show.", es: 'Nos echamos a la carretera. Echa un ojo a nuestras próximas fechas abajo, cortesía de Bandsintown. No te pierdas ni un bolo.' },
+        social_title: { en: 'The Brutalist Grid', es: 'El Grid Brutalista', jp: 'ブルータリスト・グリッド' },
         instagram_cta: { en: 'WE LIVE ON INSTAGRAM. FOLLOW THE CHAOS @ALARMALARMMALAGA →' },
-        video_title: { en: 'Watch Us' },
+        video_title: { en: 'Watch Us', es: 'Míranos en acción' },
         releases_title: { en: 'Releases' },
         bio_title: { en: 'Biography', es: 'Biografía', de: 'Biografie', jp: 'バイオグラフィー' },
         bio_content: {
           en: 'Alarm! Alarm! is a Punk Rock band from Málaga, Spain. We sing about all the stuff we try to ignore: aging, work, and the general disappointment of modern life.',
-          es: 'Alarm! Alarm! es una banda de Punk Rock de Málaga que canta sobre todas las cosas que intentamos ignorar: el envejecimiento, el trabajo y la decepción general de la vida moderna.',
+          es: 'Alarm! Alarm! es una banda de Punk Rock de Málaga que canta sobre todas las cosas que intentamos ignorar: el envejecimiento, el curro y la decepción general de la vida moderna. La formación actual incluye a Pablo Rodríguez (voz y guitarra), Alejandro Villegas (batería y coros) y Mike Thrippleton (bajo y coros). Por la banda también han pasado Emilio Villegas (bajo y silencio selectivo) y José Arjona (guitarra y coros). Su álbum debut Bloody Hell! (2020) fue un fuerte grito al vacío. El siguiente, Whatever... (2022), confirmó que las cosas no habían mejorado. Ahora, en 2025, sorprenden a todos (incluidos ellos mismos) lanzando tres nuevos EPs, el primero titulado \'98-\'99 — un tributo nostálgico y melódico a la era de los pantalones anchos y el MSN Messenger. Alarm! Alarm! no solucionará tus problemas, pero los gritará lo suficientemente fuerte como para que te sientas mejor.',
           de: 'Alarm! Alarm! ist eine Punkrock-Band aus Málaga, die über all die Dinge singt, die wir zu ignorieren versuchen: Altern, Arbeit und die allgemeine Enttäuschung über das moderne Leben.',
           jp: 'Alarm! Alarm!は、マラガ出身のパンクロックバンドです。加齢、仕事、現代生活の全般的な失望など、私たちが無視しようとしているすべてのことについて歌っています。'
         },
         contact_title: { en: 'Contact & Downloads' },
-        booking_press: { en: 'BOOKING/PRESS:' },
+        booking_press: { en: 'BOOKING/PRESS:', es: 'BOOKING / PRENSA:' },
         official_channels: { en: 'Official Channels (E-E-A-T)' },
         linktree_label: { en: 'Linktree Official', es: 'Linktree Oficial', de: 'Offizielles Linktree', jp: 'Linktree公式' },
         press_kit_title: { en: 'Press Kit & Downloads', es: 'Kit de Prensa y Descargas', de: 'Pressekit & Downloads', jp: 'プレスキットとダウンロード' },
-        epk_title: { en: 'Electronic Press Kit', es: 'Kit de Prensa Electrónico', de: 'Elektronische Pressemappe', jp: '電子プレスキット' },
+        epk_title: { en: 'Electronic Press Kit', es: 'EPK / Dossier de Prensa', de: 'Elektronische Pressemappe', jp: '電子プレスキット' },
+        tour_recent_highlights: { en: 'Recent Missions & Highlights:', es: 'Últimas misiones y highlights:', de: 'Aktuelle Missionen & Highlights:', jp: '最近のミッションとハイライト：' },
+        tour_view_full_log: { en: 'VIEW FULL MISSION LOG', es: 'VER HISTORIAL COMPLETO DE MISIONES', de: 'VOLLSTÄNDIGES MISSIONSPROTOKOLL ANSEHEN', jp: 'ミッションログをすべて表示' },
+        tour_close_log: { en: 'CLOSE ARCHIVE', es: 'CERRAR ARCHIVO', de: 'ARCHIV SCHLIESSEN', jp: 'アーカイブを閉じる' },
         asset_promo_text: { en: 'Official band asset for promotional use.', es: 'Material oficial de la banda para uso promocional.', de: 'Offizielles Band-Asset für Werbezwecke.', jp: 'プロモーション用の公式バンドアセット。' },
         download_label: { en: 'DOWNLOAD', es: 'DESCARGAR', de: 'HERUNTERLADEN', jp: 'ダウンロード' },
         official_dossier_label: { en: 'OFFICIAL DOSSIER', es: 'DOSSIER OFICIAL', de: 'OFFIZIELLES DOSSIER', jp: '公式ドシエ' },
-        dossier_description: { en: 'Stage plot, input list and bio.', es: 'Stage plot, input list y biografía.', de: 'Stageplot, Inputliste und Biografie.', jp: 'ステージプロット、インプットリスト、バイオグラフィー。' },
+        dossier_description: { en: 'Stage plot, input list and bio.', es: 'Stage plot, input list y bio.', de: 'Stageplot, Inputliste und Biografie.', jp: 'ステージプロット、インプットリスト、バイオグラフィー。' },
         view_dossier_label: { en: 'VIEW DOSSIER', es: 'VER DOSSIER', de: 'DOSSIER ANSEHEN', jp: 'ドシエを見る' },
-        contact_booking_title: { en: 'Contact & Booking', es: 'Contacto y Contratación', de: 'Kontakt & Booking', jp: 'お問い合わせと予約' },
+        contact_booking_title: { en: 'Contact & Booking', es: 'Contacto y Booking', de: 'Kontakt & Booking', jp: 'お問い合わせと予約' },
         streaming_title: { en: 'Streaming', es: 'Streaming', de: 'Streaming', jp: 'ストリーミング' },
         back_to_main_site: { en: 'BACK TO MAIN SITE', es: 'VOLVER AL SITIO PRINCIPAL', de: 'ZURÜCK ZUR HAUPTSEITE', jp: 'メインサイトに戻る' },
         loading_downloads: { en: 'Loading downloads...', es: 'Cargando descargas...', de: 'Downloads werden geladen...', jp: 'ダウンロードを読み込んでいます...' },
@@ -284,7 +287,7 @@ function generateHomeStaticHtml(data, lang) {
         <h2 id="tour-header">${t(data.strings, 'tour_title', lang)}</h2>
         <p>${t(data.strings, 'tour_intro', lang)}</p>
         <div class="past-shows">
-          <h3>Recent Missions & Highlights:</h3>
+          <h3>${t(data.strings, 'tour_recent_highlights', lang)}</h3>
           ${tourHighlightsHtml}
         </div>
       </section>
@@ -431,12 +434,19 @@ async function prerender() {
     `;
 
     const epkStaticHtml = `
-      <header><h1>${epkTitle}</h1></header>
+      <header>
+        <h1>${t(data.strings, 'epk_title', lang)}</h1>
+        <p>Alarm! Alarm! | Punk Rock Málaga</p>
+      </header>
       <main>
-        <section><h2>Biography</h2><p>${t(data.strings, 'bio_content', lang)}</p></section>
-        <section><h2>Downloads</h2><ul>${epkDownloadsHtml}</ul></section>
-        <section><h2>Contact</h2><p>alarmalarmmalaga@gmail.com</p></section>
+        <section><h2>${t(data.strings, 'bio_title', lang)}</h2><p>${t(data.strings, 'bio_content', lang)}</p></section>
+        <section><h2>${t(data.strings, 'press_kit_title', lang)}</h2><ul>${epkDownloadsHtml}</ul></section>
+        <section><h2>${t(data.strings, 'contact_booking_title', lang)}</h2><p>alarmalarmmalaga@gmail.com</p></section>
+        <section><h2>${t(data.strings, 'streaming_title', lang)}</h2><p>Spotify Artist Profile: https://open.spotify.com/artist/6Q3jUbGq2b2MeN2lMBYDxz</p></section>
       </main>
+      <footer>
+        <a href="${lang === 'en' ? '/' : `/${lang}/`}">${t(data.strings, 'back_to_main_site', lang)}</a>
+      </footer>
     `;
     epkHtml = epkHtml.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${epkStaticHtml}</div>`);
 
