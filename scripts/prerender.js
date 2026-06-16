@@ -46,7 +46,7 @@ async function fetchData() {
         youtube_music_url: 'https://music.youtube.com/channel/UCmn_2X05dsJOHFXRM7fERsQ'
       },
       strings: {
-        latest_noise_header: { en: 'Our Latest Noise', es: 'Nuestro último ruido', de: 'Unser neuester Lärm', jp: '最新のノイズ' },
+        latest_noise_header: { en: 'Our Latest Noise', es: 'Último trallazo', de: 'Unser neuester Lärm', jp: '最新のノイズ' },
         latest_noise_message: {
           en: 'Stream our new release, \'Stuck at the Green Hill Zone,\' right here via Spotify. For the best experience, use headphones and turn it up loud. Also available on all major streaming platforms.',
           es: 'Escucha nuestro nuevo lanzamiento, \'Stuck at the Green Hill Zone\', aquí mismo en Spotify. Para disfrutarlo de verdad, ponte los cascos y ponlo a todo volumen. También disponible en el resto de plataformas de streaming.',

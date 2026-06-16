@@ -76,7 +76,7 @@ CREATE POLICY "Allow public select on press_kit" ON storage.objects FOR SELECT T
 
 -- 3. Initial UI Strings
 INSERT INTO site_strings (key, en, es, de, jp) VALUES
-('latest_noise_header', 'Our Latest Noise', 'Nuestro último ruido', 'Unser neuester Lärm', '最新のノイズ'),
+('latest_noise_header', 'Our Latest Noise', 'Último trallazo', 'Unser neuester Lärm', '最新のノイズ'),
 ('latest_noise_message', 'Stream our new release, ''Stuck at the Green Hill Zone,'' right here via Spotify. For the best experience, use headphones and turn it up loud. Also available on all major streaming platforms.', 'Escucha nuestro nuevo lanzamiento, ''Stuck at the Green Hill Zone'', aquí mismo en Spotify. Para disfrutarlo de verdad, ponte los cascos y ponlo a todo volumen. También disponible en el resto de plataformas de streaming.', 'Streame unsere neue Veröffentlichung ''Stuck at the Green Hill Zone'' direkt hier über Spotify. Kopfhörer aufsetzen und voll aufdrehen für das beste Erlebnis. Auch auf allen gängigen Streaming-Plattformen verfügbar.', '最新リリース「Stuck at the Green Hill Zone」をここSpotifyでストリーミング。最高の体験のために、ヘッドフォンを使用して音量を上げてお楽しみください。主要なすべてのストリーミングプラットフォームでも配信中。'),
 ('spotify_fallback', 'The Spotify player is currently unavailable.', 'El reproductor de Spotify no está disponible actualmente.', 'Der Spotify-Player ist derzeit nicht verfügbar.', 'Spotifyプレーヤーは現在利用できません。'),
 ('listen_on_spotify', 'Listen on Spotify', 'Escuchar en Spotify', 'Auf Spotify anhören', 'Spotifyで聴く'),
