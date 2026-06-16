@@ -151,4 +151,20 @@
   .sectionTitle {
     font-size: 1.8rem;
   }
+  .contactEmail {
+    font-size: 1.2rem;
+  }
+  .contactEmail a {
+    word-break: break-all;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactEmail {
+    font-size: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
 }

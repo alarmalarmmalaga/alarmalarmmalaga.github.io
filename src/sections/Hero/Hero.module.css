@@ -48,7 +48,12 @@
   color: var(--color-accent); /* Yellow text */
   background-color: transparent; /* Remove tape background */
   padding: 0; /* Remove tape padding */
-  text-shadow: 0 0 5px var(--color-accent), 0 0 10px var(--color-accent), 0 0 15px rgba(255,255,0,0.5); /* Glow effect */
+  text-shadow:
+    2px 2px 0px #000,
+    -2px -2px 0px #000,
+    2px -2px 0px #000,
+    -2px 2px 0px #000,
+    0 0 10px var(--color-accent); /* Sharp black outline + glow */
   position: relative;
   z-index: 1;
   text-align: center;
@@ -57,11 +62,29 @@
 }
 
 @keyframes logoFlicker {
-  0% { opacity: 0.7; transform: translate(1px, 1px) skewX(-2deg); text-shadow: 0 0 3px var(--color-accent), 0 0 8px var(--color-accent); }
-  25% { opacity: 0.9; transform: translate(-1px, 0px) skewX(0deg); }
-  50% { opacity: 0.6; transform: translate(0px, -1px) skewX(2deg); text-shadow: 0 0 5px var(--color-accent), 0 0 10px var(--color-accent), 0 0 20px rgba(255,255,0,0.7); }
-  75% { opacity: 0.95; transform: translate(1px, 1px) skewX(0deg); }
-  100% { opacity: 0.75; transform: translate(-1px, -1px) skewX(-2deg); text-shadow: 0 0 4px var(--color-accent), 0 0 9px var(--color-accent); }
+  0% {
+    opacity: 0.7;
+    transform: translate(1px, 1px) skewX(-2deg);
+    text-shadow: 1px 1px 0px #000, -1px -1px 0px #000, 0 0 5px var(--color-accent);
+  }
+  25% {
+    opacity: 0.9;
+    transform: translate(-1px, 0px) skewX(0deg);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(0px, -1px) skewX(2deg);
+    text-shadow: 2px 2px 0px #000, -2px -2px 0px #000, 0 0 15px var(--color-accent);
+  }
+  75% {
+    opacity: 0.95;
+    transform: translate(1px, 1px) skewX(0deg);
+  }
+  100% {
+    opacity: 0.75;
+    transform: translate(-1px, -1px) skewX(-2deg);
+    text-shadow: 1.5px 1.5px 0px #000, -1.5px -1.5px 0px #000, 0 0 10px var(--color-accent);
+  }
 }
 
 @media (max-width: 768px) {

@@ -91,10 +91,6 @@ const Releases = () => {
                 loading="lazy"
               />
               <div className={styles.albumOverlay}>
-                <h3 className={styles.albumTitleMini}>{release.title}</h3>
-                <p className={styles.albumYearMini}>
-                  {release.release_date && new Date(release.release_date).getFullYear()}
-                </p>
                 <div className={styles.miniLinks}>
                   {release.spotify_link && (
                     <a href={release.spotify_link} target="_blank" rel="noopener noreferrer" className={styles.releaseLink}>
@@ -108,6 +104,12 @@ const Releases = () => {
                   )}
                 </div>
               </div>
+            </div>
+            <div className={styles.albumInfo}>
+              <h3 className={styles.albumTitleMini}>{release.title}</h3>
+              <p className={styles.albumYearMini}>
+                {release.release_date && new Date(release.release_date).getFullYear()}
+              </p>
             </div>
           </article>
         ))}

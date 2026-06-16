@@ -34,6 +34,8 @@
   overflow: hidden;
   background-color: var(--color-black);
   transition: transform 0.1s ease-out;
+  display: flex;
+  flex-direction: column;
 }
 
 .discographyItem:hover {
@@ -65,7 +67,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.85);
   color: var(--color-white);
   display: flex;
   flex-direction: column;
@@ -81,9 +83,20 @@
   opacity: 1;
 }
 
+.albumInfo {
+  padding: 15px 10px;
+  background-color: var(--color-black);
+  border-top: 2px solid var(--color-white);
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .albumTitleMini {
   font-family: var(--font-headline);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 5px;
   color: var(--color-accent);
   text-transform: uppercase;
@@ -95,9 +108,10 @@
 }
 
 .albumYearMini {
-  font-size: 0.9rem;
-  margin-bottom: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 0;
   font-weight: bold;
+  color: var(--color-white);
 }
 
 .miniLinks {
@@ -133,6 +147,9 @@
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
   .albumTitleMini {
-    font-size: 1.1rem;
+    font-size: 1rem;
+  }
+  .albumInfo {
+    padding: 10px 5px;
   }
 }
