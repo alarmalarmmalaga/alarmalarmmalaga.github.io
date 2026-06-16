@@ -74,7 +74,6 @@ const SocialFeed = () => {
 
   return (
     <section id="social" className={styles.socialFeedSection}>
-      <h2 className={styles.sectionTitle}>{t('social_title')}</h2>
       <div className={styles.feedContainer}>
         {posts.map((post) => (
           <figure

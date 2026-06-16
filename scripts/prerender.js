@@ -61,10 +61,10 @@ async function fetchData() {
         releases_title: { en: 'Releases' },
         bio_title: { en: 'Our Story' },
         bio_content: {
-          en: 'Alarm! Alarm! is a punk band from Málaga singing about all the stuff we try to ignore: aging, work, and the general disappointment of modern life.',
-          es: 'Alarm! Alarm! es una banda de punk de Málaga que canta sobre todas las cosas que intentamos ignorar: el envejecimiento, el trabajo y la decepción general de la vida moderna.',
-          de: 'Alarm! Alarm! ist eine Punkband aus Málaga, die über all die Dinge singt, die wir zu ignorieren versuchen: Altern, Arbeit und die allgemeine Enttäuschung über das moderne Leben.',
-          jp: 'Alarm! Alarm!は、私たちが無視しようとしているすべてのこと、つまり老化、仕事、そして現代生活の全般的な失望について歌うマラガのパンクバンドです。'
+          en: 'Alarm! Alarm! is a Punk Rock band from Málaga, Spain. We sing about all the stuff we try to ignore: aging, work, and the general disappointment of modern life.',
+          es: 'Alarm! Alarm! es una banda de Punk Rock de Málaga que canta sobre todas las cosas que intentamos ignorar: el envejecimiento, el trabajo y la decepción general de la vida moderna.',
+          de: 'Alarm! Alarm! ist eine Punkrock-Band aus Málaga, die über all die Dinge singt, die wir zu ignorieren versuchen: Altern, Arbeit und die allgemeine Enttäuschung über das moderne Leben.',
+          jp: 'Alarm! Alarm!は、マラガ出身のパンクロックバンドです。加齢、仕事、現代生活の全般的な失望など、私たちが無視しようとしているすべてのことについて歌っています。'
         },
         contact_title: { en: 'Contact & Downloads' },
         booking_press: { en: 'BOOKING/PRESS:' },
@@ -122,8 +122,13 @@ async function fetchData() {
 
 function t(strings, key, lang) {
   const row = strings[key];
-  if (!row) return key;
-  return row[lang] || row['en'] || key;
+  const fallbacks = {
+    'site_title': 'Alarm! Alarm! | Official Punk Rock from Málaga',
+    'site_description': 'Official website for Alarm! Alarm!, a punk rock band from Málaga. Listen to our latest releases, find tour dates, and follow the chaos.'
+  };
+
+  if (!row) return fallbacks[key] || key;
+  return row[lang] || row['en'] || fallbacks[key] || key;
 }
 
 function generateMusicAlbumSchema(album) {
@@ -162,8 +167,9 @@ function generateMusicGroupSchema(data, lang) {
     "url": "https://alarmalarmmalaga.github.io/",
     "logo": "https://alarmalarmmalaga.github.io/AlarmAlarm_icon.png",
     "image": "https://alarmalarmmalaga.github.io/AlarmAlarm_icon.png",
-    "genre": "Punk Rock",
+    "genre": ["Punk Rock", "Melodic Punk", "Skate Punk"],
     "description": t(data.strings, 'bio_content', lang),
+    "foundingDate": "2019",
     "foundingLocation": {
       "@type": "City",
       "name": "Málaga"
@@ -174,6 +180,32 @@ function generateMusicGroupSchema(data, lang) {
       "addressRegion": "Andalucía",
       "addressCountry": "ES"
     },
+    "member": [
+      {
+        "@type": "OrganizationRole",
+        "member": {
+          "@type": "Person",
+          "name": "Pablo Rodríguez"
+        },
+        "roleName": ["vocals", "guitar"]
+      },
+      {
+        "@type": "OrganizationRole",
+        "member": {
+          "@type": "Person",
+          "name": "Alejandro Villegas"
+        },
+        "roleName": ["drums", "backing vocals"]
+      },
+      {
+        "@type": "OrganizationRole",
+        "member": {
+          "@type": "Person",
+          "name": "Mike Thrippleton"
+        },
+        "roleName": ["bass", "backing vocals"]
+      }
+    ],
     "sameAs": [
       "https://open.spotify.com/artist/6Q3jUbGq2b2MeN2lMBYDxz",
       "https://alarmalarm.bandcamp.com/",
@@ -361,6 +393,40 @@ async function prerender() {
 
     fs.writeFileSync(path.join(langDir, 'index.html'), homeHtml);
     console.log(`Generated ${lang.toUpperCase()} index.html`);
+
+    // 1.5 Generate EPK Page
+    const epkDir = path.join(langDir, 'epk');
+    if (!fs.existsSync(epkDir)) fs.mkdirSync(epkDir, { recursive: true });
+
+    let epkHtml = template;
+    epkHtml = epkHtml.replace('<html lang="en">', `<html lang="${seoLangCodes[lang] || lang}">`);
+    epkHtml = epkHtml.replace('<!--HREFLANG_PLACEHOLDER-->', generateHreflangTags('epk/'));
+    const epkCanonical = `${baseUrl}/${langSuffix}epk/`;
+    epkHtml = epkHtml.replace('<!--CANONICAL_PLACEHOLDER-->', `<link rel="canonical" href="${epkCanonical}" />`);
+
+    const epkTitle = `EPK | Alarm! Alarm! Official Press Kit | Punk Rock Málaga`;
+    const epkDesc = `Official Electronic Press Kit for Alarm! Alarm!, a punk rock band from Málaga. Biography, high-res photos, logos, and technical rider.`;
+
+    epkHtml = epkHtml.replace(/<title>.*?<\/title>/, `<title>${epkTitle}</title>`);
+    epkHtml = epkHtml.replace(/<meta name="description" content=".*?"\s*\/?>/g, `<meta name="description" content="${epkDesc}" />`);
+
+    epkHtml = epkHtml.replace('</head>', `${siteDataScript}\n</head>`);
+    epkHtml = epkHtml.replace('</head>', `${homeSchema}\n</head>`);
+
+    // We can't easily inject the EPK component's HTML without rendering it,
+    // but we can put a placeholder or just leave it for client-side if needed.
+    // For SEO, we should at least put the bio.
+    const epkStaticHtml = `
+      <header><h1>${epkTitle}</h1></header>
+      <main>
+        <section><h2>Biography</h2><p>${t(data.strings, 'bio_content', lang)}</p></section>
+        <section><h2>Contact</h2><p>alarmalarmmalaga@gmail.com</p></section>
+      </main>
+    `;
+    epkHtml = epkHtml.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${epkStaticHtml}</div>`);
+
+    fs.writeFileSync(path.join(epkDir, 'index.html'), epkHtml);
+    console.log(`Generated ${lang.toUpperCase()} epk/index.html`);
 
     // 2. Generate Album Pages for this language
     const albumsDir = path.join(langDir, 'albums');

@@ -41,43 +41,6 @@ const Contact = () => {
         </p>
       </div>
 
-      <div className={styles.officialLinks}>
-        <h3 className={styles.subTitle}>{t('official_channels')}</h3>
-        <div className={styles.linksGrid}>
-          <a
-            href="https://open.spotify.com/artist/6Q3jUbGq2b2MeN2lMBYDxz"
-            target="_blank"
-            rel="me noopener noreferrer"
-            className={styles.officialLink}
-          >
-            Spotify Official
-          </a>
-          <a
-            href="https://alarmalarm.bandcamp.com/"
-            target="_blank"
-            rel="me noopener noreferrer"
-            className={styles.officialLink}
-          >
-            Bandcamp Official
-          </a>
-          <a
-            href="https://www.instagram.com/alarmalarmmalaga"
-            target="_blank"
-            rel="me noopener noreferrer"
-            className={styles.officialLink}
-          >
-            Instagram
-          </a>
-          <a
-            href="https://linktr.ee/alarmalarm"
-            target="_blank"
-            rel="me noopener noreferrer"
-            className={styles.officialLink}
-          >
-            {t('linktree_label') || 'Linktree'}
-          </a>
-        </div>
-      </div>
 
       <div className={styles.pressKit}>
         <h3 className={styles.subTitle}>{t('press_kit_title')}</h3>

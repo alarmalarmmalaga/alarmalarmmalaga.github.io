@@ -80,36 +80,33 @@ const Releases = () => {
   return (
     <section id="releases" className={styles.releasesSection}>
       <h2 className={styles.sectionTitle}>{t('releases_title')}</h2>
-      <div className={styles.releasesGrid}>
+      <div className={styles.discographyGrid}>
         {releases.map((release) => (
-          <article key={release.id} className={styles.releaseItemContainer}>
-            <div className={styles.albumArtContainer}>
+          <article key={release.id} className={styles.discographyItem}>
+            <div className={styles.albumCoverWrapper}>
               <img
                 src={release.cover_url}
                 alt={release.title}
-                className={styles.albumArt}
+                className={styles.albumCover}
+                loading="lazy"
               />
-            </div>
-            <div className={styles.releaseInfoContainer}>
-              <h3 className={styles.releaseTitle}>
-                {release.title} {release.release_date && `(${new Date(release.release_date).getFullYear()})`}
-              </h3>
-              <ul className={styles.tracklist}>
-                {release.songs && release.songs.map((song) => (
-                  <li key={song.id} className={styles.tracklistItem}>{song.title}</li>
-                ))}
-              </ul>
-              <div className={styles.releaseLinks}>
-                {release.spotify_link && (
-                  <a href={release.spotify_link} target="_blank" rel="noopener noreferrer" className={styles.spotifyLink}>
-                    Spotify
-                  </a>
-                )}
-                {release.bandcamp_link && (
-                  <a href={release.bandcamp_link} target="_blank" rel="noopener noreferrer" className={styles.bandcampLink}>
-                    Bandcamp
-                  </a>
-                )}
+              <div className={styles.albumOverlay}>
+                <h3 className={styles.albumTitleMini}>{release.title}</h3>
+                <p className={styles.albumYearMini}>
+                  {release.release_date && new Date(release.release_date).getFullYear()}
+                </p>
+                <div className={styles.miniLinks}>
+                  {release.spotify_link && (
+                    <a href={release.spotify_link} target="_blank" rel="noopener noreferrer" aria-label="Listen on Spotify">
+                      <span className={styles.icon}>🎧</span>
+                    </a>
+                  )}
+                  {release.bandcamp_link && (
+                    <a href={release.bandcamp_link} target="_blank" rel="noopener noreferrer" aria-label="Buy on Bandcamp">
+                      <span className={styles.icon}>💰</span>
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </article>

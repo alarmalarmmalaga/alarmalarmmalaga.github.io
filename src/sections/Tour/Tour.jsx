@@ -30,6 +30,17 @@ const Tour = () => {
       <p className={styles.tourIntro}>
         {t('tour_intro')}
       </p>
+
+      <div className={styles.pastShows}>
+        <h3>Recent Missions & Highlights:</h3>
+        <ul className={styles.showList}>
+          <li>Opening for <strong>The Rumjacks</strong> (Málaga)</li>
+          <li>Punk Rock Festival (Málaga)</li>
+          <li>Live at Velvet Club (Málaga)</li>
+          <li>Supporting various national punk acts...</li>
+        </ul>
+      </div>
+
       <div className={styles.widgetContainer}>
         <a
           className="bit-widget-initializer"

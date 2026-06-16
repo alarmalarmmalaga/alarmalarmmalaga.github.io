@@ -1,0 +1,104 @@
+/* src/sections/EPK/EPK.module.css */
+.epkPage {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 5vw;
+  background-color: var(--color-black);
+  color: var(--color-off-white);
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 4rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.section {
+  margin-bottom: 60px;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  border-bottom: 3px solid var(--color-accent);
+  display: inline-block;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.assetsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.assetItem {
+  background: var(--color-off-white);
+  color: var(--color-black);
+  padding: 30px;
+  border: 3px solid var(--color-black);
+  box-shadow: 8px 8px 0px var(--color-accent);
+}
+
+.assetItem h3 {
+  color: var(--color-black);
+  margin-top: 0;
+  text-align: left;
+}
+
+.downloadButton {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--color-black);
+  color: var(--color-off-white);
+  font-family: var(--font-headline);
+  text-transform: uppercase;
+  transition: transform 0.2s;
+}
+
+.downloadButton:hover {
+  transform: scale(1.05);
+  color: var(--color-accent);
+}
+
+.playerContainer {
+  border: 3px solid var(--color-accent);
+}
+
+.epkFooter {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.backLink {
+  font-family: var(--font-headline);
+  font-size: 1.5rem;
+  color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+}

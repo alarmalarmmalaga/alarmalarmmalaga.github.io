@@ -4,6 +4,47 @@
   /* background-color: #111; */ /* Example background, will inherit from app body or .container for now */
 }
 
+.tourIntro {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.pastShows {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  text-align: left;
+  background-color: var(--color-off-white);
+  color: var(--color-black);
+  padding: 20px;
+  border: 3px solid var(--color-black);
+  box-shadow: 8px 8px 0px var(--color-black);
+  transform: rotate(-0.5deg);
+}
+
+.pastShows h3 {
+  color: var(--color-black);
+  margin-top: 0;
+  text-align: left;
+  font-size: 1.5rem;
+}
+
+.showList {
+  list-style: none;
+  padding: 0;
+}
+
+.showList li {
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+}
+
+.showList li::before {
+  content: "★ ";
+  color: var(--color-accent-hover);
+}
+
 .sectionTitle {
   /* font-family and color inherited from global H2 styles */
   font-size: 3rem;

@@ -8,9 +8,13 @@
   position: relative;
   overflow: hidden;
   background-color: #000; /* Base black background */
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   /* Subtle scanlines */
-  background-image: repeating-linear-gradient(transparent, transparent 1px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 3px);
-  background-size: 100% 3px; /* Scanline thickness/spacing */
   /* Vignette */
   box-shadow: inset 0 0 8vw 4vw rgba(0,0,0,0.8);
 }
