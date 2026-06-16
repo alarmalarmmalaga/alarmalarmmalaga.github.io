@@ -94,7 +94,7 @@
 .buyButton:hover {
   transform: translate(-3px, -3px);
   box-shadow: 11px 11px 0px var(--color-white);
-  background-color: var(--color-white);
+  background-color: var(--color-accent);
   color: var(--color-black);
 }
 
@@ -135,7 +135,7 @@
 }
 
 .platformLink:hover {
-  background-color: var(--color-white);
+  background-color: var(--color-accent);
   color: var(--color-black);
   transform: scale(1.05);
 }

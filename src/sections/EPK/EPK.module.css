@@ -36,7 +36,7 @@
 .sectionTitle {
   font-family: var(--font-headline);
   font-size: 2.5rem;
-  background-color: var(--color-white);
+  background-color: var(--color-accent);
   color: var(--color-black);
   display: inline-block;
   padding: 0.3em 0.8em;
@@ -58,7 +58,7 @@
 }
 
 .assetItem {
-  background-color: #111;
+  background-color: #1a1a1a;
   border: 3px solid var(--color-white);
   padding: 30px;
   display: flex;
@@ -83,7 +83,7 @@
   align-items: center;
   gap: 10px;
   padding: 12px 20px;
-  background-color: var(--color-white);
+  background-color: var(--color-accent);
   color: var(--color-black);
   text-decoration: none;
   font-family: var(--font-headline);
@@ -91,11 +91,12 @@
   border: 2px solid var(--color-black);
   text-transform: uppercase;
   width: fit-content;
-  transition: background-color 0.1s;
+  transition: background-color 0.1s, transform 0.1s;
 }
 
 .downloadButton:hover {
-  background-color: var(--color-accent);
+  background-color: var(--color-white);
+  transform: scale(1.05);
 }
 
 .contactEmail {

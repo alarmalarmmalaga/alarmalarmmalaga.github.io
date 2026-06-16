@@ -5,7 +5,7 @@ import styles from './EPK.module.css';
 import useTranslation from '../../hooks/useTranslation';
 
 const EPK = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [assets, setAssets] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,7 +24,11 @@ const EPK = () => {
       if (error) {
         console.error('Error fetching press kit assets:', error);
       } else {
-        setAssets(data || []);
+        const filtered = (data || []).filter(asset => {
+          const label = asset.label.toUpperCase();
+          return !['DOWNLOAD FULL PRESS KIT', 'BAND LOGO (HIGH RES)', 'PHOTO (HIGH RES)'].includes(label);
+        });
+        setAssets(filtered);
       }
       setLoading(false);
     };
@@ -35,19 +39,19 @@ const EPK = () => {
   return (
     <div className={styles.epkPage}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Electronic Press Kit</h1>
+        <h1 className={styles.title}>{t('epk_title')}</h1>
         <p className={styles.subtitle}>Alarm! Alarm! | Punk Rock Málaga</p>
       </header>
 
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Biography</h2>
+        <h2 className={styles.sectionTitle}>{t('bio_title')}</h2>
         <div className={styles.content}>
           <p>{t('bio_content')}</p>
         </div>
       </section>
 
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Press Kit & Downloads</h2>
+        <h2 className={styles.sectionTitle}>{t('press_kit_title')}</h2>
         <div className={styles.assetsGrid}>
           {loading ? (
             <p className={styles.loading}>{t('loading_downloads')}</p>
@@ -55,14 +59,14 @@ const EPK = () => {
             assets.map((asset) => (
               <div key={asset.id} className={styles.assetItem}>
                 <h3>{asset.label.toUpperCase()}</h3>
-                <p>Official band asset for promotional use.</p>
+                <p>{t('asset_promo_text')}</p>
                 <a
                   href={asset.file_url}
                   download
                   className={styles.downloadButton}
                   aria-label={`Download ${asset.label}`}
                 >
-                  <i className="fa-solid fa-download"></i> DOWNLOAD
+                  <i className="fa-solid fa-download"></i> {t('download_label')}
                 </a>
               </div>
             ))
@@ -71,38 +75,17 @@ const EPK = () => {
           )}
           {/* Official static assets */}
            <div className={styles.assetItem}>
-             <h3>OFFICIAL LOGO</h3>
-             <p>High-resolution transparent PNG.</p>
-             <a href="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/press_kit/band_logo.png" download className={styles.downloadButton}>
-               <i className="fa-solid fa-image"></i> DOWNLOAD LOGO
-             </a>
-           </div>
-           <div className={styles.assetItem}>
-             <h3>BAND PHOTO 1</h3>
-             <p>Official promotional shot (2025).</p>
-             <a href="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/press_kit/alarmalarm25-64.jpg" download className={styles.downloadButton}>
-               <i className="fa-solid fa-image"></i> DOWNLOAD PHOTO
-             </a>
-           </div>
-           <div className={styles.assetItem}>
-             <h3>BAND PHOTO 2</h3>
-             <p>Official promotional shot (2025).</p>
-             <a href="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/press_kit/alarmalarm25-83.jpg" download className={styles.downloadButton}>
-               <i className="fa-solid fa-image"></i> DOWNLOAD PHOTO
-             </a>
-           </div>
-           <div className={styles.assetItem}>
-             <h3>OFFICIAL DOSSIER</h3>
-             <p>Stage plot, input list and bio.</p>
+             <h3>{t('official_dossier_label')}</h3>
+             <p>{t('dossier_description')}</p>
              <a href="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/press_kit/alarmdossier.pdf" target="_blank" rel="noopener noreferrer" className={styles.downloadButton}>
-               <i className="fa-solid fa-file-pdf"></i> VIEW DOSSIER
+               <i className="fa-solid fa-file-pdf"></i> {t('view_dossier_label')}
              </a>
            </div>
         </div>
       </section>
 
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Contact & Booking</h2>
+        <h2 className={styles.sectionTitle}>{t('contact_booking_title')}</h2>
         <div className={styles.content}>
           <p className={styles.contactEmail}>
             <i className="fa-solid fa-envelope"></i> <a href="mailto:alarmalarmmalaga@gmail.com">alarmalarmmalaga@gmail.com</a>
@@ -111,7 +94,7 @@ const EPK = () => {
       </section>
 
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Streaming</h2>
+        <h2 className={styles.sectionTitle}>{t('streaming_title')}</h2>
         <div className={styles.playerContainer}>
            <iframe
             src="https://open.spotify.com/embed/artist/6Q3jUbGq2b2MeN2lMBYDxz"
@@ -127,8 +110,8 @@ const EPK = () => {
       </section>
 
       <footer className={styles.epkFooter}>
-        <a href="/" className={styles.backLink}>
-          <i className="fa-solid fa-arrow-left"></i> BACK TO MAIN SITE
+        <a href={language === 'en' ? '/' : `/${language}/`} className={styles.backLink}>
+          <i className="fa-solid fa-arrow-left"></i> {t('back_to_main_site')}
         </a>
       </footer>
     </div>
