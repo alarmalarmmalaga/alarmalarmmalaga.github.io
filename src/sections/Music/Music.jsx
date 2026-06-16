@@ -62,29 +62,44 @@ const Music = () => {
     };
   }, [fetchLatestNoise]);
 
-  if (!noise) return null;
+  if (!noise) return <section id="music"></section>;
 
   return (
     <section id="music" className={styles.musicSection}>
       <meta name="description" content={`Stream the latest noise from Alarm! Alarm!: ${noise.title}. ${t('latest_noise_message')}`} />
-      <h2 className={styles.sectionTitle}>{t('latest_noise_header')}: "{noise.title}"</h2>
-      <p className={styles.musicIntro}>
-        {t('latest_noise_message')}
-      </p>
-      <ErrorBoundary fallback={<SpotifyFallback t={t} url={noise.spotify_embed_url.replace('/embed', '')} />}>
-        <div className={styles.spotifyEmbed}>
-          <iframe
-            src={noise.spotify_embed_url}
-            width="100%"
-            height="352"
-            frameBorder="0"
-            allowFullScreen
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-            title={`Spotify Player for ${noise.title}`}
-          ></iframe>
+
+      <div className={styles.heroReleaseContainer}>
+        <div className={styles.heroReleaseInfo}>
+          <h2 className={styles.sectionTitle}>{t('latest_noise_header')}: "{noise.title}"</h2>
+          <p className={styles.musicIntro}>
+            {t('latest_noise_message')}
+          </p>
+          <div className={styles.ctaButtons}>
+            {noise.bandcamp_url && (
+              <a href={noise.bandcamp_url} target="_blank" rel="noopener noreferrer" className={styles.buyButton}>
+                Buy Vinyl / Cassette / Digital on Bandcamp
+              </a>
+            )}
+          </div>
         </div>
-      </ErrorBoundary>
+
+        <div className={styles.heroReleaseVisual}>
+          <ErrorBoundary fallback={<SpotifyFallback t={t} url={noise.spotify_embed_url.replace('/embed', '')} />}>
+            <div className={styles.spotifyEmbed}>
+              <iframe
+                src={noise.spotify_embed_url}
+                width="100%"
+                height="352"
+                frameBorder="0"
+                allowFullScreen
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                title={`Spotify Player for ${noise.title}`}
+              ></iframe>
+            </div>
+          </ErrorBoundary>
+        </div>
+      </div>
       <div className={styles.otherPlatforms}>
         {noise.apple_music_url && (
           <a href={noise.apple_music_url} target="_blank" rel="noopener noreferrer">

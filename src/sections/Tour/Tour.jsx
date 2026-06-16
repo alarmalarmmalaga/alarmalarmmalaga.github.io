@@ -1,10 +1,11 @@
 // src/sections/Tour/Tour.jsx
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Tour.module.css";
 import useTranslation from "../../hooks/useTranslation";
 
 const Tour = () => {
   const { t, language } = useTranslation();
+  const [showArchive, setShowArchive] = useState(false);
 
   useEffect(() => {
     const scriptId = 'bandsintown-widget-script';
@@ -30,6 +31,100 @@ const Tour = () => {
       <p className={styles.tourIntro}>
         {t('tour_intro')}
       </p>
+
+      <div className={styles.pastShows} itemScope itemType="https://schema.org/MusicGroup">
+        <meta itemProp="name" content="Alarm! Alarm!" />
+        <meta itemProp="genre" content="Punk Rock" />
+
+        <h3>Recent Missions & Highlights:</h3>
+        <ul className={styles.showList}>
+          <li itemProp="event" itemScope itemType="https://schema.org/Event">
+            <span itemProp="startDate" content="2026-05-19">May 2026</span>:
+            <span itemProp="name">Opening for <strong>The Rumjacks</strong></span> at
+            <span itemProp="location" itemScope itemType="https://schema.org/Place">
+              <span itemProp="name"> Jerez de la Frontera</span> (<span itemProp="addressLocality">Cádiz</span>, <span itemProp="addressCountry">Spain</span>)
+            </span>
+          </li>
+
+          <li itemProp="event" itemScope itemType="https://schema.org/Event">
+            <span itemProp="startDate" content="2026-01-09">Jan 2026</span>:
+            <span itemProp="name">Sinergy Music Fest I</span> at
+            <span itemProp="location" itemScope itemType="https://schema.org/Place">
+              <span itemProp="name"> Sala Roka</span> (<span itemProp="addressLocality">Málaga</span>, <span itemProp="addressCountry">Spain</span>)
+            </span>
+          </li>
+
+          <li itemProp="event" itemScope itemType="https://schema.org/Event">
+            <span itemProp="startDate" content="2025-06-28">Jun 2025</span>:
+            <span itemProp="name">Malaga Shock Festival</span> at
+            <span itemProp="location" itemScope itemType="https://schema.org/Place">
+              <span itemProp="name"> CSA Las Vegas</span> (<span itemProp="addressLocality">Málaga</span>, <span itemProp="addressCountry">Spain</span>)
+            </span>
+          </li>
+        </ul>
+
+        <button
+          className={styles.archiveToggle}
+          onClick={() => setShowArchive(!showArchive)}
+        >
+          {showArchive ? "CLOSE ARCHIVE" : "VIEW FULL MISSION LOG"}
+        </button>
+
+        {showArchive && (
+          <ul className={`${styles.showList} ${styles.archiveList}`}>
+            <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <span itemProp="startDate" content="2025-06-07">Jun 2025</span>:
+              <span itemProp="name">Santa Costa Games Fuengirola</span> at
+              <span itemProp="location" itemScope itemType="https://schema.org/Place">
+                <span itemProp="name"> Fuengirola</span> (<span itemProp="addressCountry">Spain</span>)
+              </span>
+            </li>
+            <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <span itemProp="startDate" content="2025-02-01">Feb 2025</span>:
+              <span itemProp="name">RIP MY TWENTIES FEST 2025</span> at
+              <span itemProp="location" itemScope itemType="https://schema.org/Place">
+                <span itemProp="name"> Torremolinos</span> (<span itemProp="addressCountry">Spain</span>)
+              </span>
+            </li>
+            <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <span itemProp="startDate" content="2024-12-21">Dec 2024</span>:
+              <span itemProp="name">Compu Global Hiper Mega Fest 2024</span> at
+              <span itemProp="location" itemScope itemType="https://schema.org/Place">
+                <span itemProp="name"> Málaga</span> (<span itemProp="addressCountry">Spain</span>)
+              </span>
+            </li>
+            <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <span itemProp="startDate" content="2024-12-08">Dec 2024</span>:
+              <span itemProp="name">Xmas Punk</span> at
+              <span itemProp="location" itemScope itemType="https://schema.org/Place">
+                <span itemProp="name"> La Nave</span> (<span itemProp="addressLocality">Málaga</span>, <span itemProp="addressCountry">Spain</span>)
+              </span>
+            </li>
+            <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <span itemProp="startDate" content="2024-08-11">Aug 2024</span>:
+              <span itemProp="name">Pangea tour</span> at
+              <span itemProp="location" itemScope itemType="https://schema.org/Place">
+                <span itemProp="name"> Sala Marte</span> (<span itemProp="addressLocality">Málaga</span>, <span itemProp="addressCountry">Spain</span>)
+              </span>
+            </li>
+            <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <span itemProp="startDate" content="2024-07-12">Jul 2024</span>:
+              <span itemProp="name">Brisa en tu barrio Festival</span> at
+              <span itemProp="location" itemScope itemType="https://schema.org/Place">
+                <span itemProp="name"> Málaga</span> (<span itemProp="addressCountry">Spain</span>)
+              </span>
+            </li>
+            <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <span itemProp="startDate" content="2024-03-02">Mar 2024</span>:
+              <span itemProp="name">F***ing Punk Festival</span> at
+              <span itemProp="location" itemScope itemType="https://schema.org/Place">
+                <span itemProp="name"> Málaga</span> (<span itemProp="addressCountry">Spain</span>)
+              </span>
+            </li>
+          </ul>
+        )}
+      </div>
+
       <div className={styles.widgetContainer}>
         <a
           className="bit-widget-initializer"

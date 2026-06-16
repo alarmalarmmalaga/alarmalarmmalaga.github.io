@@ -1,7 +1,35 @@
 /* src/sections/Music/Music.module.css */
 .musicSection {
-  padding: 40px 5vw; /* Updated padding */
-  /* background-color: #0A0A0A; /* Slightly different from pure black */
+  padding: 60px 5vw;
+  background-color: var(--color-black);
+}
+
+.heroReleaseContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .heroReleaseContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.heroReleaseInfo {
+  flex: 1;
+}
+
+.heroReleaseVisual {
+  flex: 1;
+  width: 100%;
+  max-width: 500px;
 }
 
 .sectionTitle {
@@ -18,13 +46,41 @@
   transform: rotate(1deg) translateX(4%);
 }
 
+.heroReleaseInfo .sectionTitle {
+  text-align: left;
+  display: block;
+  transform: rotate(-1deg);
+  margin-bottom: 20px;
+}
+
 .spotifyEmbed {
-  display: block; /* Changed for asymmetric layout */
-  border: 2px solid var(--color-off-white); /* Use CSS variable */
-  margin: 2rem 0 2rem 5%; /* Asymmetric margin */
-  max-width: 700px; /* Control max width */
-  transform: rotate(0.5deg); /* Slight asymmetry */
-  /* The parent .musicSection text-align: left will handle block alignment */
+  display: block;
+  border: 3px solid var(--color-accent);
+  box-shadow: 10px 10px 0px var(--color-accent);
+  width: 100%;
+}
+
+.ctaButtons {
+  margin-top: 30px;
+}
+
+.buyButton {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: var(--color-accent);
+  color: var(--color-black);
+  font-family: var(--font-headline);
+  font-size: 1.2rem;
+  border: 3px solid var(--color-black);
+  box-shadow: 5px 5px 0px var(--color-black);
+  text-transform: uppercase;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.buyButton:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px var(--color-black);
+  color: var(--color-black);
 }
 
 .spotifyEmbed iframe {
