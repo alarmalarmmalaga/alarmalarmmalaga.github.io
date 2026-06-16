@@ -24,11 +24,8 @@ const EPK = () => {
       if (error) {
         console.error('Error fetching press kit assets:', error);
       } else {
-        const filtered = (data || []).filter(asset => {
-          const label = asset.label.toUpperCase();
-          return !['DOWNLOAD FULL PRESS KIT', 'BAND LOGO (HIGH RES)', 'PHOTO (HIGH RES)'].includes(label);
-        });
-        setAssets(filtered);
+        // Show all assets from the table as requested
+        setAssets(data || []);
       }
       setLoading(false);
     };
@@ -36,10 +33,13 @@ const EPK = () => {
     fetchAssets();
   }, []);
 
+  // Default titles for fallback if translation system is not ready
+  const epkTitle = t('epk_title') === 'epk_title' ? 'Electronic Press Kit' : t('epk_title');
+
   return (
     <div className={styles.epkPage}>
       <header className={styles.header}>
-        <h1 className={styles.title}>{t('epk_title')}</h1>
+        <h1 className={styles.title}>{epkTitle}</h1>
         <p className={styles.subtitle}>Alarm! Alarm! | Punk Rock Málaga</p>
       </header>
 
