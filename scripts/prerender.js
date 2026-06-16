@@ -60,13 +60,42 @@ async function fetchData() {
         video_title: { en: 'Watch Us' },
         releases_title: { en: 'Releases' },
         bio_title: { en: 'Our Story' },
-        bio_content: { en: 'Alarm! Alarm! is a punk band from Málaga singing about all the stuff we try to ignore: aging, work, and the general disappointment of modern life.' },
+        bio_content: {
+          en: 'Alarm! Alarm! is a punk band from Málaga singing about all the stuff we try to ignore: aging, work, and the general disappointment of modern life.',
+          es: 'Alarm! Alarm! es una banda de punk de Málaga que canta sobre todas las cosas que intentamos ignorar: el envejecimiento, el trabajo y la decepción general de la vida moderna.',
+          de: 'Alarm! Alarm! ist eine Punkband aus Málaga, die über all die Dinge singt, die wir zu ignorieren versuchen: Altern, Arbeit und die allgemeine Enttäuschung über das moderne Leben.',
+          jp: 'Alarm! Alarm!は、私たちが無視しようとしているすべてのこと、つまり老化、仕事、そして現代生活の全般的な失望について歌うマラガのパンクバンドです。'
+        },
         contact_title: { en: 'Contact & Downloads' },
         booking_press: { en: 'BOOKING/PRESS:' },
         official_channels: { en: 'Official Channels (E-E-A-T)' },
         linktree_label: { en: 'Linktree Official', es: 'Linktree Oficial', de: 'Offizielles Linktree', jp: 'Linktree公式' },
         press_kit_title: { en: 'Press Kit & Downloads' },
-        back_to_home: { en: 'Back to Home' }
+        back_to_home: { en: 'Back to Home' },
+        site_title: {
+          en: 'Alarm! Alarm! | Official Punk Rock from Málaga',
+          es: 'Alarm! Alarm! | Punk Rock Oficial de Málaga',
+          de: 'Alarm! Alarm! | Offizieller Punkrock aus Málaga',
+          jp: 'Alarm! Alarm! | マラガの公式パンクロック'
+        },
+        site_description: {
+          en: 'Official website for Alarm! Alarm!, a punk rock band from Málaga. Listen to our latest releases, find tour dates, and follow the chaos.',
+          es: 'Sitio oficial de Alarm! Alarm!, banda de punk rock de Málaga. Escucha nuestros últimos lanzamientos, encuentra fechas de gira y sigue el caos.',
+          de: 'Offizielle Website von Alarm! Alarm!, einer Punkrock-Band aus Málaga. Hören Sie unsere neuesten Veröffentlichungen, finden Sie Tourdaten und folgen Sie dem Chaos.',
+          jp: 'マラガのパンクロックバンド、Alarm! Alarm!の公式サイト。最新リリースの視聴、ツアー日程の確認、そしてカオスをフォローしてください。'
+        },
+        album_cover_alt: {
+          en: 'album cover - Alarm! Alarm! Punk Málaga',
+          es: 'portada del álbum - Alarm! Alarm! Punk Málaga',
+          de: 'Albumcover - Alarm! Alarm! Punk Málaga',
+          jp: 'アルバムのカバー - Alarm! Alarm! パンク マラガ'
+        },
+        band_photo_alt: {
+          en: 'Alarm! Alarm! band photo',
+          es: 'Foto de la banda Alarm! Alarm!',
+          de: 'Alarm! Alarm! Bandfoto',
+          jp: 'Alarm! Alarm! バンド写真'
+        }
       }
     };
   }
@@ -124,7 +153,7 @@ function generateMusicAlbumSchema(album) {
   };
 }
 
-function generateMusicGroupSchema() {
+function generateMusicGroupSchema(data, lang) {
   return {
     "@context": "https://schema.org",
     "@type": "MusicGroup",
@@ -134,7 +163,7 @@ function generateMusicGroupSchema() {
     "logo": "https://alarmalarmmalaga.github.io/AlarmAlarm_icon.png",
     "image": "https://alarmalarmmalaga.github.io/AlarmAlarm_icon.png",
     "genre": "Punk Rock",
-    "description": "Punk rock band from Málaga, Spain, singing about aging, work, and the general disappointment of modern life.",
+    "description": t(data.strings, 'bio_content', lang),
     "foundingLocation": {
       "@type": "City",
       "name": "Málaga"
@@ -159,7 +188,7 @@ function generateHomeStaticHtml(data, lang) {
   const releasesHtml = data.albums.map(album => `
     <article class="album-card">
       <h3>${album.title} (${new Date(album.release_date).getFullYear()})</h3>
-      <img src="${album.cover_url}" alt="${album.title} album cover - Alarm! Alarm! Punk Málaga" loading="lazy" width="300" height="300" />
+      <img src="${album.cover_url}" alt="${album.title} ${t(data.strings, 'album_cover_alt', lang)}" loading="lazy" width="300" height="300" />
       <p>Tracks on ${album.title}:</p>
       <ul>
         ${(album.songs || []).map(song => `<li>${song.title}</li>`).join('')}
@@ -172,7 +201,7 @@ function generateHomeStaticHtml(data, lang) {
 
   const gridHtml = data.gridItems.map(item => `
     <figure class="grid-item">
-      <img src="${item.image_url}" alt="${item.alt_description || item.caption || 'Alarm! Alarm! band photo'}" loading="lazy" />
+      <img src="${item.image_url}" alt="${item.alt_description || item.caption || t(data.strings, 'band_photo_alt', lang)}" loading="lazy" />
       <figcaption>${item.caption}</figcaption>
     </figure>
   `).join('');
@@ -277,6 +306,7 @@ async function prerender() {
   const data = await fetchData();
   const baseUrl = 'https://alarmalarmmalaga.github.io';
   const languages = ['en', 'es', 'de', 'jp'];
+  const seoLangCodes = { en: 'en', es: 'es', de: 'de', jp: 'ja' };
 
   for (const lang of languages) {
     const langSuffix = lang === 'en' ? '' : `${lang}/`;
@@ -287,23 +317,42 @@ async function prerender() {
     const generateHreflangTags = (currentSlug = '') => {
       return languages.map(l => {
         const lSuffix = l === 'en' ? '' : `${l}/`;
-        return `<link rel="alternate" hreflang="${l}" href="${baseUrl}/${lSuffix}${currentSlug}" />`;
+        const seoLang = seoLangCodes[l] || l;
+        return `<link rel="alternate" hreflang="${seoLang}" href="${baseUrl}/${lSuffix}${currentSlug}" />`;
       }).join('\n    ') + `\n    <link rel="alternate" hreflang="x-default" href="${baseUrl}/${currentSlug}" />`;
     };
 
     // 1. Generate Homepage
     let homeHtml = template;
-    homeHtml = homeHtml.replace('<html lang="en">', `<html lang="${lang}">`);
+    homeHtml = homeHtml.replace('<html lang="en">', `<html lang="${seoLangCodes[lang] || lang}">`);
 
     // Inject hreflang
     homeHtml = homeHtml.replace('<!--HREFLANG_PLACEHOLDER-->', generateHreflangTags(''));
+
+    // Inject Canonical
+    const homeCanonical = `${baseUrl}/${langSuffix}`;
+    homeHtml = homeHtml.replace('<!--CANONICAL_PLACEHOLDER-->', `<link rel="canonical" href="${homeCanonical}" />`);
+
+    // Localize Title and Meta Tags
+    const homeTitle = t(data.strings, 'site_title', lang);
+    const homeDesc = t(data.strings, 'site_description', lang);
+    homeHtml = homeHtml.replace(/<title>.*?<\/title>/, `<title>${homeTitle}</title>`);
+    homeHtml = homeHtml.replace(/<meta name="description" content=".*?"\s*\/?>/g, `<meta name="description" content="${homeDesc}" />`);
+
+    // Localize OG and Twitter
+    homeHtml = homeHtml.replace(/<meta property="og:title" content=".*?"\s*\/?>/g, `<meta property="og:title" content="${homeTitle}" />`);
+    homeHtml = homeHtml.replace(/<meta property="og:description" content=".*?"\s*\/?>/g, `<meta property="og:description" content="${homeDesc}" />`);
+    homeHtml = homeHtml.replace(/<meta property="og:url" content=".*?"\s*\/?>/g, `<meta property="og:url" content="${homeCanonical}" />`);
+    homeHtml = homeHtml.replace(/<meta property="twitter:url" content=".*?"\s*\/?>/g, `<meta property="twitter:url" content="${homeCanonical}" />`);
+    homeHtml = homeHtml.replace(/<meta property="twitter:title" content=".*?"\s*\/?>/g, `<meta property="twitter:title" content="${homeTitle}" />`);
+    homeHtml = homeHtml.replace(/<meta property="twitter:description" content=".*?"\s*\/?>/g, `<meta property="twitter:description" content="${homeDesc}" />`);
 
     // Inject SITE_DATA
     const siteDataScript = `<script>window.__SITE_DATA__ = ${JSON.stringify(data)};</script>`;
     homeHtml = homeHtml.replace('</head>', `${siteDataScript}\n</head>`);
 
     // Inject Home Schema
-    const homeSchema = `<script type="application/ld+json">${JSON.stringify(generateMusicGroupSchema())}</script>`;
+    const homeSchema = `<script type="application/ld+json">${JSON.stringify(generateMusicGroupSchema(data, lang))}</script>`;
     homeHtml = homeHtml.replace('</head>', `${homeSchema}\n</head>`);
 
     // Inject Static HTML for SEO
@@ -323,10 +372,14 @@ async function prerender() {
       if (!fs.existsSync(albumPath)) fs.mkdirSync(albumPath, { recursive: true });
 
       let albumHtml = template;
-      albumHtml = albumHtml.replace('<html lang="en">', `<html lang="${lang}">`);
+      albumHtml = albumHtml.replace('<html lang="en">', `<html lang="${seoLangCodes[lang] || lang}">`);
 
       // Inject hreflang for albums
       albumHtml = albumHtml.replace('<!--HREFLANG_PLACEHOLDER-->', generateHreflangTags(`albums/${slug}/`));
+
+      // Inject Canonical for albums
+      const albumCanonical = `${baseUrl}/${langSuffix}albums/${slug}/`;
+      albumHtml = albumHtml.replace('<!--CANONICAL_PLACEHOLDER-->', `<link rel="canonical" href="${albumCanonical}" />`);
 
       const year = new Date(album.release_date).getFullYear();
       const albumTitle = `${album.title} (${year}) | Alarm! Alarm! Official Discography`;
@@ -336,11 +389,15 @@ async function prerender() {
       albumHtml = albumHtml.replace(/<title>.*?<\/title>/, `<title>${albumTitle}</title>`);
       albumHtml = albumHtml.replace(/<meta name="description" content=".*?"\s*\/?>/g, `<meta name="description" content="${albumDesc}" />`);
 
-      // Update Open Graph tags
+      // Update Open Graph and Twitter tags
       albumHtml = albumHtml.replace(/<meta property="og:title" content=".*?"\s*\/?>/g, `<meta property="og:title" content="${albumTitle}" />`);
       albumHtml = albumHtml.replace(/<meta property="og:description" content=".*?"\s*\/?>/g, `<meta property="og:description" content="${albumDesc}" />`);
       albumHtml = albumHtml.replace(/<meta property="og:image" content=".*?"\s*\/?>/g, `<meta property="og:image" content="${album.cover_url}" />`);
-      albumHtml = albumHtml.replace(/<meta property="og:url" content=".*?"\s*\/?>/g, `<meta property="og:url" content="${baseUrl}/${langSuffix}albums/${slug}/" />`);
+      albumHtml = albumHtml.replace(/<meta property="og:url" content=".*?"\s*\/?>/g, `<meta property="og:url" content="${albumCanonical}" />`);
+      albumHtml = albumHtml.replace(/<meta property="twitter:url" content=".*?"\s*\/?>/g, `<meta property="twitter:url" content="${albumCanonical}" />`);
+      albumHtml = albumHtml.replace(/<meta property="twitter:title" content=".*?"\s*\/?>/g, `<meta property="twitter:title" content="${albumTitle}" />`);
+      albumHtml = albumHtml.replace(/<meta property="twitter:description" content=".*?"\s*\/?>/g, `<meta property="twitter:description" content="${albumDesc}" />`);
+      albumHtml = albumHtml.replace(/<meta property="twitter:image" content=".*?"\s*\/?>/g, `<meta property="twitter:image" content="${album.cover_url}" />`);
 
       // Inject Album Schema
       const albumSchema = `<script type="application/ld+json">${JSON.stringify(generateMusicAlbumSchema(album))}</script>`;
@@ -360,17 +417,19 @@ async function prerender() {
 
   // 3. Generate Sitemap
   const sitemapUrls = [];
+  const lastmod = new Date().toISOString().split('T')[0];
   const homePages = languages.map(l => ({
     lang: l,
     loc: `${baseUrl}/${l === 'en' ? '' : l + '/'}`
   }));
 
   for (const page of homePages) {
-    const links = homePages.map(p => `    <xhtml:link rel="alternate" hreflang="${p.lang}" href="${p.loc}" />`).join('\n');
+    const links = homePages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${p.loc}" />`).join('\n');
     const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/" />`;
 
     sitemapUrls.push(`  <url>
     <loc>${page.loc}</loc>
+    <lastmod>${lastmod}</lastmod>
 ${links}
 ${xDefault}
     <changefreq>weekly</changefreq>
@@ -386,11 +445,12 @@ ${xDefault}
     }));
 
     for (const page of albumPages) {
-      const links = albumPages.map(p => `    <xhtml:link rel="alternate" hreflang="${p.lang}" href="${p.loc}" />`).join('\n');
+      const links = albumPages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${p.loc}" />`).join('\n');
       const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/albums/${slug}/" />`;
 
       sitemapUrls.push(`  <url>
     <loc>${page.loc}</loc>
+    <lastmod>${lastmod}</lastmod>
 ${links}
 ${xDefault}
     <changefreq>weekly</changefreq>
