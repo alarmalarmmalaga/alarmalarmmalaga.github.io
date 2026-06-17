@@ -391,6 +391,8 @@ async function prerender() {
     homeHtml = homeHtml.replace(/<meta property="twitter:url" content=".*?"\s*\/?>/g, `<meta property="twitter:url" content="${homeCanonical}" />`);
     homeHtml = homeHtml.replace(/<meta property="twitter:title" content=".*?"\s*\/?>/g, `<meta property="twitter:title" content="${homeTitle}" />`);
     homeHtml = homeHtml.replace(/<meta property="twitter:description" content=".*?"\s*\/?>/g, `<meta property="twitter:description" content="${homeDesc}" />`);
+    homeHtml = homeHtml.replace(/<meta property="og:image" content=".*?"\s*\/?>/g, `<meta property="og:image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />`);
+    homeHtml = homeHtml.replace(/<meta property="twitter:image" content=".*?"\s*\/?>/g, `<meta property="twitter:image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />`);
 
     // Inject SITE_DATA
     const siteDataScript = `<script>window.__SITE_DATA__ = ${JSON.stringify(data)};</script>`;
@@ -422,6 +424,8 @@ async function prerender() {
 
     epkHtml = epkHtml.replace(/<title>.*?<\/title>/, `<title>${epkTitle}</title>`);
     epkHtml = epkHtml.replace(/<meta name="description" content=".*?"\s*\/?>/g, `<meta name="description" content="${epkDesc}" />`);
+    epkHtml = epkHtml.replace(/<meta property="og:image" content=".*?"\s*\/?>/g, `<meta property="og:image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />`);
+    epkHtml = epkHtml.replace(/<meta property="twitter:image" content=".*?"\s*\/?>/g, `<meta property="twitter:image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />`);
 
     epkHtml = epkHtml.replace('</head>', `${siteDataScript}\n</head>`);
     epkHtml = epkHtml.replace('</head>', `${homeSchema}\n</head>`);
