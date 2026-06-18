@@ -27,6 +27,17 @@ const slugify = (text) =>
     .replace(/ /g, '-')
     .replace(/[^\w-]+/g, '');
 
+const escapeXml = (unsafe) =>
+  unsafe.replace(/[<>&'"]/g, (c) => {
+    switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+    }
+  });
+
 async function fetchData() {
   if (!supabase) {
     return {
@@ -537,19 +548,19 @@ async function prerender() {
 
     const videoTags = videos.map(v => `    <video:video>
       <video:thumbnail_loc>https://img.youtube.com/vi/${v.id}/hqdefault.jpg</video:thumbnail_loc>
-      <video:title>${v.title}</video:title>
-      <video:description>${v.description}</video:description>
-      <video:player_loc>https://www.youtube.com/embed/${v.id}</video:player_loc>
+      <video:title>${escapeXml(v.title)}</video:title>
+      <video:description>${escapeXml(v.description)}</video:description>
+      <video:player_loc allow_embed="yes">https://www.youtube.com/embed/${v.id}</video:player_loc>
     </video:video>`).join('\n');
 
     sitemapUrls.push(`  <url>
     <loc>${page.loc}</loc>
     <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>${page.lang === 'en' ? '1.0' : '0.9'}</priority>
 ${links}
 ${xDefault}
 ${videoTags}
-    <changefreq>weekly</changefreq>
-    <priority>${page.lang === 'en' ? '1.0' : '0.9'}</priority>
   </url>`);
   }
 
@@ -560,10 +571,10 @@ ${videoTags}
     sitemapUrls.push(`  <url>
     <loc>${page.loc}</loc>
     <lastmod>${lastmod}</lastmod>
-${links}
-${xDefault}
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+${links}
+${xDefault}
   </url>`);
   }
 
@@ -580,24 +591,23 @@ ${xDefault}
 
       const imageTag = album.cover_url ? `    <image:image>
       <image:loc>${album.cover_url}</image:loc>
-      <image:title>${album.title} - Alarm! Alarm!</image:title>
-      <image:caption>Cover art for the album ${album.title} by Alarm! Alarm!</image:caption>
+      <image:title>${escapeXml(album.title)} - Alarm! Alarm!</image:title>
+      <image:caption>Cover art for the album ${escapeXml(album.title)} by Alarm! Alarm!</image:caption>
     </image:image>` : '';
 
       sitemapUrls.push(`  <url>
     <loc>${page.loc}</loc>
     <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
 ${links}
 ${xDefault}
 ${imageTag}
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>`);
     }
   }
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
