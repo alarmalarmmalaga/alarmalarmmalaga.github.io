@@ -68,7 +68,7 @@ const Releases = () => {
     };
   }, [fetchReleases]);
 
-  if (loading) {
+  if (loading && releases.length === 0) {
     return (
       <section id="releases" className={styles.releasesSection}>
         <h2 className={styles.sectionTitle}>{t('releases_title')}</h2>

@@ -63,7 +63,7 @@ const SocialFeed = () => {
     };
   }, []);
 
-  if (loading) {
+  if (loading && posts.length === 0) {
     return (
       <section id="social" className={styles.socialFeedSection}>
         <h2 className={styles.sectionTitle}>{t('social_title')}</h2>
