@@ -62,7 +62,7 @@ const Music = () => {
     };
   }, [fetchLatestNoise]);
 
-  if (!noise) return <section id="music"></section>;
+  if (!noise) return null;
 
   return (
     <section id="music" className={styles.musicSection}>
