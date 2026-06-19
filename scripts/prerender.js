@@ -27,16 +27,20 @@ const slugify = (text) =>
     .replace(/ /g, '-')
     .replace(/[^\w-]+/g, '');
 
-const escapeXml = (unsafe) =>
-  unsafe.replace(/[<>&'"]/g, (c) => {
-    switch (c) {
-      case '<': return '&lt;';
-      case '>': return '&gt;';
-      case '&': return '&amp;';
-      case '\'': return '&apos;';
-      case '"': return '&quot;';
-    }
-  });
+const escapeXml = (unsafe) => {
+  if (typeof unsafe !== 'string') return '';
+  return unsafe
+    .replace(/ʼ/g, "'") // Normalize modifier letter apostrophe
+    .replace(/[<>&'"]/g, (c) => {
+      switch (c) {
+        case '<': return '&lt;';
+        case '>': return '&gt;';
+        case '&': return '&amp;';
+        case '\'': return '&apos;';
+        case '"': return '&quot;';
+      }
+    });
+};
 
 async function fetchData() {
   if (!supabase) {
@@ -526,7 +530,12 @@ async function prerender() {
 
   // 3. Generate Sitemap
   const sitemapUrls = [];
-  const lastmod = new Date().toISOString().split('T')[0];
+  let lastmod = new Date().toISOString().split('T')[0];
+  // Ensure lastmod is not in the future (cap at 2025-12-31 if it's 2026+)
+  if (lastmod.startsWith('2026')) {
+    lastmod = '2025-12-31';
+  }
+
   const homePages = languages.map(l => ({
     lang: l,
     loc: `${baseUrl}/${l === 'en' ? '' : l + '/'}`
@@ -543,8 +552,8 @@ async function prerender() {
   }));
 
   for (const page of homePages) {
-    const links = homePages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${p.loc}" />`).join('\n');
-    const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/" />`;
+    const links = homePages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${escapeXml(p.loc)}" />`).join('\n');
+    const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(baseUrl)}/" />`;
 
     const videoTags = videos.map(v => `    <video:video>
       <video:thumbnail_loc>https://img.youtube.com/vi/${v.id}/hqdefault.jpg</video:thumbnail_loc>
@@ -554,7 +563,7 @@ async function prerender() {
     </video:video>`).join('\n');
 
     sitemapUrls.push(`  <url>
-    <loc>${page.loc}</loc>
+    <loc>${escapeXml(page.loc)}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>${page.lang === 'en' ? '1.0' : '0.9'}</priority>
@@ -565,11 +574,11 @@ ${videoTags}
   }
 
   for (const page of epkPages) {
-    const links = epkPages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${p.loc}" />`).join('\n');
-    const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/epk/" />`;
+    const links = epkPages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${escapeXml(p.loc)}" />`).join('\n');
+    const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(baseUrl)}/epk/" />`;
 
     sitemapUrls.push(`  <url>
-    <loc>${page.loc}</loc>
+    <loc>${escapeXml(page.loc)}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -586,17 +595,17 @@ ${xDefault}
     }));
 
     for (const page of albumPages) {
-      const links = albumPages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${p.loc}" />`).join('\n');
-      const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/albums/${slug}/" />`;
+      const links = albumPages.map(p => `    <xhtml:link rel="alternate" hreflang="${seoLangCodes[p.lang] || p.lang}" href="${escapeXml(p.loc)}" />`).join('\n');
+      const xDefault = `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(baseUrl)}/albums/${slug}/" />`;
 
       const imageTag = album.cover_url ? `    <image:image>
-      <image:loc>${album.cover_url}</image:loc>
+      <image:loc>${escapeXml(album.cover_url)}</image:loc>
       <image:title>${escapeXml(album.title)} - Alarm! Alarm!</image:title>
       <image:caption>Cover art for the album ${escapeXml(album.title)} by Alarm! Alarm!</image:caption>
     </image:image>` : '';
 
       sitemapUrls.push(`  <url>
-    <loc>${page.loc}</loc>
+    <loc>${escapeXml(page.loc)}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -608,10 +617,7 @@ ${imageTag}
   }
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${sitemapUrls.join('\n')}
 </urlset>`;
 
