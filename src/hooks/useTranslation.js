@@ -41,8 +41,10 @@ const useTranslation = () => {
     if (!supabase) return;
 
     // Real-time subscription for UI string updates
+    // Use a unique channel name to avoid collisions between multiple hook instances
+    const channelId = Math.random().toString(36).substring(2, 10);
     const channel = supabase
-      .channel('site_strings_realtime')
+      .channel(`site_strings_realtime_${channelId}`)
       .on(
         'postgres_changes',
         { event: '*', schema: 'public', table: 'site_strings' },
