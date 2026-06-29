@@ -85,8 +85,8 @@ const Releases = () => {
           <article key={release.id} className={styles.discographyItem}>
             <div className={styles.albumCoverWrapper}>
               <img
-                src={release.cover_url}
-                alt={release.title}
+                src={release.cover_url ? release.cover_url.replace("/storage/v1/object/public/", "/storage/v1/render/image/public/") + "?width=400&quality=75&format=webp" : ""}
+                alt={release.title} width="400" height="400"
                 className={styles.albumCover}
                 loading="lazy"
               />

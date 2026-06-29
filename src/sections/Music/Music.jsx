@@ -101,7 +101,7 @@ const Music = () => {
         </div>
       </div>
       <div className={styles.otherPlatforms}>
-        <h4 className={styles.otherPlatformsTitle}>DEPLOY OUR SOUND:</h4>
+        <h3 className={styles.otherPlatformsTitle}>DEPLOY OUR SOUND:</h3>
         <div className={styles.platformGrid}>
           {noise.spotify_embed_url && (
              <a href={noise.spotify_embed_url.replace('/embed', '')} target="_blank" rel="noopener noreferrer" className={styles.platformLink}>
