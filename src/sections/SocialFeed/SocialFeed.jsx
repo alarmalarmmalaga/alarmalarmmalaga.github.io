@@ -82,7 +82,7 @@ const SocialFeed = () => {
             style={{ transform: getRandomRotation() }}
           >
             <img
-              src={post.image_url ? post.image_url.replace("/storage/v1/object/public/", "/storage/v1/render/image/public/") + "?width=600&quality=75&format=webp" : ""}
+              src={post.image_url || ""}
               alt={post.alt_description || post.caption || "Band photo"} width="600" height="600"
             />
             <figcaption className={styles.caption}>{post.caption}</figcaption>
