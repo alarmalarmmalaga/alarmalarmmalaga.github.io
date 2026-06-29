@@ -110,7 +110,12 @@ INSERT INTO site_strings (key, en, es, de, jp) VALUES
 ('dossier_description', 'Stage plot, input list and bio.', 'Stage plot, input list y bio.', 'Stageplot, Inputliste und Biografie.', 'ステージプロット、インプットリスト、バイオグラフィー。'),
 ('view_dossier_label', 'VIEW DOSSIER', 'VER DOSSIER', 'DOSSIER ANSEHEN', 'ドシエを見る'),
 ('asset_promo_text', 'Official band asset for promotional use.', 'Material oficial de la banda para uso promocional.', 'Offizielles Band-Asset für Werbezwecke.', 'プロモーション用の公式バンドアセット。'),
-('download_label', 'DOWNLOAD', 'DESCARGAR', 'HERUNTERLADEN', 'ダウンロード')
+('download_label', 'DOWNLOAD', 'DESCARGAR', 'HERUNTERLADEN', 'ダウンロード'),
+('site_title', 'Alarm! Alarm! | Official Punk Rock from Málaga', 'Alarm! Alarm! | Punk Rock Oficial de Málaga', 'Alarm! Alarm! | Offizieller Punkrock aus Málaga', 'Alarm! Alarm! | マラガの公式パンクロック'),
+('site_description', 'Official website for Alarm! Alarm!, a punk rock band from Málaga.', 'Sitio oficial de Alarm! Alarm!, banda de punk rock de Málaga.', 'Offizielle Website von Alarm! Alarm!, einer Punkrock-Band aus Málaga.', 'マラガのパンクロックバンド、Alarm! Alarm!の公式サイト。'),
+('hero_tagline', 'Aging, work, and the general disappointment of modern life in high-volume punk rock.', 'Envejecimiento, trabajo y la decepción general de la vida moderna en punk rock a todo volumen.', 'Altern, Arbeit und die allgemeine Enttäuschung des modernen Lebens in lautstarkem Punkrock.', '大音量のパンクロックで歌う、加齢、仕事、そして現代生活への全般的な失望。'),
+('album_cover_alt', 'album cover - Alarm! Alarm! Punk Málaga', NULL, NULL, NULL),
+('band_photo_alt', 'Alarm! Alarm! band photo', NULL, NULL, NULL)
 ON CONFLICT (key) DO UPDATE SET
   en = EXCLUDED.en,
   es = EXCLUDED.es,

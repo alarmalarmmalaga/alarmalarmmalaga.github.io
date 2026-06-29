@@ -60,10 +60,16 @@ const useTranslation = () => {
   // Translation function
   const t = (key) => {
     const row = strings[key];
-    if (!row) return key; // Fallback to key if not found
+    const fallbacks = {
+      'site_title': 'Alarm! Alarm! | Official Punk Rock from Málaga',
+      'site_description': 'Official website for Alarm! Alarm!, a punk rock band from Málaga.',
+      'hero_tagline': 'Aging, work, and the general disappointment of modern life in high-volume punk rock.'
+    };
+
+    if (!row) return fallbacks[key] || key;
 
     // Fallback to English if requested language is missing
-    return row[language] || row['en'] || key;
+    return row[language] || row['en'] || fallbacks[key] || key;
   };
 
   return { t, language, setLanguage };

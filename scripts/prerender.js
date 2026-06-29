@@ -22,9 +22,7 @@ const TEMPLATE_PATH = path.join(DIST_DIR, 'index.html');
 
 const getOptimizedUrl = (url, width) => {
   if (!url) return '';
-  if (url.includes('supabase.co')) {
-    return url.replace('/storage/v1/object/public/', '/storage/v1/render/image/public/') + `?width=${width}&quality=75&format=webp`;
-  }
+  // Direct public URLs are preferred as transformation service might not be enabled
   return url;
 };
 
