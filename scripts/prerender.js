@@ -218,8 +218,7 @@ function generateHomeStaticHtml(data, lang) {
 
   return `
     <header class="hero-section-stable">
-      <h1 class="band-name-stable">${t(data.strings, 'site_title', lang)}</h1>
-      <p class="hero-tagline-stable">${t(data.strings, 'hero_tagline', lang)}</p>
+      <h1 class="band-name-stable">Alarm! Alarm!</h1>
     </header>
     <main>
       ${noiseHtml}
