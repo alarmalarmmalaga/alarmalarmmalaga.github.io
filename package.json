@@ -6,7 +6,7 @@
     "node": ">=22.0.0"
   },
   "type": "module",
-  "homepage": "https://alarmalarmmalaga.github.io",
+  "homepage": "https://alarmalarmpunk.com",
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/prerender.js",
