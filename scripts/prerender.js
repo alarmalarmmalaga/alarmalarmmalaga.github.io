@@ -32,7 +32,7 @@ const slugify = (text) =>
     .replace(/[^\w-]+/g, '');
 
 const getHreflangTags = (currentSlug = '', isXml = false) => {
-  const baseUrl = 'https://alarmalarmmalaga.github.io';
+  const baseUrl = 'https://alarmalarmpunk.com';
   const languages = ['en', 'es', 'de', 'jp'];
   const seoLangCodes = { en: 'en', es: 'es', de: 'de', jp: 'ja' };
 
@@ -166,7 +166,7 @@ function generateMusicAlbumSchema(album) {
     "byArtist": {
       "@type": "MusicGroup",
       "name": "Alarm Alarm",
-      "url": "https://alarmalarmmalaga.github.io/"
+      "url": "https://alarmalarmpunk.com/"
     },
     "datePublished": album.release_date,
     "genre": "Punk Rock"
@@ -179,9 +179,9 @@ function generateMusicGroupSchema(data, lang) {
     "@type": "MusicGroup",
     "name": "Alarm Alarm",
     "alternateName": "Alarm! Alarm!",
-    "url": "https://alarmalarmmalaga.github.io/",
-    "logo": "https://alarmalarmmalaga.github.io/AlarmAlarm_icon.png",
-    "image": "https://alarmalarmmalaga.github.io/AlarmAlarm_icon.png",
+    "url": "https://alarmalarmpunk.com/",
+    "logo": "https://alarmalarmpunk.com/AlarmAlarm_icon.png",
+    "image": "https://alarmalarmpunk.com/AlarmAlarm_icon.png",
     "genre": ["Punk Rock"],
     "description": t(data.strings, 'bio_content', lang)
   };
@@ -264,7 +264,7 @@ async function prerender() {
   if (!fs.existsSync(TEMPLATE_PATH)) process.exit(1);
   const template = fs.readFileSync(TEMPLATE_PATH, 'utf-8');
   const data = await fetchData();
-  const baseUrl = 'https://alarmalarmmalaga.github.io';
+  const baseUrl = 'https://alarmalarmpunk.com';
   const languages = ['en', 'es', 'de', 'jp'];
   const seoLangCodes = { en: 'en', es: 'es', de: 'de', jp: 'ja' };
 
@@ -278,6 +278,8 @@ async function prerender() {
     homeHtml = homeHtml.replace('<!--HREFLANG_PLACEHOLDER-->', getHreflangTags('', false));
     const homeCanonical = `${baseUrl}/${langSuffix}`;
     homeHtml = homeHtml.replace('<!--CANONICAL_PLACEHOLDER-->', `<link rel="canonical" href="${homeCanonical}" />`);
+    homeHtml = homeHtml.replace('<meta property="og:url" content="https://alarmalarmpunk.com/">', `<meta property="og:url" content="${homeCanonical}">`);
+    homeHtml = homeHtml.replace('<meta property="twitter:url" content="https://alarmalarmpunk.com/">', `<meta property="twitter:url" content="${homeCanonical}">`);
 
     const homeTitle = t(data.strings, 'site_title', lang);
     const homeDesc = t(data.strings, 'site_description', lang);
@@ -297,7 +299,10 @@ async function prerender() {
     let epkHtml = template;
     epkHtml = epkHtml.replace('<html lang="en">', `<html lang="${seoLangCodes[lang] || lang}">`);
     epkHtml = epkHtml.replace('<!--HREFLANG_PLACEHOLDER-->', getHreflangTags('epk/', false));
-    epkHtml = epkHtml.replace('<!--CANONICAL_PLACEHOLDER-->', `<link rel="canonical" href="${baseUrl}/${langSuffix}epk/" />`);
+    const epkCanonical = `${baseUrl}/${langSuffix}epk/`;
+    epkHtml = epkHtml.replace('<!--CANONICAL_PLACEHOLDER-->', `<link rel="canonical" href="${epkCanonical}" />`);
+    epkHtml = epkHtml.replace('<meta property="og:url" content="https://alarmalarmpunk.com/">', `<meta property="og:url" content="${epkCanonical}">`);
+    epkHtml = epkHtml.replace('<meta property="twitter:url" content="https://alarmalarmpunk.com/">', `<meta property="twitter:url" content="${epkCanonical}">`);
     epkHtml = epkHtml.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root"><main><h1>${t(data.strings, 'epk_title', lang)}</h1><p>${t(data.strings, 'bio_content', lang)}</p></main></div>`);
     fs.writeFileSync(path.join(epkDir, 'index.html'), epkHtml);
 
@@ -308,8 +313,12 @@ async function prerender() {
       const albumPath = path.join(albumsDir, slug);
       if (!fs.existsSync(albumPath)) fs.mkdirSync(albumPath, { recursive: true });
       let albumHtml = template;
+      const albumCanonical = `${baseUrl}/${langSuffix}albums/${slug}/`;
       albumHtml = albumHtml.replace('<html lang="en">', `<html lang="${seoLangCodes[lang] || lang}">`);
       albumHtml = albumHtml.replace('<!--HREFLANG_PLACEHOLDER-->', getHreflangTags(`albums/${slug}/`, false));
+      albumHtml = albumHtml.replace('<!--CANONICAL_PLACEHOLDER-->', `<link rel="canonical" href="${albumCanonical}" />`);
+      albumHtml = albumHtml.replace('<meta property="og:url" content="https://alarmalarmpunk.com/">', `<meta property="og:url" content="${albumCanonical}">`);
+      albumHtml = albumHtml.replace('<meta property="twitter:url" content="https://alarmalarmpunk.com/">', `<meta property="twitter:url" content="${albumCanonical}">`);
       albumHtml = albumHtml.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${generateAlbumStaticHtml(album, data, lang)}</div>`);
       fs.writeFileSync(path.join(albumPath, 'index.html'), albumHtml);
     }
@@ -360,6 +369,13 @@ ${getHreflangTags(`albums/${slug}/`, true)}
 ${sitemapUrls.join('\n')}
 </urlset>`;
   fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), sitemap);
+
+  const robotsTxt = `User-agent: *
+Allow: /
+
+Sitemap: ${baseUrl}/sitemap.xml
+`;
+  fs.writeFileSync(path.join(DIST_DIR, 'robots.txt'), robotsTxt);
 }
 
 prerender().catch(err => {
