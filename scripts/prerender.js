@@ -158,7 +158,15 @@ function t(strings, key, lang) {
 }
 
 function generateMusicAlbumSchema(album) {
-  return {
+  const tracks = (album.songs || [])
+    .sort((a, b) => (a.track_number || 0) - (b.track_number || 0))
+    .map((song, idx) => ({
+      "@type": "MusicRecording",
+      "name": song.title,
+      "position": song.track_number || (idx + 1)
+    }));
+
+  const schema = {
     "@context": "https://schema.org",
     "@type": "MusicAlbum",
     "name": album.title,
@@ -166,11 +174,19 @@ function generateMusicAlbumSchema(album) {
     "byArtist": {
       "@type": "MusicGroup",
       "name": "Alarm Alarm",
+      "alternateName": "Alarm! Alarm!",
       "url": "https://alarmalarmpunk.com/"
     },
     "datePublished": album.release_date,
     "genre": "Punk Rock"
   };
+
+  if (tracks.length > 0) {
+    schema.numTracks = tracks.length;
+    schema.track = tracks;
+  }
+
+  return schema;
 }
 
 function generateMusicGroupSchema(data, lang) {
@@ -178,11 +194,57 @@ function generateMusicGroupSchema(data, lang) {
     "@context": "https://schema.org",
     "@type": "MusicGroup",
     "name": "Alarm Alarm",
-    "alternateName": "Alarm! Alarm!",
+    "alternateName": ["Alarm! Alarm!", "Alarm! Alarm! Punk Málaga"],
     "url": "https://alarmalarmpunk.com/",
     "logo": "https://alarmalarmpunk.com/AlarmAlarm_icon.png",
-    "image": "https://alarmalarmpunk.com/AlarmAlarm_icon.png",
-    "genre": ["Punk Rock"],
+    "image": "https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg",
+    "genre": ["Punk Rock", "90s Punk", "Melodic Punk"],
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Málaga",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Málaga",
+        "addressRegion": "Andalucía",
+        "addressCountry": "ES"
+      }
+    },
+    "sameAs": [
+      "https://open.spotify.com/artist/6Q3jUbGq2b2MeN2lMBYDxz",
+      "https://alarmalarm.bandcamp.com/",
+      "https://music.apple.com/us/artist/alarm-alarm/1494187277",
+      "https://www.youtube.com/@alarmalarm8757",
+      "https://www.instagram.com/alarmalarmmalaga"
+    ],
+    "member": [
+      {
+        "@type": "OrganizationRole",
+        "member": {
+          "@type": "Person",
+          "name": "Pablo Rodríguez",
+          "sameAs": "https://www.instagram.com/spongepablo/"
+        },
+        "roleName": ["Vocals", "Guitar"]
+      },
+      {
+        "@type": "OrganizationRole",
+        "member": {
+          "@type": "Person",
+          "name": "Alejandro Villegas",
+          "sameAs": "https://www.instagram.com/alejandro.villegas.fdez/"
+        },
+        "roleName": ["Drums", "Backing Vocals"]
+      },
+      {
+        "@type": "OrganizationRole",
+        "member": {
+          "@type": "Person",
+          "name": "Mike Thrippleton",
+          "sameAs": "https://www.instagram.com/baron.von.birra/"
+        },
+        "roleName": ["Bass", "Backing Vocals"]
+      }
+    ],
     "description": t(data.strings, 'bio_content', lang)
   };
 }
@@ -319,6 +381,8 @@ async function prerender() {
       albumHtml = albumHtml.replace('<!--CANONICAL_PLACEHOLDER-->', `<link rel="canonical" href="${albumCanonical}" />`);
       albumHtml = albumHtml.replace('<meta property="og:url" content="https://alarmalarmpunk.com/">', `<meta property="og:url" content="${albumCanonical}">`);
       albumHtml = albumHtml.replace('<meta property="twitter:url" content="https://alarmalarmpunk.com/">', `<meta property="twitter:url" content="${albumCanonical}">`);
+      const albumSchema = `<script type="application/ld+json">${JSON.stringify(generateMusicAlbumSchema(album))}</script>`;
+      albumHtml = albumHtml.replace('</head>', `${albumSchema}\n</head>`);
       albumHtml = albumHtml.replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${generateAlbumStaticHtml(album, data, lang)}</div>`);
       fs.writeFileSync(path.join(albumPath, 'index.html'), albumHtml);
     }
