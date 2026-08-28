@@ -37,26 +37,89 @@ const Tour = () => {
         <h3>{t('tour_recent_highlights')}</h3>
         <ul className={styles.showList}>
           <li itemProp="event" itemScope itemType="https://schema.org/Event">
+            <meta itemProp="image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />
+            <meta itemProp="eventStatus" content="https://schema.org/EventScheduled" />
+            <meta itemProp="eventAttendanceMode" content="https://schema.org/OfflineEventAttendanceMode" />
+            <meta itemProp="description" content="THE RUMJACKS + ALARM! ALARM! live in Jerez de la Frontera" />
+            <span itemProp="performer" itemScope itemType="https://schema.org/MusicGroup">
+              <meta itemProp="name" content="Alarm! Alarm!" />
+            </span>
+            <span itemProp="organizer" itemScope itemType="https://schema.org/MusicGroup">
+              <meta itemProp="name" content="Alarm! Alarm!" />
+            </span>
+            <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
+              <meta itemProp="price" content="0" />
+              <meta itemProp="priceCurrency" content="EUR" />
+              <meta itemProp="availability" content="https://schema.org/InStock" />
+              <meta itemProp="url" content="https://alarmalarmpunk.com/#tour" />
+            </span>
             <span itemProp="startDate" content="2026-05-19">Tue, May 19</span>:
             <span itemProp="name"><strong>THE RUMJACKS</strong> + ALARM! ALARM!</span> at
             <span itemProp="location" itemScope itemType="https://schema.org/Place">
-              <span itemProp="name"> Jerez de la Frontera</span> (<span itemProp="addressCountry">Spain</span>)
+              <span itemProp="name"> Jerez de la Frontera</span>
+              <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                <meta itemProp="addressLocality" content="Jerez de la Frontera" />
+                <meta itemProp="addressCountry" content="Spain" />
+              </span>
+              (<span>Spain</span>)
             </span>
           </li>
 
           <li itemProp="event" itemScope itemType="https://schema.org/Event">
+            <meta itemProp="image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />
+            <meta itemProp="eventStatus" content="https://schema.org/EventScheduled" />
+            <meta itemProp="eventAttendanceMode" content="https://schema.org/OfflineEventAttendanceMode" />
+            <meta itemProp="description" content="Sinergy Music Fest I (with Futuras Cuñadas + Picky Pressure) live at Sala Roka, Málaga" />
+            <span itemProp="performer" itemScope itemType="https://schema.org/MusicGroup">
+              <meta itemProp="name" content="Alarm! Alarm!" />
+            </span>
+            <span itemProp="organizer" itemScope itemType="https://schema.org/MusicGroup">
+              <meta itemProp="name" content="Alarm! Alarm!" />
+            </span>
+            <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
+              <meta itemProp="price" content="0" />
+              <meta itemProp="priceCurrency" content="EUR" />
+              <meta itemProp="availability" content="https://schema.org/InStock" />
+              <meta itemProp="url" content="https://alarmalarmpunk.com/#tour" />
+            </span>
             <span itemProp="startDate" content="2026-01-09">Fri, Jan 9</span>:
             <span itemProp="name">Sinergy Music Fest I (with <strong>Futuras Cuñadas + Picky Pressure</strong>)</span> at
             <span itemProp="location" itemScope itemType="https://schema.org/Place">
-              <span itemProp="name"> Sala Roka</span> (<span itemProp="addressLocality">Málaga</span>, <span itemProp="addressCountry">Spain</span>)
+              <span itemProp="name"> Sala Roka</span>
+              <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                <meta itemProp="addressLocality" content="Málaga" />
+                <meta itemProp="addressCountry" content="Spain" />
+              </span>
+              (<span>Málaga</span>, <span>Spain</span>)
             </span>
           </li>
 
           <li itemProp="event" itemScope itemType="https://schema.org/Event">
+            <meta itemProp="image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />
+            <meta itemProp="eventStatus" content="https://schema.org/EventScheduled" />
+            <meta itemProp="eventAttendanceMode" content="https://schema.org/OfflineEventAttendanceMode" />
+            <meta itemProp="description" content="Malaga Shock Festival (with Fuzz Division, TV Dangers and The GTO's) live at CSA Las Vegas, Málaga" />
+            <span itemProp="performer" itemScope itemType="https://schema.org/MusicGroup">
+              <meta itemProp="name" content="Alarm! Alarm!" />
+            </span>
+            <span itemProp="organizer" itemScope itemType="https://schema.org/MusicGroup">
+              <meta itemProp="name" content="Alarm! Alarm!" />
+            </span>
+            <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
+              <meta itemProp="price" content="0" />
+              <meta itemProp="priceCurrency" content="EUR" />
+              <meta itemProp="availability" content="https://schema.org/InStock" />
+              <meta itemProp="url" content="https://alarmalarmpunk.com/#tour" />
+            </span>
             <span itemProp="startDate" content="2025-06-28">Sat, Jun 28, 2025</span>:
             <span itemProp="name">Malaga Shock Festival (with <strong>Fuzz Division, TV Dangers and The GTO's</strong>)</span> at
             <span itemProp="location" itemScope itemType="https://schema.org/Place">
-              <span itemProp="name"> CSA Las Vegas</span> (<span itemProp="addressLocality">Málaga</span>, <span itemProp="addressCountry">Spain</span>)
+              <span itemProp="name"> CSA Las Vegas</span>
+              <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                <meta itemProp="addressLocality" content="Málaga" />
+                <meta itemProp="addressCountry" content="Spain" />
+              </span>
+              (<span>Málaga</span>, <span>Spain</span>)
             </span>
           </li>
         </ul>
@@ -71,52 +134,199 @@ const Tour = () => {
         {showArchive && (
           <ul className={`${styles.showList} ${styles.archiveList}`}>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <meta itemProp="image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />
+              <meta itemProp="eventStatus" content="https://schema.org/EventScheduled" />
+              <meta itemProp="eventAttendanceMode" content="https://schema.org/OfflineEventAttendanceMode" />
+              <meta itemProp="description" content="Santa Costa Games Fuengirola (with FAiLS! and Ultimo Intento) live in Fuengirola" />
+              <span itemProp="performer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="organizer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
+                <meta itemProp="price" content="0" />
+                <meta itemProp="priceCurrency" content="EUR" />
+                <meta itemProp="availability" content="https://schema.org/InStock" />
+                <meta itemProp="url" content="https://alarmalarmpunk.com/#tour" />
+              </span>
               <span itemProp="startDate" content="2025-06-07">Sat, Jun 7, 2025</span>:
               <span itemProp="name">Santa Costa Games Fuengirola (with <strong>FAiLS! and Ultimo Intento</strong>)</span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
-                <span itemProp="name"> Fuengirola</span> (<span itemProp="addressCountry">Spain</span>)
+                <span itemProp="name"> Fuengirola</span>
+                <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                  <meta itemProp="addressLocality" content="Fuengirola" />
+                  <meta itemProp="addressCountry" content="Spain" />
+                </span>
+                (<span>Spain</span>)
               </span>
             </li>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <meta itemProp="image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />
+              <meta itemProp="eventStatus" content="https://schema.org/EventScheduled" />
+              <meta itemProp="eventAttendanceMode" content="https://schema.org/OfflineEventAttendanceMode" />
+              <meta itemProp="description" content="RIP MY TWENTIES FEST 2025 (with Evildog + Something about Tsunamis + Málaga idiots) live in Torremolinos" />
+              <span itemProp="performer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="organizer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
+                <meta itemProp="price" content="0" />
+                <meta itemProp="priceCurrency" content="EUR" />
+                <meta itemProp="availability" content="https://schema.org/InStock" />
+                <meta itemProp="url" content="https://alarmalarmpunk.com/#tour" />
+              </span>
               <span itemProp="startDate" content="2025-02-01">Sat, Feb 1, 2025</span>:
               <span itemProp="name">RIP MY TWENTIES FEST 2025 (with <strong>Evildog + Something about Tsunamis + Málaga idiots</strong>)</span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
-                <span itemProp="name"> Torremolinos</span> (<span itemProp="addressCountry">Spain</span>)
+                <span itemProp="name"> Torremolinos</span>
+                <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                  <meta itemProp="addressLocality" content="Torremolinos" />
+                  <meta itemProp="addressCountry" content="Spain" />
+                </span>
+                (<span>Spain</span>)
               </span>
             </li>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <meta itemProp="image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />
+              <meta itemProp="eventStatus" content="https://schema.org/EventScheduled" />
+              <meta itemProp="eventAttendanceMode" content="https://schema.org/OfflineEventAttendanceMode" />
+              <meta itemProp="description" content="Compu Global Hiper Mega Fest 2024 (with Fuet! + aggro + néboas + not your business + hast) live in Málaga" />
+              <span itemProp="performer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="organizer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
+                <meta itemProp="price" content="0" />
+                <meta itemProp="priceCurrency" content="EUR" />
+                <meta itemProp="availability" content="https://schema.org/InStock" />
+                <meta itemProp="url" content="https://alarmalarmpunk.com/#tour" />
+              </span>
               <span itemProp="startDate" content="2024-12-21">Sat, Dec 21, 2024</span>:
               <span itemProp="name">Compu Global Hiper Mega Fest 2024 (with <strong>Fuet! + aggro + néboas + not your business + hast</strong>)</span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
-                <span itemProp="name"> Málaga</span> (<span itemProp="addressCountry">Spain</span>)
+                <span itemProp="name"> Málaga</span>
+                <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                  <meta itemProp="addressLocality" content="Málaga" />
+                  <meta itemProp="addressCountry" content="Spain" />
+                </span>
+                (<span>Spain</span>)
               </span>
             </li>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <meta itemProp="image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />
+              <meta itemProp="eventStatus" content="https://schema.org/EventScheduled" />
+              <meta itemProp="eventAttendanceMode" content="https://schema.org/OfflineEventAttendanceMode" />
+              <meta itemProp="description" content="Xmas Punk (with Discomfort Zone + Not your business + Civilizencia V. + Swordlaek) live at La Nave, Málaga" />
+              <span itemProp="performer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="organizer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
+                <meta itemProp="price" content="0" />
+                <meta itemProp="priceCurrency" content="EUR" />
+                <meta itemProp="availability" content="https://schema.org/InStock" />
+                <meta itemProp="url" content="https://alarmalarmpunk.com/#tour" />
+              </span>
               <span itemProp="startDate" content="2024-12-08">Sun, Dec 8, 2024</span>:
               <span itemProp="name">Xmas Punk (with <strong>Discomfort Zone + Not your business + Civilizencia V. + Swordlaek</strong>)</span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
-                <span itemProp="name"> La Nave</span> (<span itemProp="addressLocality">Málaga</span>, <span itemProp="addressCountry">Spain</span>)
+                <span itemProp="name"> La Nave</span>
+                <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                  <meta itemProp="addressLocality" content="Málaga" />
+                  <meta itemProp="addressCountry" content="Spain" />
+                </span>
+                (<span>Málaga</span>, <span>Spain</span>)
               </span>
             </li>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <meta itemProp="image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />
+              <meta itemProp="eventStatus" content="https://schema.org/EventScheduled" />
+              <meta itemProp="eventAttendanceMode" content="https://schema.org/OfflineEventAttendanceMode" />
+              <meta itemProp="description" content="Pangea tour, with FAiLS! live at Sala Marte, Málaga" />
+              <span itemProp="performer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="organizer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
+                <meta itemProp="price" content="0" />
+                <meta itemProp="priceCurrency" content="EUR" />
+                <meta itemProp="availability" content="https://schema.org/InStock" />
+                <meta itemProp="url" content="https://alarmalarmpunk.com/#tour" />
+              </span>
               <span itemProp="startDate" content="2024-08-11">Sun, Aug 11, 2024</span>:
               <span itemProp="name">Pangea tour, with <strong>FAiLS!</strong></span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
-                <span itemProp="name"> Sala Marte</span> (<span itemProp="addressLocality">Málaga</span>, <span itemProp="addressCountry">Spain</span>)
+                <span itemProp="name"> Sala Marte</span>
+                <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                  <meta itemProp="addressLocality" content="Málaga" />
+                  <meta itemProp="addressCountry" content="Spain" />
+                </span>
+                (<span>Málaga</span>, <span>Spain</span>)
               </span>
             </li>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <meta itemProp="image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />
+              <meta itemProp="eventStatus" content="https://schema.org/EventScheduled" />
+              <meta itemProp="eventAttendanceMode" content="https://schema.org/OfflineEventAttendanceMode" />
+              <meta itemProp="description" content="Brisa en tu barrio Festival live in Málaga" />
+              <span itemProp="performer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="organizer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
+                <meta itemProp="price" content="0" />
+                <meta itemProp="priceCurrency" content="EUR" />
+                <meta itemProp="availability" content="https://schema.org/InStock" />
+                <meta itemProp="url" content="https://alarmalarmpunk.com/#tour" />
+              </span>
               <span itemProp="startDate" content="2024-07-12">Fri, Jul 12, 2024</span>:
               <span itemProp="name">Brisa en tu barrio Festival</span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
-                <span itemProp="name"> Málaga</span> (<span itemProp="addressCountry">Spain</span>)
+                <span itemProp="name"> Málaga</span>
+                <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                  <meta itemProp="addressLocality" content="Málaga" />
+                  <meta itemProp="addressCountry" content="Spain" />
+                </span>
+                (<span>Spain</span>)
               </span>
             </li>
             <li itemProp="event" itemScope itemType="https://schema.org/Event">
+              <meta itemProp="image" content="https://sacimvemsixvqghmhxtd.supabase.co/storage/v1/object/public/band_assets/header.jpg" />
+              <meta itemProp="eventStatus" content="https://schema.org/EventScheduled" />
+              <meta itemProp="eventAttendanceMode" content="https://schema.org/OfflineEventAttendanceMode" />
+              <meta itemProp="description" content="F***ing Punk Festival (with Vicolo and Último Intento) live in Málaga" />
+              <span itemProp="performer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="organizer" itemScope itemType="https://schema.org/MusicGroup">
+                <meta itemProp="name" content="Alarm! Alarm!" />
+              </span>
+              <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
+                <meta itemProp="price" content="0" />
+                <meta itemProp="priceCurrency" content="EUR" />
+                <meta itemProp="availability" content="https://schema.org/InStock" />
+                <meta itemProp="url" content="https://alarmalarmpunk.com/#tour" />
+              </span>
               <span itemProp="startDate" content="2024-03-02">Sat, Mar 2, 2024</span>:
               <span itemProp="name">F***ing Punk Festival (with <strong>Vicolo and Último Intento</strong>)</span> at
               <span itemProp="location" itemScope itemType="https://schema.org/Place">
-                <span itemProp="name"> Málaga</span> (<span itemProp="addressCountry">Spain</span>)
+                <span itemProp="name"> Málaga</span>
+                <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                  <meta itemProp="addressLocality" content="Málaga" />
+                  <meta itemProp="addressCountry" content="Spain" />
+                </span>
+                (<span>Spain</span>)
               </span>
             </li>
           </ul>
